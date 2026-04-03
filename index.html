@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Botafogo Scout Rankings – MAR/2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090909;--panel:#0D0D0D;
+  --gold:#C9A74B;--gold2:#8A7035;--gold3:#3D2D00;--gold-bg:#120D00;
+  --band:#0E0900;--lg-bg:#1A1200;--ch-bg:#1A1A1A;
+  --ra:#0F0F0F;--rb:#161616;
+  --t1:#EEEEEE;--t2:#999;--t3:#444;
+  --sm:#FFD700;--sb:#4A90D9;--sy:#4CAF50;
+  --sep:#2A1C00;--r:3px;
+  --hh:60px;--ws:96px;
+}
+html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;overflow:hidden}
+
+/* HEADER */
+#hdr{position:fixed;top:0;left:0;right:0;height:var(--hh);background:var(--gold-bg);border-bottom:2px solid var(--gold2);display:flex;align-items:center;padding:0 12px;gap:10px;z-index:100}
+#logo{font-size:24px;font-weight:900;color:var(--gold);letter-spacing:2px;white-space:nowrap}
+#logo span{font-size:13px;color:var(--t2);display:block;letter-spacing:3px;font-weight:400}
+#mbadge{background:var(--gold);color:#000;font-weight:700;font-size:14px;padding:4px 10px;border-radius:2px;letter-spacing:1px}
+#tabs{display:flex;gap:4px;margin-left:auto}
+.tb{background:transparent;border:1px solid var(--gold2);color:var(--t2);padding:5px 12px;cursor:pointer;border-radius:var(--r);font-size:15px;font-weight:600;transition:.15s}
+.tb:hover{background:var(--gold3);color:var(--gold)}.tb.on{background:var(--gold);color:#000;border-color:var(--gold)}
+#fbar{display:flex;gap:5px;margin-left:10px}
+.fb{background:transparent;border:1px solid var(--t3);color:var(--t2);padding:3px 9px;cursor:pointer;border-radius:var(--r);font-size:14px;transition:.15s}
+.fb.on[data-f="all"]{color:var(--gold);border-color:var(--gold)}
+.fb.on[data-f="main"]{color:var(--sm);border-color:var(--sm)}
+.fb.on[data-f="backup"]{color:var(--sb);border-color:var(--sb)}
+.fb.on[data-f="youth"]{color:var(--sy);border-color:var(--sy)}
+#leg{font-size:13px;color:var(--t2);white-space:nowrap;margin-left:4px}
+#leg span{margin-right:6px}
+
+/* SIDEBAR */
+#sb{position:fixed;top:var(--hh);left:0;bottom:0;width:var(--ws);background:var(--panel);border-right:1px solid var(--gold3);overflow-y:auto;z-index:50;padding:8px 4px}
+#sb::-webkit-scrollbar{width:3px}#sb::-webkit-scrollbar-thumb{background:var(--gold3)}
+.pb{width:100%;background:transparent;border:none;color:var(--t2);padding:6px 0;cursor:pointer;font-size:14px;font-weight:700;letter-spacing:.5px;text-align:center;border-radius:var(--r);margin-bottom:2px;transition:.15s;border-left:2px solid transparent}
+.pb:hover{background:var(--gold3);color:var(--gold)}.pb.on{background:var(--gold-bg);color:var(--gold);border-left-color:var(--gold)}
+.pb small{display:block;font-size:13px;opacity:.7;margin-top:1px;font-weight:400}
+
+/* MAIN */
+#main{position:fixed;top:var(--hh);left:var(--ws);right:0;bottom:0;overflow-y:auto;padding:10px 10px 0 10px}
+#main::-webkit-scrollbar{width:4px}#main::-webkit-scrollbar-thumb{background:var(--gold3)}
+
+/* RANKINGS */
+.pp{display:none}.pp.on{display:block}
+.pt{display:flex;align-items:baseline;gap:8px;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--gold3)}
+.pt h2{font-size:21px;color:var(--gold);font-weight:900}.pt h3{font-size:14px;color:var(--t2);font-weight:400}
+.band{margin-bottom:7px}
+.bh{background:var(--band);padding:4px 8px;display:flex;align-items:center;gap:8px;border-left:3px solid var(--gold)}
+.bt{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1px}
+.bl{font-size:13px;color:var(--gold2);font-weight:600;margin-left:auto}
+.bts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
+.lt{overflow:hidden}
+.ln{background:var(--lg-bg);padding:5px 8px;font-size:12px;font-weight:700;color:var(--gold);text-align:center;letter-spacing:.6px;border-top:1px solid var(--gold2)}
+.ch{display:grid;background:var(--ch-bg);padding:2px 0}
+.chc{font-size:10px;font-weight:700;color:var(--gold2);text-align:center}
+.pr{display:grid;align-items:center;padding:3px 0;transition:.08s;cursor:default}
+.pr:nth-child(odd){background:var(--ra)}.pr:nth-child(even){background:var(--rb)}
+.pr:hover{background:#1E1800}.pr.dim{opacity:.2}
+.c{font-size:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 2px}
+.cn{text-align:center;color:var(--t2)}.cname{font-weight:700;color:var(--t1)}
+.covr{text-align:center;font-weight:700;font-size:12px}
+.cclub{color:var(--t2)}.cage{text-align:center;color:var(--t2)}.ccon{text-align:center;color:var(--t2);font-size:13px}
+.cs{display:flex;justify-content:center;gap:1px}
+.s{background:none;border:none;cursor:pointer;font-size:13px;color:var(--t3);padding:0;line-height:1;transition:.1s;opacity:.5}
+.s:hover{opacity:1;transform:scale(1.3)}.s.on{opacity:1}
+.s[data-l="main"].on{color:var(--sm)}.s[data-l="backup"].on{color:var(--sb)}.s[data-l="youth"].on{color:var(--sy)}
+
+/* LISTAS TAB */
+#tlists{display:none}
+.lh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.lh h2{font-size:21px;color:var(--gold);font-weight:900;letter-spacing:1px}
+.lstabs{display:flex;gap:4px}
+.lstb{background:transparent;border:1px solid var(--t3);color:var(--t2);padding:4px 12px;cursor:pointer;border-radius:var(--r);font-size:14px;font-weight:600;transition:.15s}
+.lstb:hover{opacity:.8}
+.lstb.on[data-ls="main"]{background:var(--sm);color:#000;border-color:var(--sm)}
+.lstb.on[data-ls="backup"]{background:var(--sb);color:#fff;border-color:var(--sb)}
+.lstb.on[data-ls="youth"]{background:var(--sy);color:#000;border-color:var(--sy)}
+.lstb.on[data-ls="starred"]{background:var(--gold);color:#000;border-color:var(--gold)}
+#lbody{margin-top:4px}
+
+/* scout list sections */
+.lsec{margin-bottom:12px}
+.lsech{display:flex;align-items:center;gap:8px;background:var(--ch-bg);padding:5px 10px;border-left:3px solid var(--gold2);margin-bottom:3px}
+.lsech span{font-size:13px;font-weight:700;color:var(--gold2);letter-spacing:.8px}
+.lsech small{font-size:12px;color:var(--t2)}
+.lgrid{display:flex;flex-wrap:wrap;gap:4px;padding:2px 0}
+.lpill{display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:2px;font-size:13px;font-weight:600;transition:.1s;cursor:default}
+.lpill.found{background:var(--gold3);border:1px solid var(--gold2)}
+.lpill.found:hover{background:#2A1C00}
+.lpill.notfound{background:#111;border:1px solid #222;color:var(--t3)}
+.lpill .lname{color:var(--t1)}
+.lpill.notfound .lname{color:var(--t3)}
+.lovrb{font-size:13px;font-weight:700;padding:1px 4px;border-radius:2px;background:#000;margin-left:2px}
+.lligb{font-size:12px;color:var(--gold2)}
+.lposb{font-size:12px;color:var(--t2)}
+.lstarr{display:flex;gap:2px;margin-left:auto}
+.ls2{background:none;border:none;cursor:pointer;font-size:14px;color:var(--t3);padding:0;transition:.1s}
+.ls2:hover{opacity:1}.ls2.on{opacity:1}
+.ls2[data-l="main"].on{color:var(--sm)}.ls2[data-l="backup"].on{color:var(--sb)}.ls2[data-l="youth"].on{color:var(--sy)}
+
+/* starred players table */
+#stbl{width:100%;border-collapse:collapse}
+#stbl th{background:var(--ch-bg);color:var(--gold2);font-size:13px;font-weight:700;padding:5px 7px;text-align:left;border-bottom:1px solid var(--gold3);white-space:nowrap}
+#stbl td{padding:6px 9px;font-size:14px;border-bottom:1px solid var(--sep);white-space:nowrap;vertical-align:middle}
+#stbl tr:nth-child(even) td{background:var(--rb)}#stbl tr:nth-child(odd) td{background:var(--ra)}
+#stbl tr:hover td{background:#1E1800}
+.bm{display:inline-block;padding:2px 6px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.5px;margin-right:2px}
+.bm-main{background:var(--sm);color:#000}.bm-backup{background:var(--sb);color:#fff}.bm-youth{background:var(--sy);color:#000}
+.empty{text-align:center;padding:40px;color:var(--t2);font-size:15px}
+.empty strong{color:var(--gold);display:block;margin-bottom:6px}
+#scnt{font-size:14px;color:var(--t2);margin-bottom:6px}
+.lsumm{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.lscard{background:var(--panel);border:1px solid var(--gold3);padding:8px 14px;border-radius:3px;min-width:120px}
+.lscard .lct{font-size:13px;font-weight:700;color:var(--gold2);letter-spacing:.5px;margin-bottom:4px}
+.lscard .lcn{font-size:20px;font-weight:900;color:var(--gold);line-height:1}
+.lscard .lcn2{font-size:15px;color:var(--t2);margin-top:2px}
+
+
+
+
+/* PRINT */
+@media print{
+  html,body{overflow:visible!important;height:auto!important;background:#fff!important}
+  #hdr,#sb,#tlists,#fbar,#leg,#tabs,.cs,.lstarr,#overlay{display:none!important}
+  #main{position:static!important;overflow:visible!important;
+    padding:0!important;left:0!important;top:0!important;
+    height:auto!important;width:100%!important}
+  #tranks{display:block!important}
+  .pp{display:block!important;page-break-after:always}
+  .pp:last-child{page-break-after:auto}
+  .bts{display:grid!important;grid-template-columns:1fr 1fr 1fr!important}
+  .pr.dim{opacity:1!important}
+  .band{break-inside:avoid;margin-bottom:6px}
+  .pt{margin-bottom:6px}
+  @page{size:A4 landscape;margin:10mm}
+}
+
+/* MODAL CADASTRO */
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center}
+#overlay.open{display:flex}
+#modal{background:#111;border:1px solid var(--gold2);border-radius:6px;width:480px;max-width:95vw;
+  box-shadow:0 8px 40px rgba(0,0,0,.8);overflow:hidden}
+#mhdr{background:var(--gold-bg);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gold2)}
+#mhdr h3{color:var(--gold);font-size:14px;font-weight:900;letter-spacing:.5px}
+#mclose{background:none;border:none;color:var(--t2);font-size:20px;cursor:pointer;padding:0 2px;line-height:1}
+#mclose:hover{color:var(--t1)}
+#mform{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mfield{display:flex;flex-direction:column;gap:4px}
+.mfield.full{grid-column:1/-1}
+.mfield label{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.5px;text-transform:uppercase}
+.mfield input,.mfield select{background:#1A1A1A;border:1px solid var(--t3);color:var(--t1);
+  padding:7px 10px;border-radius:3px;font-size:13px;font-family:inherit;outline:none;transition:.15s}
+.mfield input:focus,.mfield select:focus{border-color:var(--gold)}
+.mfield select option{background:#1A1A1A;color:var(--t1)}
+#mcheck{display:flex;gap:12px;padding:0 18px 4px}
+.mck{display:flex;align-items:center;gap:6px;cursor:pointer;padding:7px 12px;border-radius:3px;
+  border:1px solid var(--t3);font-size:12px;font-weight:700;transition:.15s;user-select:none}
+.mck:hover{border-color:var(--gold2)}
+.mck input{display:none}
+.mck.active-main{background:rgba(255,215,0,.15);border-color:var(--sm);color:var(--sm)}
+.mck.active-backup{background:rgba(74,144,217,.15);border-color:var(--sb);color:var(--sb)}
+.mck.active-youth{background:rgba(76,175,80,.15);border-color:var(--sy);color:var(--sy)}
+#mfooter{padding:14px 18px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--gold3)}
+.mbt{padding:8px 20px;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--t3);
+  color:var(--t2);background:transparent;transition:.15s;font-family:inherit}
+.mbt:hover{background:var(--gold3);color:var(--t1)}
+.mbt.save{background:var(--gold);color:#000;border-color:var(--gold)}
+.mbt.save:hover{opacity:.85}
+.mbt.del{border-color:#c0392b;color:#c0392b}
+.mbt.del:hover{background:#c0392b;color:#fff}
+/* custom player badge */
+.cbadge{font-size:9px;background:#333;color:var(--t2);padding:1px 5px;border-radius:2px;margin-left:4px}
+
+
+/* Filter buttons */
+/* Tab buttons */
+/* Theme/PDF buttons */
+/* Legend */
+
+/* ══════════════════════════════════════════════════════
+   TEMA LIGHT — elegante, espelho do dark
+   Mantém o ouro como acento; fundo cinza neutro limpo
+   ══════════════════════════════════════════════════════ */
+body.light {
+  /* Fundos */
+  --bg:#F4F4F4; --panel:#ECECEC;
+  /* Ouro — ligeiramente mais escuro para funcionar em fundo claro */
+  --gold:#9A7200; --gold2:#7A5A00; --gold3:#C4A020; --gold-bg:#EDEDED;
+  /* Tabelas */
+  --band:#E2E2E2; --lg-bg:#EBEBEB; --ch-bg:#DCDCDC;
+  /* Linhas */
+  --ra:#F8F8F8; --rb:#EFEFEF;
+  /* Texto */
+  --t1:#111111; --t2:#555555; --t3:#AAAAAA;
+  /* Estrelas */
+  --sm:#B8860B; --sb:#1255A0; --sy:#1A6B1A;
+  /* Separador */
+  --sep:#CCCCCC;
+}
+
+/* ── HEADER ── */
+body.light #hdr {
+  background:#FFFFFF;
+  border-bottom:2px solid #D0D0D0;
+  box-shadow:0 2px 12px rgba(0,0,0,.10);
+}
+body.light #logo { color:#111111; letter-spacing:1.5px }
+body.light #logo span { color:#888888 }
+
+/* Badge do mês: ouro sobre claro */
+body.light #mbadge {
+  background:#9A7200; color:#FFFFFF;
+  border-radius:4px; letter-spacing:.5px;
+  box-shadow:0 2px 6px rgba(0,0,0,.18);
+}
+
+/* Botões de filtro */
+body.light .fb {
+  background:#FFFFFF; border:1px solid #CCCCCC; color:#555555;
+  border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.08); font-weight:600;
+}
+body.light .fb:hover { background:#F0F0F0; border-color:#AAAAAA; color:#111 }
+body.light .fb.on[data-f="all"]    { background:#1A1A1A; color:#FFF; border-color:#1A1A1A }
+body.light .fb.on[data-f="main"]   { background:#9A7200; color:#FFF; border-color:#9A7200 }
+body.light .fb.on[data-f="backup"] { background:#1255A0; color:#FFF; border-color:#1255A0 }
+body.light .fb.on[data-f="youth"]  { background:#1A6B1A; color:#FFF; border-color:#1A6B1A }
+
+/* Tabs Rankings/Listas */
+body.light .tb {
+  background:#FFFFFF; border:1px solid #CCCCCC; color:#555555;
+  border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.08);
+}
+body.light .tb:hover { background:#F0F0F0; border-color:#AAAAAA; color:#111 }
+body.light .tb.on {
+  background:#1A1A1A; color:#FFFFFF; border-color:#1A1A1A;
+  box-shadow:0 2px 8px rgba(0,0,0,.22);
+}
+
+/* Legenda */
+body.light #leg { color:#777777 }
+
+/* ── SIDEBAR ── */
+body.light #sb {
+  background:#FFFFFF;
+  border-right:1px solid #CCCCCC;
+  box-shadow:2px 0 10px rgba(0,0,0,.07);
+}
+body.light .pb {
+  color:#444444; background:#F4F4F4;
+  border:1px solid #DDDDDD; border-left:3px solid transparent;
+  border-radius:4px; margin-bottom:3px;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+body.light .pb:hover {
+  background:#EBEBEB; color:#111111;
+  border-color:#BBBBBB; border-left-color:#C4A020;
+  box-shadow:0 2px 5px rgba(0,0,0,.10);
+}
+body.light .pb.on {
+  background:#1A1A1A; color:#FFFFFF;
+  border-color:#1A1A1A; border-left:3px solid #9A7200;
+  box-shadow:0 2px 8px rgba(0,0,0,.22); font-weight:900;
+}
+body.light .pb.on small { color:#C4A020; opacity:.85 }
+body.light .pb small { opacity:.65 }
+
+/* ── TABELA — estrutura ── */
+/* Band header: mantém acento ouro */
+body.light .bh {
+  background:#E0E0E0;
+  border-left:3px solid #9A7200;
+}
+body.light .bt { color:#7A5A00 }
+body.light .bl { color:#9A7200 }
+
+/* Nome da liga: acento no topo igual ao dark */
+body.light .ln {
+  background:#D8D8D8; color:#6A4E00;
+  border-top:1px solid #9A7200;
+}
+
+/* Cabeçalho de colunas */
+body.light .ch { background:#DCDCDC }
+body.light .chc { color:#6A6A6A }
+
+/* Linhas */
+body.light .pr:nth-child(odd)  { background:#F8F8F8 }
+body.light .pr:nth-child(even) { background:#EFEFEF }
+body.light .pr:hover           { background:#E8E4D0 }
+
+/* Nomes e texto nas células */
+body.light .cname   { color:#111111 }
+body.light .cclub   { color:#555555 }
+body.light .cage    { color:#555555 }
+body.light .ccon    { color:#666666 }
+body.light .cn      { color:#888888 }
+
+/* Estrelas dimadas */
+body.light .s       { color:#CCCCCC }
+
+/* Dim */
+body.light .pr.dim  { opacity:.22 }
+
+/* ── MODAL ── */
+body.light #modal   { background:#F8F8F8; border-color:#CCCCCC; box-shadow:0 8px 40px rgba(0,0,0,.18) }
+body.light #mhdr    { background:#ECECEC; border-bottom-color:#CCCCCC }
+body.light #mhdr h3 { color:#7A5A00 }
+body.light .mfield input, body.light .mfield select {
+  background:#FFFFFF; border-color:#CCCCCC; color:#111111;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.06);
+}
+body.light .mfield input:focus, body.light .mfield select:focus { border-color:#9A7200 }
+body.light .mfield select option { background:#FFFFFF; color:#111111 }
+body.light #mfooter { border-top-color:#DDDDDD }
+body.light .mbt { border-color:#CCCCCC; color:#444444 }
+body.light .mbt.save { background:#9A7200; color:#FFFFFF; border-color:#9A7200 }
+body.light .cbadge  { background:#DDDDDD; color:#666666 }
+
+/* ── LISTAS ── */
+body.light .lsech { background:#E2E2E2; border-left-color:#9A7200 }
+body.light .lpill.found { background:#EEEEEE; border-color:#CCCCCC }
+body.light .lpill.found:hover { background:#E4E0D0 }
+body.light .lpill.notfound { background:#F4F4F4; border-color:#DDDDDD }
+body.light .lscard { background:#FFFFFF; border-color:#CCCCCC; box-shadow:0 1px 4px rgba(0,0,0,.08) }
+body.light .lscard .lct { color:#7A5A00 }
+body.light .lscard .lcn { color:#9A7200 }
+body.light #stbl th { background:#DCDCDC; color:#555555; border-bottom-color:#CCCCCC }
+body.light #stbl td { border-bottom-color:#E0E0E0 }
+body.light #stbl tr:nth-child(even) td { background:#EFEFEF }
+body.light #stbl tr:nth-child(odd)  td { background:#F8F8F8 }
+body.light #stbl tr:hover td { background:#E8E4D0 }
+</style>
+</head>
+<body>
+<div id="hdr">
+  <div id="logo">BOTAFOGO<span>SCOUT ANALYTICS</span></div>
+  <div id="mbadge">MAR/2026</div>
+  <div id="fbar">
+    <button class="fb on" data-f="all" onclick="setF('all')">Todos</button>
+    <button class="fb" data-f="main" onclick="setF('main')">⭐ Main</button>
+    <button class="fb" data-f="backup" onclick="setF('backup')">🔵 Backup</button>
+    <button class="fb" data-f="youth" onclick="setF('youth')">🟢 Youth</button>
+  </div>
+  <div id="leg">
+    <span style="color:var(--sm)">★ MAIN</span>
+    <span style="color:var(--sb)">★ BACKUP</span>
+    <span style="color:var(--sy)">★ YOUTH</span>
+  </div>
+  <div style="display:flex;gap:6px;align-items:center;margin-left:6px">
+    <button id="themeBtn" class="tb" onclick="toggleTheme()" title="Alternar tema" style="font-size:14px;padding:5px 10px">☀</button>
+    <button class="tb" onclick="printPDF()" title="Imprimir / Salvar PDF" style="font-size:13px;padding:5px 10px">🖨 PDF</button>
+  </div>
+  <div id="tabs">
+    <button class="tb on" onclick="swTab('r')">Rankings</button>
+    <button class="tb" onclick="swTab('l')">Listas de Destaque</button>
+  </div>
+</div>
+<div id="sb"></div>
+<div id="main">
+  <div id="tranks"></div>
+  <div id="tlists"></div>
+</div>
+<script>
+const R={"GK": {"label": "GOLEIRO", "data": {"Brasil A": [{"n": 1, "name": "Hugo Souza", "ovr": 70.6, "club": "Corinthians", "foot": "D", "age": 27, "contract": "Dez/2028"}, {"n": 2, "name": "Cleiton", "ovr": 63.3, "club": "Red Bull Bragantino", "foot": "D", "age": 28, "contract": "Dez/2027"}, {"n": 3, "name": "Ronaldo", "ovr": 61.8, "club": "Bahia", "foot": "D", "age": 29, "contract": "Dez/2029"}, {"n": 4, "name": "Fábio", "ovr": 55.7, "club": "Fluminense", "foot": "D", "age": 45, "contract": "Dez/2027"}, {"n": 5, "name": "Rafael", "ovr": 54.4, "club": "São Paulo", "foot": "E", "age": 36, "contract": "Dez/2027"}, {"n": 6, "name": "Pedro Morisco", "ovr": 51.4, "club": "Coritiba", "foot": "D", "age": 22, "contract": "Dez/2027"}, {"n": 7, "name": "Santos", "ovr": 46.2, "club": "Athletico Paranaense", "foot": "D", "age": 35, "contract": "Dez/2026"}, {"n": 8, "name": "Marcelo Rangel", "ovr": 45.7, "club": "Remo", "foot": "D", "age": 37, "contract": "Dez/2026"}, {"n": 9, "name": "Léo Vieira", "ovr": 45.1, "club": "Chapecoense", "foot": "D", "age": 35, "contract": "Nov/2026"}, {"n": 10, "name": "Neto [BOT]", "ovr": 44.3, "club": "Botafogo", "foot": "D", "age": 36, "contract": "Jun/2027"}], "Argentina A": [{"n": 1, "name": "O. Gill", "ovr": 83.1, "club": "San Lorenzo", "foot": "E", "age": 25, "contract": "Dez/2027"}, {"n": 2, "name": "M. Borgogno", "ovr": 80.1, "club": "Platense", "foot": "D", "age": 27, "contract": "Dez/2026"}, {"n": 3, "name": "M. Miño", "ovr": 73.2, "club": "Barracas Central", "foot": "D", "age": 28, "contract": "Dez/2026"}, {"n": 4, "name": "F. Muslera", "ovr": 71.2, "club": "Estudiantes", "foot": "D", "age": 39, "contract": "Dez/2026"}, {"n": 5, "name": "M. Mansilla", "ovr": 70.0, "club": "Unión Santa Fe", "foot": "D", "age": 30, "contract": "?"}, {"n": 6, "name": "I. Arce", "ovr": 68.3, "club": "Deportivo Riestra", "foot": "D", "age": 34, "contract": "Dez/2026"}, {"n": 7, "name": "C. Fiermarín", "ovr": 67.4, "club": "Defensa y Justicia", "foot": "D", "age": 28, "contract": "Dez/2028"}, {"n": 8, "name": "T. Cardozo", "ovr": 66.5, "club": "Belgrano", "foot": "D", "age": 29, "contract": "Dez/2028"}, {"n": 9, "name": "H. Galíndez", "ovr": 65.2, "club": "Huracán", "foot": "D", "age": 38, "contract": "Dez/2027"}, {"n": 10, "name": "Alan Aguerre", "ovr": 64.3, "club": "Central Córdoba SdE", "foot": "D", "age": 35, "contract": "Dez/2026"}], "Portugal A": [{"n": 1, "name": "Andrew", "ovr": 75.2, "club": "Gil Vicente", "foot": "D", "age": 24, "contract": "Jun/2029"}, {"n": 2, "name": "Diogo Costa", "ovr": 72.9, "club": "Porto", "foot": "D", "age": 26, "contract": "Jun/2030"}, {"n": 3, "name": "L. Carević", "ovr": 70.8, "club": "Famalicão", "foot": "D", "age": 24, "contract": "Jun/2028"}, {"n": 4, "name": "Rui Silva", "ovr": 69.9, "club": "Sporting CP", "foot": "D", "age": 32, "contract": "Jun/2028"}, {"n": 5, "name": "Bernardo", "ovr": 61.2, "club": "Tondela", "foot": "E", "age": 23, "contract": "Jun/2029"}, {"n": 6, "name": "A. Trubin", "ovr": 60.9, "club": "Benfica", "foot": "D", "age": 24, "contract": "Jun/2028"}, {"n": 7, "name": "Kaique", "ovr": 54.6, "club": "Nacional", "foot": "D", "age": 22, "contract": "Dez/2026"}, {"n": 8, "name": "C. Miszta", "ovr": 53.8, "club": "Rio Ave", "foot": "D", "age": 24, "contract": "Jun/2027"}, {"n": 9, "name": "Adriel", "ovr": 53.7, "club": "AVS", "foot": "D", "age": 25, "contract": "Dez/2026"}, {"n": 10, "name": "J. Castillo", "ovr": 50.1, "club": "Vitória Guimarães", "foot": "D", "age": 23, "contract": "Jun/2029"}], "Uruguai": [{"n": 1, "name": "B. Antúnez", "ovr": 85.2, "club": "Boston River", "foot": "?", "age": 22, "contract": "Dez/2026"}, {"n": 2, "name": "R. Bacchia", "ovr": 73.2, "club": "Cerro", "foot": "D", "age": 26, "contract": "Dez/2026"}, {"n": 3, "name": "K. Dawson", "ovr": 73.0, "club": "Defensor Sporting", "foot": "D", "age": 33, "contract": "Dez/2027"}, {"n": 4, "name": "G. Santilli", "ovr": 68.5, "club": "Cerro Largo", "foot": "D", "age": 24, "contract": "Dez/2026"}, {"n": 5, "name": "S. Lentinelly", "ovr": 64.2, "club": "Liverpool", "foot": "D", "age": 28, "contract": "Dez/2026"}], "Colômbia": [{"n": 1, "name": "G. Banguera", "ovr": 82.7, "club": "Deportivo Pasto", "foot": "D", "age": 30, "contract": "?"}, {"n": 2, "name": "A. Quintana", "ovr": 71.8, "club": "Atl. Bucaramanga", "foot": "E", "age": 31, "contract": "Dez/2026"}, {"n": 3, "name": "Neto Volpi", "ovr": 71.0, "club": "Tolima", "foot": "D", "age": 33, "contract": "Dez/2028"}, {"n": 4, "name": "M. Ortega", "ovr": 67.6, "club": "Llaneros", "foot": "E", "age": 30, "contract": "Jun/2026"}, {"n": 5, "name": "D. Novoa", "ovr": 64.4, "club": "Millonarios", "foot": "D", "age": 36, "contract": "Jun/2026"}], "Brasileiros Ext.": [{"n": 1, "name": "Matheus", "ovr": 70.8, "club": "Crvena Zvezda", "foot": "D", "age": 33, "contract": "Jun/2027"}, {"n": 2, "name": "Samuel Portugal", "ovr": 68.7, "club": "Al Akhdoud", "foot": "D", "age": 31, "contract": "Jun/2027"}, {"n": 3, "name": "Warleson", "ovr": 68.5, "club": "Cercle Brugge", "foot": "D", "age": 29, "contract": "Jun/2026"}, {"n": 4, "name": "Victor Aznar", "ovr": 67.9, "club": "Cádiz", "foot": "D", "age": 23, "contract": "Jun/2027"}, {"n": 5, "name": "Mailson", "ovr": 67.4, "club": "Al Taawon", "foot": "D", "age": 29, "contract": "Jun/2028"}], "Chile": [{"n": 1, "name": "G. Castellón", "ovr": 84.3, "club": "Universidad de Chile", "foot": "D", "age": 32, "contract": "Dez/2027"}, {"n": 2, "name": "N. Pérez", "ovr": 79.7, "club": "Ñublense", "foot": "D", "age": 36, "contract": "?"}, {"n": 3, "name": "Fernando de Paul", "ovr": 62.5, "club": "Colo Colo", "foot": "D", "age": 34, "contract": "Dez/2026"}], "Equador": [{"n": 1, "name": "R. Silva", "ovr": 71.8, "club": "Orense", "foot": "D", "age": 30, "contract": "Dez/2026"}, {"n": 2, "name": "F. Mina", "ovr": 69.1, "club": "Libertad", "foot": "?", "age": 24, "contract": "Dez/2026"}, {"n": 3, "name": "P. Ortiz", "ovr": 68.1, "club": "Emelec", "foot": "D", "age": 35, "contract": "Dez/2026"}], "Paraguai": [{"n": 1, "name": "A. Martín Arias", "ovr": 79.7, "club": "Cerro Porteño", "foot": "D", "age": 33, "contract": "?"}, {"n": 2, "name": "G. Olveira", "ovr": 74.4, "club": "Olimpia", "foot": "D", "age": 32, "contract": "?"}, {"n": 3, "name": "F. Fragueda", "ovr": 70.8, "club": "Rubio Ñú", "foot": "D", "age": 25, "contract": "?"}]}}, "ZAG-D": {"label": "ZAGUEIRO DIREITO", "data": {"Brasil A": [{"n": 1, "name": "Bruno Gomes", "ovr": 56.8, "club": "Internacional", "foot": "D", "age": 24, "contract": "Dez/2027"}, {"n": 2, "name": "David Duarte", "ovr": 52.1, "club": "Bahia", "foot": "D", "age": 31, "contract": "Dez/2027"}, {"n": 3, "name": "F. Torres", "ovr": 52.0, "club": "Internacional", "foot": "D", "age": 29, "contract": "Dez/2027"}, {"n": 4, "name": "Ruan Tressoldi", "ovr": 49.0, "club": "Atlético Mineiro", "foot": "D", "age": 26, "contract": "Jun/2026"}, {"n": 5, "name": "Fabricio Bruno", "ovr": 48.9, "club": "Cruzeiro", "foot": "D", "age": 30, "contract": "Dez/2030"}, {"n": 6, "name": "C. Cuesta", "ovr": 48.2, "club": "Vasco da Gama", "foot": "D", "age": 28, "contract": "Jun/2028"}, {"n": 7, "name": "Léo Ortiz", "ovr": 46.6, "club": "Flamengo", "foot": "D", "age": 30, "contract": "Dez/2028"}, {"n": 8, "name": "G. Gómez", "ovr": 46.3, "club": "Palmeiras", "foot": "D", "age": 32, "contract": "Dez/2027"}, {"n": 9, "name": "Gabriel Paulista", "ovr": 43.8, "club": "Corinthians", "foot": "D", "age": 35, "contract": "Dez/2027"}, {"n": 10, "name": "Gustavo Henrique", "ovr": 42.8, "club": "Corinthians", "foot": "D", "age": 32, "contract": "Dez/2027"}], "Argentina A": [{"n": 1, "name": "N. Zalazar", "ovr": 60.3, "club": "Aldosivi", "foot": "D", "age": 29, "contract": "Dez/2026"}, {"n": 2, "name": "F. Álvarez", "ovr": 59.5, "club": "Argentinos Juniors", "foot": "D", "age": 26, "contract": "Dez/2028"}, {"n": 3, "name": "M. Di Cesare", "ovr": 57.8, "club": "Racing Club", "foot": "D", "age": 24, "contract": "Dez/2027"}, {"n": 4, "name": "L. Martínez Quarta", "ovr": 57.7, "club": "River Plate", "foot": "D", "age": 29, "contract": "Dez/2028"}, {"n": 5, "name": "L. Di Lollo", "ovr": 56.7, "club": "Boca Juniors", "foot": "D", "age": 21, "contract": "Dez/2029"}, {"n": 6, "name": "C. Izquierdoz", "ovr": 54.2, "club": "Lanús", "foot": "D", "age": 37, "contract": "Jun/2026"}, {"n": 7, "name": "L. González Pirez", "ovr": 53.6, "club": "Estudiantes", "foot": "D", "age": 34, "contract": "Jun/2027"}, {"n": 8, "name": "M. Catalán", "ovr": 50.1, "club": "Talleres Córdoba", "foot": "D", "age": 33, "contract": "Dez/2026"}, {"n": 9, "name": "K. Lomónaco", "ovr": 49.5, "club": "Independiente", "foot": "D", "age": 24, "contract": "Dez/2028"}, {"n": 10, "name": "I. Ovando", "ovr": 49.2, "club": "Rosario Central", "foot": "D", "age": 18, "contract": "Dez/2027"}], "Portugal A": [{"n": 1, "name": "Z. Debast", "ovr": 62.2, "club": "Sporting CP", "foot": "D", "age": 22, "contract": "Jun/2029"}, {"n": 2, "name": "Vitor Carvalho", "ovr": 62.2, "club": "Sporting Braga", "foot": "D", "age": 28, "contract": "Jun/2028"}, {"n": 3, "name": "António Silva", "ovr": 61.4, "club": "Benfica", "foot": "D", "age": 22, "contract": "Jun/2027"}, {"n": 4, "name": "Tomás Araújo", "ovr": 61.3, "club": "Benfica", "foot": "D", "age": 23, "contract": "Jun/2029"}, {"n": 5, "name": "G. Lagerbielke", "ovr": 59.6, "club": "Sporting Braga", "foot": "D", "age": 25, "contract": "Jun/2030"}, {"n": 6, "name": "S. Niakaté", "ovr": 58.8, "club": "Sporting Braga", "foot": "E", "age": 26, "contract": "Jun/2028"}, {"n": 7, "name": "O. Diomandé", "ovr": 55.4, "club": "Sporting CP", "foot": "D", "age": 22, "contract": "Jun/2030"}, {"n": 8, "name": "J. Bednarek", "ovr": 55.1, "club": "Porto", "foot": "D", "age": 29, "contract": "Jun/2029"}, {"n": 9, "name": "Léo Santos", "ovr": 53.0, "club": "Nacional", "foot": "D", "age": 27, "contract": "Jun/2027"}, {"n": 10, "name": "Javi Sánchez", "ovr": 52.8, "club": "Arouca", "foot": "D", "age": 28, "contract": "Jun/2026"}], "Uruguai": [{"n": 1, "name": "V. Gauthier", "ovr": 70.8, "club": "Juventud", "foot": "D", "age": 22, "contract": "Jun/2029"}, {"n": 2, "name": "G. Cotugno", "ovr": 70.4, "club": "Racing", "foot": "D", "age": 30, "contract": "Dez/2026"}, {"n": 3, "name": "G. de los Santos", "ovr": 68.0, "club": "Defensor Sporting", "foot": "D", "age": 34, "contract": "?"}, {"n": 4, "name": "M. González", "ovr": 65.4, "club": "Danubio", "foot": "D", "age": 23, "contract": "?"}, {"n": 5, "name": "S. Coates", "ovr": 64.8, "club": "Nacional", "foot": "D", "age": 35, "contract": "?"}], "Colômbia": [{"n": 1, "name": "Y. Díaz", "ovr": 63.2, "club": "Fortaleza", "foot": "D", "age": 28, "contract": "?"}, {"n": 2, "name": "Emanuel Olivera", "ovr": 61.1, "club": "Santa Fe", "foot": "D", "age": 35, "contract": "Dez/2026"}, {"n": 3, "name": "L. Chaverra", "ovr": 60.6, "club": "Medellín", "foot": "D", "age": 28, "contract": "Jun/2028"}, {"n": 4, "name": "Jermein Peña", "ovr": 57.5, "club": "Junior", "foot": "D", "age": 26, "contract": "Dez/2029"}, {"n": 5, "name": "Y. Mosquera", "ovr": 56.3, "club": "Jaguares de Córdoba", "foot": "D", "age": 30, "contract": "?"}], "Brasileiros Ext.": [{"n": 1, "name": "Fabiano", "ovr": 72.9, "club": "Aris", "foot": "D", "age": 34, "contract": "Jun/2027"}, {"n": 2, "name": "Rodrigão", "ovr": 66.5, "club": "Crvena Zvezda", "foot": "D", "age": 30, "contract": "Jun/2027"}, {"n": 3, "name": "Vitor Tormena", "ovr": 65.8, "club": "Krasnodar", "foot": "D", "age": 30, "contract": "Jun/2029"}, {"n": 4, "name": "Éder Militão", "ovr": 65.6, "club": "Real Madrid", "foot": "D", "age": 27, "contract": "Jun/2028"}, {"n": 5, "name": "João Victor", "ovr": 65.4, "club": "Dila", "foot": "?", "age": 21, "contract": "?"}], "Chile": [{"n": 1, "name": "N. Ramírez", "ovr": 66.0, "club": "Universidad...", "foot": "D", "age": 28, "contract": "Dez/2026"}, {"n": 2, "name": "R. Cáseres", "ovr": 59.4, "club": "Unión La Calera", "foot": "D", "age": 28, "contract": "Dez/2026"}, {"n": 3, "name": "Nicolás Vargas", "ovr": 59.3, "club": "Huachipato", "foot": "D", "age": 32, "contract": "Dez/2026"}], "Equador": [{"n": 1, "name": "J. Ontaneda", "ovr": 70.6, "club": "Aucas", "foot": "D", "age": 29, "contract": "Dez/2027"}, {"n": 2, "name": "L. Zárate", "ovr": 69.6, "club": "Independiente del V.", "foot": "D", "age": 26, "contract": "Dez/2027"}, {"n": 3, "name": "C. Rolón", "ovr": 65.8, "club": "Aucas", "foot": "D", "age": 33, "contract": "?"}], "Paraguai": [{"n": 1, "name": "N. Marotta", "ovr": 66.5, "club": "Deportivo Recoleta", "foot": "D", "age": 29, "contract": "Dez/2026"}, {"n": 2, "name": "G. Velázquez", "ovr": 64.2, "club": "Cerro Porteño", "foot": "D", "age": 34, "contract": "Dez/2026"}, {"n": 3, "name": "L. Quintana", "ovr": 60.2, "club": "Cerro Porteño", "foot": "D", "age": 21, "contract": "Dez/2028"}]}}, "ZAG-E": {"label": "ZAGUEIRO ESQUERDO", "data": {"Brasil A": [{"n": 1, "name": "Alexander Barboza [BOT]", "ovr": 51.5, "club": "Botafogo", "foot": "E", "age": 30, "contract": "Dez/2026"}, {"n": 2, "name": "Murilo", "ovr": 50.7, "club": "Palmeiras", "foot": "D", "age": 28, "contract": "Dez/2027"}, {"n": 3, "name": "Victor Gabriel", "ovr": 50.6, "club": "Internacional", "foot": "E", "age": 21, "contract": "Dez/2029"}, {"n": 4, "name": "Robert Renan", "ovr": 49.2, "club": "Vasco da Gama", "foot": "E", "age": 22, "contract": "Jun/2028"}, {"n": 5, "name": "Júnior Alonso", "ovr": 48.8, "club": "Atlético Mineiro", "foot": "E", "age": 33, "contract": "Dez/2026"}, {"n": 6, "name": "Léo Pereira", "ovr": 48.7, "club": "Flamengo", "foot": "E", "age": 30, "contract": "Dez/2027"}, {"n": 7, "name": "Eduardo Doma", "ovr": 45.6, "club": "Chapecoense", "foot": "D", "age": 27, "contract": "Dez/2027"}, {"n": 8, "name": "Willian Machado", "ovr": 45.3, "club": "Mirassol", "foot": "E", "age": 29, "contract": "Dez/2028"}, {"n": 9, "name": "Luan Peres", "ovr": 44.5, "club": "Santos", "foot": "E", "age": 31, "contract": "Dez/2027"}, {"n": 10, "name": "Arthur Dias", "ovr": 43.9, "club": "Athletico Paranaense", "foot": "D", "age": 18, "contract": "Dez/2028"}], "Argentina A": [{"n": 1, "name": "D. Martínez", "ovr": 59.6, "club": "Defensa y Justicia", "foot": "E", "age": 28, "contract": "Dez/2026"}, {"n": 2, "name": "L. Rivero", "ovr": 59.2, "club": "River Plate", "foot": "D", "age": 22, "contract": "Dez/2028"}, {"n": 3, "name": "T. Palacios", "ovr": 58.3, "club": "Estudiantes", "foot": "E", "age": 22, "contract": "Jun/2029"}, {"n": 4, "name": "L. López", "ovr": 58.2, "club": "Belgrano", "foot": "D", "age": 36, "contract": "Dez/2026"}, {"n": 5, "name": "E. Martínez", "ovr": 57.3, "club": "Gimnasia La Plata", "foot": "E", "age": 27, "contract": "Dez/2028"}, {"n": 6, "name": "S. Studer", "ovr": 56.5, "club": "Independiente", "foot": "D", "age": 23, "contract": "?"}, {"n": 7, "name": "A. Costa", "ovr": 55.8, "club": "Boca Juniors", "foot": "E", "age": 26, "contract": "Dez/2028"}, {"n": 8, "name": "G. Hernández", "ovr": 54.3, "club": "San Lorenzo", "foot": "E", "age": 28, "contract": "Dez/2027"}, {"n": 9, "name": "A. Barrionuevo", "ovr": 53.9, "club": "Tigre", "foot": "D", "age": 29, "contract": "Dez/2027"}, {"n": 10, "name": "J. Insaurralde", "ovr": 53.2, "club": "Sarmiento", "foot": "E", "age": 41, "contract": "Dez/2026"}], "Portugal A": [{"n": 1, "name": "Gonçalo Inácio", "ovr": 74.1, "club": "Sporting CP", "foot": "E", "age": 24, "contract": "Jun/2030"}, {"n": 2, "name": "N. Otamendi", "ovr": 66.2, "club": "Benfica", "foot": "D", "age": 38, "contract": "Jun/2026"}, {"n": 3, "name": "MT", "ovr": 62.8, "club": "Santa Clara", "foot": "E", "age": 24, "contract": "Jun/2028"}, {"n": 4, "name": "J. Kiwior", "ovr": 62.4, "club": "Porto", "foot": "E", "age": 26, "contract": "Jun/2028"}, {"n": 5, "name": "Zé Vitor", "ovr": 59.6, "club": "Nacional", "foot": "E", "age": 25, "contract": "Jun/2027"}, {"n": 6, "name": "David Sousa", "ovr": 59.2, "club": "Casa Pia AC", "foot": "E", "age": 24, "contract": "Jun/2028"}, {"n": 7, "name": "J. de Haas", "ovr": 58.9, "club": "Famalicão", "foot": "E", "age": 26, "contract": "Jun/2026"}, {"n": 8, "name": "R. Abascal", "ovr": 56.5, "club": "Vitória Guimarães", "foot": "E", "age": 32, "contract": "Jun/2027"}, {"n": 9, "name": "Bernardo Schappo", "ovr": 56.1, "club": "Estrela Amadora", "foot": "E", "age": 26, "contract": "Jun/2028"}, {"n": 10, "name": "José Fontán", "ovr": 53.8, "club": "Arouca", "foot": "E", "age": 26, "contract": "Jun/2027"}], "Uruguai": [{"n": 1, "name": "M. Ferreira", "ovr": 67.1, "club": "Racing", "foot": "E", "age": 33, "contract": "Dez/2026"}, {"n": 2, "name": "J. Millán", "ovr": 61.9, "club": "Nacional", "foot": "E", "age": 27, "contract": "Dez/2027"}, {"n": 3, "name": "E. Castillo", "ovr": 60.5, "club": "Liverpool", "foot": "E", "age": 25, "contract": "?"}, {"n": 4, "name": "J. Viacava", "ovr": 59.6, "club": "Defensor Sporting", "foot": "E", "age": 26, "contract": "?"}, {"n": 5, "name": "M. Rinaldi", "ovr": 59.2, "club": "Danubio", "foot": "?", "age": 25, "contract": "Dez/2026"}], "Colômbia": [{"n": 1, "name": "J. Ortiz", "ovr": 65.6, "club": "Medellín", "foot": "D", "age": 27, "contract": "Dez/2026"}, {"n": 2, "name": "J. Arias", "ovr": 64.8, "club": "Millonarios", "foot": "E", "age": 33, "contract": "Jun/2027"}, {"n": 3, "name": "A. Angulo", "ovr": 60.3, "club": "Tolima", "foot": "D", "age": 29, "contract": "?"}, {"n": 4, "name": "D. Hernández", "ovr": 60.3, "club": "Águilas Doradas", "foot": "D", "age": 25, "contract": "?"}, {"n": 5, "name": "J. Balanta", "ovr": 58.7, "club": "Fortaleza", "foot": "D", "age": 27, "contract": "?"}], "Brasileiros Ext.": [{"n": 1, "name": "Lucas Maia", "ovr": 73.2, "club": "Henan", "foot": "E", "age": 32, "contract": "?"}, {"n": 2, "name": "Ruan Renato", "ovr": 71.9, "club": "Zira", "foot": "E", "age": 32, "contract": "Jun/2026"}, {"n": 3, "name": "Vinicius", "ovr": 71.1, "club": "Caen", "foot": "E", "age": 27, "contract": "Jun/2027"}, {"n": 4, "name": "Renan", "ovr": 69.4, "club": "Shabab Al Ahly", "foot": "E", "age": 23, "contract": "Jun/2029"}, {"n": 5, "name": "Raphael Silva", "ovr": 67.6, "club": "Al Faisaly", "foot": "D", "age": 33, "contract": "?"}], "Chile": [{"n": 1, "name": "J. Díaz", "ovr": 67.2, "club": "Universidad...", "foot": "E", "age": 27, "contract": "?"}, {"n": 2, "name": "F. Grillo", "ovr": 63.0, "club": "Concepción", "foot": "E", "age": 33, "contract": "Dez/2026"}, {"n": 3, "name": "Manuel Fernández", "ovr": 61.8, "club": "Coquimbo Unido", "foot": "D", "age": 37, "contract": "Dez/2026"}], "Equador": [{"n": 1, "name": "L. Quiñónez", "ovr": 75.2, "club": "LDU Quito", "foot": "E", "age": 32, "contract": "?"}, {"n": 2, "name": "R. Schunke", "ovr": 67.4, "club": "Independiente del V.", "foot": "D", "age": 34, "contract": "?"}, {"n": 3, "name": "E. Segura", "ovr": 63.8, "club": "Aucas", "foot": "?", "age": 26, "contract": "?"}], "Paraguai": [{"n": 1, "name": "M. Pérez", "ovr": 68.6, "club": "Cerro Porteño", "foot": "D", "age": 27, "contract": "Dez/2027"}, {"n": 2, "name": "N. Giménez", "ovr": 66.4, "club": "Club Libertad", "foot": "E", "age": 28, "contract": "?"}, {"n": 3, "name": "M. Gamarra", "ovr": 65.4, "club": "Olimpia", "foot": "E", "age": 25, "contract": "Dez/2027"}]}}, "LD": {"label": "LATERAL DIREITO", "data": {"Brasil A": [{"n": 1, "name": "Cristian Pavón", "ovr": 63.2, "club": "Grêmio", "foot": "D", "age": 30, "contract": "Dez/2026"}, {"n": 2, "name": "Braian Aguirre", "ovr": 47.7, "club": "Internacional", "foot": "D", "age": 25, "contract": "Dez/2028"}, {"n": 3, "name": "J. Rodríguez", "ovr": 47.5, "club": "Vasco da Gama", "foot": "D", "age": 28, "contract": "Dez/2027"}, {"n": 4, "name": "Igor Formiga", "ovr": 46.1, "club": "Mirassol", "foot": "D", "age": 27, "contract": "Dez/2026"}, {"n": 5, "name": "Vitinho", "ovr": 42.5, "club": "Internacional", "foot": "D", "age": 26, "contract": "Jun/2026"}, {"n": 6, "name": "Everton", "ovr": 38.4, "club": "Chapecoense", "foot": "D", "age": 30, "contract": "Dez/2026"}, {"n": 7, "name": "G. Benavidez", "ovr": 34.5, "club": "Athletico Paranaense", "foot": "D", "age": 30, "contract": "Dez/2028"}, {"n": 8, "name": "Matheuzinho", "ovr": 34.3, "club": "Corinthians", "foot": "D", "age": 25, "contract": "Dez/2028"}, {"n": 9, "name": "Fágner", "ovr": 32.7, "club": "Cruzeiro", "foot": "D", "age": 36, "contract": "Dez/2026"}, {"n": 10, "name": "Vitinho [BOT]", "ovr": 20.2, "club": "Botafogo", "foot": "D", "age": 26, "contract": "Dez/2029"}], "Argentina A": [{"n": 1, "name": "A. Osella", "ovr": 52.4, "club": "Independiente", "foot": "?", "age": 25, "contract": "?"}, {"n": 2, "name": "G. Montiel", "ovr": 52.0, "club": "River Plate", "foot": "D", "age": 29, "contract": "Dez/2028"}, {"n": 3, "name": "L. Godoy", "ovr": 48.9, "club": "Independiente", "foot": "D", "age": 30, "contract": "Dez/2028"}, {"n": 4, "name": "G. Cerato", "ovr": 46.8, "club": "Instituto", "foot": "D", "age": 27, "contract": "Dez/2027"}, {"n": 5, "name": "L. Lozano", "ovr": 42.9, "club": "Argentinos Juniors", "foot": "D", "age": 27, "contract": "Dez/2027"}, {"n": 6, "name": "S. López", "ovr": 42.3, "club": "Banfield", "foot": "D", "age": 28, "contract": "Dez/2028"}, {"n": 7, "name": "A. Schott", "ovr": 41.3, "club": "Talleres Córdoba", "foot": "D", "age": 26, "contract": "Dez/2026"}, {"n": 8, "name": "E. Giménez", "ovr": 40.6, "club": "Rosario Central", "foot": "D", "age": 28, "contract": "Dez/2027"}, {"n": 9, "name": "J. Barinaga", "ovr": 38.7, "club": "Boca Juniors", "foot": "D", "age": 25, "contract": "Dez/2028"}, {"n": 10, "name": "A. Steimbach", "ovr": 38.6, "club": "Gimnasia La Plata", "foot": "D", "age": 23, "contract": "Dez/2026"}], "Portugal A": [{"n": 1, "name": "S. Lopes Cabral", "ovr": 58.8, "club": "Benfica", "foot": "E", "age": 23, "contract": "Jun/2030"}, {"n": 2, "name": "G. Vagiannidis", "ovr": 51.8, "club": "Sporting CP", "foot": "D", "age": 24, "contract": "Jun/2030"}, {"n": 3, "name": "Victor Gómez", "ovr": 51.7, "club": "Sporting Braga", "foot": "D", "age": 25, "contract": "Jun/2028"}, {"n": 4, "name": "Rodrigo Pinheiro", "ovr": 50.7, "club": "Famalicão", "foot": "D", "age": 23, "contract": "Jun/2027"}, {"n": 5, "name": "A. Dedić", "ovr": 47.4, "club": "Benfica", "foot": "D", "age": 23, "contract": "Jun/2030"}, {"n": 6, "name": "Ricard Sánchez", "ovr": 46.9, "club": "Estoril", "foot": "D", "age": 26, "contract": "Jun/2027"}, {"n": 7, "name": "Mario Dorgeles", "ovr": 46.4, "club": "Sporting Braga", "foot": "E", "age": 21, "contract": "Jun/2030"}, {"n": 8, "name": "Martim Fernandes", "ovr": 46.4, "club": "Porto", "foot": "D", "age": 20, "contract": "Jun/2030"}, {"n": 9, "name": "T. Strata", "ovr": 45.7, "club": "Vitória Guimarães", "foot": "D", "age": 21, "contract": "Jun/2029"}, {"n": 10, "name": "Tiago Esgaio", "ovr": 44.9, "club": "Arouca", "foot": "D", "age": 30, "contract": "Jun/2027"}], "Uruguai": [{"n": 1, "name": "A. Pereira", "ovr": 55.6, "club": "Racing", "foot": "D", "age": 24, "contract": "?"}, {"n": 2, "name": "F. Pizzichillo", "ovr": 55.4, "club": "Torque", "foot": "D", "age": 29, "contract": "?"}, {"n": 3, "name": "L. Morales", "ovr": 52.9, "club": "Nacional", "foot": "D", "age": 26, "contract": "?"}, {"n": 4, "name": "E. Busquets", "ovr": 48.4, "club": "Torque", "foot": "D", "age": 25, "contract": "?"}, {"n": 5, "name": "C. Mayada", "ovr": 48.1, "club": "Danubio", "foot": "D", "age": 34, "contract": "?"}], "Colômbia": [{"n": 1, "name": "E. Mena", "ovr": 62.5, "club": "Medellín", "foot": "D", "age": 28, "contract": "Jun/2028"}, {"n": 2, "name": "A. Román", "ovr": 53.9, "club": "Atlético Nacional", "foot": "D", "age": 30, "contract": "Jun/2026"}, {"n": 3, "name": "J. Cuesta", "ovr": 52.2, "club": "Once Caldas", "foot": "D", "age": 28, "contract": "Jun/2027"}, {"n": 4, "name": "W. Pacheco", "ovr": 50.4, "club": "Deportivo P.", "foot": "D", "age": 31, "contract": "Jun/2027"}, {"n": 5, "name": "J. Altamiranda", "ovr": 50.1, "club": "Jaguares de...", "foot": "D", "age": 25, "contract": "?"}], "Brasileiros Ext.": [{"n": 1, "name": "Bruno Felipe", "ovr": 66.0, "club": "Pafos", "foot": "D", "age": 31, "contract": "May/2027"}, {"n": 2, "name": "Rodinei", "ovr": 65.6, "club": "Olympiacos", "foot": "D", "age": 34, "contract": "Jun/2027"}, {"n": 3, "name": "Gustavo Mantuan", "ovr": 62.1, "club": "Zenit", "foot": "D", "age": 24, "contract": "Jun/2030"}, {"n": 4, "name": "Mateus Henrique", "ovr": 62.0, "club": "Shabab Al Ahly", "foot": "D", "age": 23, "contract": "?"}, {"n": 5, "name": "Claudinei", "ovr": 58.5, "club": "Gagra", "foot": "D", "age": 23, "contract": "?"}], "Chile": [{"n": 1, "name": "I. Garguez", "ovr": 48.5, "club": "Palestino", "foot": "?", "age": 21, "contract": "Dez/2028"}, {"n": 2, "name": "Jeyson Rojas", "ovr": 46.1, "club": "Colo Colo", "foot": "D", "age": 24, "contract": "Dez/2027"}, {"n": 3, "name": "J. Montecinos", "ovr": 44.9, "club": "Deportes Limache", "foot": "D", "age": 30, "contract": "Dez/2026"}], "Equador": [{"n": 1, "name": "U. Ciccioli", "ovr": 66.3, "club": "Aucas", "foot": "D", "age": 22, "contract": "Dez/2026"}, {"n": 2, "name": "J. Quintero", "ovr": 63.3, "club": "LDU Quito", "foot": "D", "age": 35, "contract": "?"}, {"n": 3, "name": "T. Santamaria", "ovr": 57.8, "club": "Independiente...", "foot": "D", "age": 22, "contract": "Dez/2027"}], "Paraguai": [{"n": 1, "name": "I. Ramírez", "ovr": 58.5, "club": "Club Libertad", "foot": "D", "age": 31, "contract": "?"}, {"n": 2, "name": "F. Franco", "ovr": 55.4, "club": "Sportivo Ameliano", "foot": "D", "age": 27, "contract": "Dez/2027"}, {"n": 3, "name": "C. Espínola", "ovr": 50.4, "club": "Nacional Asunción", "foot": "D", "age": 26, "contract": "Dez/2026"}]}}, "LE": {"label": "LATERAL ESQUERDO", "data": {"Brasil A": [{"n": 1, "name": "Alex Sandro", "ovr": 52.4, "club": "Flamengo", "foot": "E", "age": 35, "contract": "Dez/2026"}, {"n": 2, "name": "Renê", "ovr": 48.8, "club": "Fluminense", "foot": "D", "age": 33, "contract": "Dez/2026"}, {"n": 3, "name": "Matheus Bidu", "ovr": 46.7, "club": "Corinthians", "foot": "E", "age": 26, "contract": "Dez/2027"}, {"n": 4, "name": "L. Esquivel", "ovr": 46.0, "club": "Athletico Paranaense", "foot": "E", "age": 24, "contract": "Jun/2028"}, {"n": 5, "name": "Marlon", "ovr": 43.0, "club": "Grêmio", "foot": "E", "age": 28, "contract": "Dez/2028"}, {"n": 6, "name": "Luciano Juba", "ovr": 42.7, "club": "Bahia", "foot": "E", "age": 26, "contract": "Dez/2029"}, {"n": 7, "name": "Juninho Capixaba", "ovr": 42.4, "club": "Red Bull Bragantino", "foot": "E", "age": 28, "contract": "Dez/2028"}, {"n": 8, "name": "Kaiki", "ovr": 41.8, "club": "Cruzeiro", "foot": "E", "age": 22, "contract": "Dez/2027"}, {"n": 9, "name": "Lucas Piton", "ovr": 39.7, "club": "Vasco da Gama", "foot": "E", "age": 25, "contract": "Dez/2028"}, {"n": 10, "name": "Alex Telles [BOT]", "ovr": 19.8, "club": "Botafogo", "foot": "E", "age": 33, "contract": "Dez/2026"}], "Argentina A": [{"n": 1, "name": "L. Blanco", "ovr": 66.2, "club": "Boca Juniors", "foot": "E", "age": 27, "contract": "Dez/2028"}, {"n": 2, "name": "M. Del Blanco", "ovr": 65.2, "club": "Unión Santa Fe", "foot": "E", "age": 22, "contract": "Dez/2028"}, {"n": 3, "name": "G. Rojas", "ovr": 50.4, "club": "Racing Club", "foot": "E", "age": 28, "contract": "Dez/2028"}, {"n": 4, "name": "F. Zabala", "ovr": 47.6, "club": "Independiente", "foot": "E", "age": 27, "contract": "Dez/2028"}, {"n": 5, "name": "F. Saavedra", "ovr": 44.7, "club": "Gimnasia M.", "foot": "E", "age": 22, "contract": "Dez/2028"}, {"n": 6, "name": "A. Sández", "ovr": 42.9, "club": "Rosario Central", "foot": "E", "age": 25, "contract": "Dez/2027"}, {"n": 7, "name": "R. Insúa", "ovr": 42.1, "club": "Barracas Central", "foot": "E", "age": 28, "contract": "Dez/2026"}, {"n": 8, "name": "I. Galván", "ovr": 41.1, "club": "Atlético Tucumán", "foot": "E", "age": 23, "contract": "Dez/2026"}, {"n": 9, "name": "S. Marcich", "ovr": 40.5, "club": "Lanús", "foot": "E", "age": 27, "contract": "Dez/2028"}, {"n": 10, "name": "L. Rodriguez", "ovr": 39.6, "club": "Aldosivi", "foot": "E", "age": 32, "contract": "Jun/2026"}], "Portugal A": [{"n": 1, "name": "M. Araújo", "ovr": 64.2, "club": "Sporting CP", "foot": "E", "age": 26, "contract": "Jun/2029"}, {"n": 2, "name": "Gabri Martinez", "ovr": 64.1, "club": "Sporting Braga", "foot": "D", "age": 23, "contract": "Jun/2029"}, {"n": 3, "name": "Ricardo Mangas", "ovr": 57.7, "club": "Sporting CP", "foot": "E", "age": 27, "contract": "Jun/2029"}, {"n": 4, "name": "Rodrigo Conceição", "ovr": 53.9, "club": "Tondela", "foot": "D", "age": 26, "contract": "Jun/2027"}, {"n": 5, "name": "Francisco Moura", "ovr": 51.7, "club": "Porto", "foot": "E", "age": 26, "contract": "Jun/2029"}, {"n": 6, "name": "Leonardo Lelo", "ovr": 50.1, "club": "Sporting Braga", "foot": "E", "age": 25, "contract": "Jun/2029"}, {"n": 7, "name": "S. Dahl", "ovr": 45.7, "club": "Benfica", "foot": "E", "age": 22, "contract": "Jun/2029"}, {"n": 8, "name": "Z. Sanusi", "ovr": 44.7, "club": "Porto", "foot": "E", "age": 28, "contract": "Jun/2027"}, {"n": 9, "name": "Paulo Victor", "ovr": 41.8, "club": "Santa Clara", "foot": "E", "age": 24, "contract": "Jun/2029"}, {"n": 10, "name": "Arnau Solà", "ovr": 40.2, "club": "Arouca", "foot": "E", "age": 22, "contract": "Jun/2028"}], "Uruguai": [{"n": 1, "name": "L. Hernández", "ovr": 65.3, "club": "Peñarol", "foot": "E", "age": 33, "contract": "Dez/2026"}, {"n": 2, "name": "G. Báez", "ovr": 57.4, "club": "Nacional", "foot": "E", "age": 30, "contract": "Dez/2027"}, {"n": 3, "name": "C. González", "ovr": 53.2, "club": "Cerro Largo", "foot": "E", "age": 26, "contract": "?"}, {"n": 4, "name": "T. Espinosa", "ovr": 52.9, "club": "Racing", "foot": "E", "age": 21, "contract": "Dez/2026"}, {"n": 5, "name": "M. Olivera", "ovr": 47.9, "club": "Peñarol", "foot": "E", "age": 33, "contract": "Jun/2026"}], "Colômbia": [{"n": 1, "name": "M. Casco", "ovr": 63.2, "club": "Atlético Nacional", "foot": "D", "age": 37, "contract": "Dez/2026"}, {"n": 2, "name": "F. Chaverra", "ovr": 62.7, "club": "Medellín", "foot": "E", "age": 25, "contract": "Jun/2027"}, {"n": 3, "name": "S. Valencia", "ovr": 54.7, "club": "Millonarios", "foot": "E", "age": 29, "contract": "Dez/2028"}, {"n": 4, "name": "O. Bertel", "ovr": 50.5, "club": "América de...", "foot": "E", "age": 29, "contract": "Dez/2027"}, {"n": 5, "name": "J. Mena", "ovr": 43.7, "club": "Águilas Doradas", "foot": "?", "age": 21, "contract": "?"}], "Brasileiros Ext.": [{"n": 1, "name": "Samuel Toscas", "ovr": 85.1, "club": "Al Riffa", "foot": "E", "age": 26, "contract": "Jun/2031"}, {"n": 2, "name": "Maicon", "ovr": 76.5, "club": "Levski Sofia", "foot": "E", "age": 25, "contract": "Jun/2027"}, {"n": 3, "name": "Marcus Meloni", "ovr": 68.8, "club": "Al Jazira", "foot": "D", "age": 25, "contract": "Jun/2030"}, {"n": 4, "name": "Paulo Azzi", "ovr": 63.0, "club": "Monza", "foot": "D", "age": 31, "contract": "Jun/2027"}, {"n": 5, "name": "Pedrinho", "ovr": 58.5, "club": "Shakhtar Donetsk", "foot": "E", "age": 23, "contract": "Dez/2031"}], "Chile": [{"n": 1, "name": "C. Cuevas", "ovr": 53.2, "club": "Universidad...", "foot": "E", "age": 30, "contract": "Dez/2026"}, {"n": 2, "name": "E. Matus", "ovr": 52.1, "club": "Audax Italiano", "foot": "E", "age": 24, "contract": "Dez/2027"}, {"n": 3, "name": "D. Zúñiga", "ovr": 42.9, "club": "Palestino", "foot": "D", "age": 29, "contract": "Dez/2028"}], "Equador": [{"n": 1, "name": "E. Mejía", "ovr": 75.7, "club": "Universidad Católica", "foot": "E", "age": 25, "contract": "?"}, {"n": 2, "name": "Y. Erique", "ovr": 55.5, "club": "LDU Quito", "foot": "E", "age": 22, "contract": "Dez/2026"}, {"n": 3, "name": "J. Mina", "ovr": 53.1, "club": "Aucas", "foot": "E", "age": 30, "contract": "Dez/2026"}], "Paraguai": [{"n": 1, "name": "M. Espinoza", "ovr": 65.3, "club": "Club Libertad", "foot": "E", "age": 28, "contract": "?"}, {"n": 2, "name": "Ulises Coronel", "ovr": 51.0, "club": "2 de Mayo", "foot": "E", "age": 27, "contract": "?"}, {"n": 3, "name": "Á. Martínez", "ovr": 49.2, "club": "Sportivo Luqueño", "foot": "?", "age": 24, "contract": "?"}]}}, "VOL": {"label": "VOLANTE", "data": {"Brasil A": [{"n": 1, "name": "L. Romero", "ovr": 54.3, "club": "Cruzeiro", "foot": "D", "age": 31, "contract": "Dez/2027"}, {"n": 2, "name": "Martinelli", "ovr": 52.5, "club": "Fluminense", "foot": "D", "age": 24, "contract": "Dez/2030"}, {"n": 3, "name": "Danielzinho", "ovr": 38.6, "club": "São Paulo", "foot": "D", "age": 31, "contract": "Dez/2027"}, {"n": 4, "name": "E. Noriega", "ovr": 37.8, "club": "Grêmio", "foot": "D", "age": 24, "contract": "Dez/2028"}, {"n": 5, "name": "Yuri Lara", "ovr": 33.9, "club": "Mirassol", "foot": "D", "age": 31, "contract": "Dez/2026"}, {"n": 6, "name": "Ronaldo", "ovr": 32.0, "club": "Internacional", "foot": "D", "age": 29, "contract": "Dez/2026"}, {"n": 7, "name": "João Schmidt", "ovr": 31.8, "club": "Santos", "foot": "E", "age": 32, "contract": "Dez/2027"}, {"n": 8, "name": "Erick Pulgar", "ovr": 30.8, "club": "Flamengo", "foot": "D", "age": 32, "contract": "Dez/2027"}, {"n": 9, "name": "J. Lavega", "ovr": 28.7, "club": "Coritiba", "foot": "E", "age": 21, "contract": "Dez/2029"}, {"n": 10, "name": "L. Picco", "ovr": 24.0, "club": "Remo", "foot": "D", "age": 27, "contract": "Dez/2028"}], "Argentina A": [{"n": 1, "name": "L. Paredes", "ovr": 71.2, "club": "Boca Juniors", "foot": "D", "age": 31, "contract": "Dez/2028"}, {"n": 2, "name": "I. Marcone", "ovr": 49.4, "club": "Independiente", "foot": "D", "age": 35, "contract": "Dez/2026"}, {"n": 3, "name": "E. Ojeda", "ovr": 41.9, "club": "Huracán", "foot": "D", "age": 28, "contract": "Dez/2028"}, {"n": 4, "name": "F. Fattori", "ovr": 40.9, "club": "Argentinos Juniors", "foot": "D", "age": 33, "contract": "Dez/2027"}, {"n": 5, "name": "N. Tripichio", "ovr": 39.6, "club": "San Lorenzo", "foot": "D", "age": 30, "contract": "Dez/2027"}, {"n": 6, "name": "P. Monje", "ovr": 39.5, "club": "Deportivo Riestra", "foot": "D", "age": 29, "contract": "Dez/2028"}, {"n": 7, "name": "F. Waller", "ovr": 39.0, "club": "Huracán", "foot": "E", "age": 28, "contract": "Jun/2026"}, {"n": 8, "name": "F. Amarfil", "ovr": 36.6, "club": "Platense", "foot": "D", "age": 24, "contract": "Dez/2026"}, {"n": 9, "name": "A. Moreno", "ovr": 31.7, "club": "River Plate", "foot": "D", "age": 26, "contract": "Dez/2028"}, {"n": 10, "name": "F. Ibarra", "ovr": 30.8, "club": "Rosario Central", "foot": "D", "age": 29, "contract": "Dez/2027"}], "Portugal A": [{"n": 1, "name": "Diogo Sousa", "ovr": 67.4, "club": "Vitória Guimarães", "foot": "E", "age": 20, "contract": "Jun/2028"}, {"n": 2, "name": "M. De Amorim", "ovr": 53.6, "club": "Famalicão", "foot": "D", "age": 21, "contract": "Jun/2028"}, {"n": 3, "name": "João Simões", "ovr": 53.2, "club": "Sporting CP", "foot": "E", "age": 19, "contract": "Jun/2030"}, {"n": 4, "name": "H. Morita", "ovr": 50.9, "club": "Sporting CP", "foot": "D", "age": 30, "contract": "Jun/2026"}, {"n": 5, "name": "Gonçalo Nogueira", "ovr": 50.2, "club": "Vitória Guimarães", "foot": "D", "age": 22, "contract": "Jun/2028"}, {"n": 6, "name": "P. Rosario", "ovr": 50.1, "club": "Porto", "foot": "D", "age": 29, "contract": "Jun/2029"}, {"n": 7, "name": "R. Rios", "ovr": 47.1, "club": "Benfica", "foot": "D", "age": 25, "contract": "Jun/2030"}, {"n": 8, "name": "David Simão", "ovr": 46.9, "club": "Arouca", "foot": "E", "age": 35, "contract": "Jun/2026"}, {"n": 9, "name": "M. Mitrović", "ovr": 46.8, "club": "Vitória Guimarães", "foot": "D", "age": 21, "contract": "Jun/2029"}, {"n": 10, "name": "T. Fukui", "ovr": 46.1, "club": "Arouca", "foot": "D", "age": 21, "contract": "Jun/2028"}], "Uruguai": [{"n": 1, "name": "F. Ginella", "ovr": 70.1, "club": "Defensor Sporting", "foot": "D", "age": 26, "contract": "Dez/2026"}, {"n": 2, "name": "I. Sosa", "ovr": 64.1, "club": "Peñarol", "foot": "D", "age": 22, "contract": "Jun/2029"}, {"n": 3, "name": "P. Siles", "ovr": 56.5, "club": "Torque", "foot": "D", "age": 28, "contract": "?"}, {"n": 4, "name": "F. Cairus", "ovr": 55.9, "club": "Racing", "foot": "D", "age": 25, "contract": "Dez/2026"}, {"n": 5, "name": "I. Rossi", "ovr": 49.0, "club": "Juventud", "foot": "E", "age": 32, "contract": "?"}], "Colômbia": [{"n": 1, "name": "K. Balanta", "ovr": 53.1, "club": "Fortaleza", "foot": "?", "age": 21, "contract": "?"}, {"n": 2, "name": "J. Caicedo", "ovr": 51.1, "club": "Deportivo P.", "foot": "D", "age": 21, "contract": "Dez/2026"}, {"n": 3, "name": "K. Osorio", "ovr": 47.5, "club": "Llaneros", "foot": "E", "age": 32, "contract": "?"}, {"n": 4, "name": "D. Quiñones", "ovr": 46.3, "club": "Inter Bogotá", "foot": "D", "age": 25, "contract": "Jun/2027"}, {"n": 5, "name": "L. Pico", "ovr": 45.6, "club": "Fortaleza", "foot": "D", "age": 26, "contract": "?"}], "Brasileiros Ext.": [{"n": 1, "name": "Rodrigo Yuri", "ovr": 82.4, "club": "Al Riffa", "foot": "D", "age": 32, "contract": "?"}, {"n": 2, "name": "Mateus Vital", "ovr": 80.6, "club": "Shanghai Port", "foot": "D", "age": 27, "contract": "Dez/2026"}, {"n": 3, "name": "Wendel", "ovr": 70.0, "club": "Zenit", "foot": "D", "age": 28, "contract": "Jun/2029"}, {"n": 4, "name": "Claudinho", "ovr": 66.9, "club": "Al Sadd", "foot": "D", "age": 29, "contract": "Jun/2029"}, {"n": 5, "name": "Pedro Naressi", "ovr": 66.1, "club": "Ludogorets", "foot": "D", "age": 28, "contract": "Jun/2026"}], "Chile": [{"n": 1, "name": "C. Aránguiz", "ovr": 54.9, "club": "Universidad...", "foot": "D", "age": 36, "contract": "Dez/2027"}, {"n": 2, "name": "J. Martínez", "ovr": 48.0, "club": "Universidad...", "foot": "D", "age": 29, "contract": "Dez/2026"}, {"n": 3, "name": "Alejandro Camargo", "ovr": 44.5, "club": "Coquimbo Unido", "foot": "D", "age": 36, "contract": "Dez/2026"}], "Equador": [{"n": 1, "name": "J. Quiñónez", "ovr": 73.2, "club": "Barcelona SC", "foot": "E", "age": 27, "contract": "Dez/2026"}, {"n": 2, "name": "L. Álvarez", "ovr": 62.1, "club": "Macará", "foot": "D", "age": 30, "contract": "?"}, {"n": 3, "name": "Luis Moreno", "ovr": 58.2, "club": "Universidad Católica", "foot": "D", "age": 21, "contract": "?"}], "Paraguai": [{"n": 1, "name": "R. Piris Da Motta", "ovr": 54.9, "club": "Cerro Porteño", "foot": "D", "age": 31, "contract": "Dez/2027"}, {"n": 2, "name": "R. Ramírez", "ovr": 53.6, "club": "Nacional Asunción", "foot": "D", "age": 25, "contract": "?"}, {"n": 3, "name": "B. Piñatares", "ovr": 52.5, "club": "Sportivo Sansueño", "foot": "E", "age": 35, "contract": "?"}]}}, "MED": {"label": "MEIA DEFENSIVO", "data": {"Brasil A": [{"n": 1, "name": "Danilo [BOT]", "ovr": 49.1, "club": "Botafogo", "foot": "E", "age": 24, "contract": "Jun/2029"}, {"n": 2, "name": "Paulinho", "ovr": 45.3, "club": "Internacional", "foot": "D", "age": 29, "contract": "Dez/2027"}, {"n": 3, "name": "Zé Ricardo", "ovr": 40.6, "club": "Remo", "foot": "D", "age": 27, "contract": "Dez/2026"}, {"n": 4, "name": "Thiago Mendes", "ovr": 39.4, "club": "Vasco da Gama", "foot": "D", "age": 33, "contract": "Dez/2027"}, {"n": 5, "name": "Éverton Ribeiro", "ovr": 38.4, "club": "Bahia", "foot": "E", "age": 36, "contract": "Dez/2026"}, {"n": 6, "name": "B. Zapelli", "ovr": 36.9, "club": "Athletico Paranaense", "foot": "D", "age": 23, "contract": "Jul/2028"}, {"n": 7, "name": "Cauan Barros", "ovr": 36.3, "club": "Vasco da Gama", "foot": "D", "age": 21, "contract": "Dez/2027"}, {"n": 8, "name": "Maycon", "ovr": 25.7, "club": "Atlético Mineiro", "foot": "E", "age": 28, "contract": "Dez/2028"}], "Argentina A": [{"n": 1, "name": "M. Fernández", "ovr": 63.1, "club": "Independiente", "foot": "D", "age": 24, "contract": "Dez/2026"}, {"n": 2, "name": "M. Miljevic", "ovr": 58.2, "club": "Racing Club", "foot": "D", "age": 24, "contract": "Dez/2029"}, {"n": 3, "name": "A. Molinas", "ovr": 50.7, "club": "Defensa y Justicia", "foot": "D", "age": 25, "contract": "Dez/2027"}, {"n": 4, "name": "F. Vázquez", "ovr": 49.8, "club": "Belgrano", "foot": "E", "age": 37, "contract": "Dez/2027"}, {"n": 5, "name": "U. Sánchez", "ovr": 48.5, "club": "Gimnasia Mendoza", "foot": "D", "age": 27, "contract": "Dez/2026"}, {"n": 6, "name": "I. Méndez", "ovr": 46.6, "club": "Instituto", "foot": "D", "age": 28, "contract": "Dez/2027"}, {"n": 7, "name": "G. Rios", "ovr": 45.7, "club": "Independiente", "foot": "D", "age": 27, "contract": "Dez/2026"}, {"n": 8, "name": "S. Rosané", "ovr": 45.5, "club": "Estudiantes", "foot": "D", "age": 25, "contract": "Dez/2026"}, {"n": 9, "name": "Fausto Vera", "ovr": 44.4, "club": "River Plate", "foot": "D", "age": 25, "contract": "Dez/2027"}, {"n": 10, "name": "T. Galván", "ovr": 44.0, "club": "River Plate", "foot": "D", "age": 25, "contract": "Dez/2026"}], "Portugal A": [{"n": 1, "name": "João Moutinho", "ovr": 61.1, "club": "Sporting Braga", "foot": "D", "age": 39, "contract": "Jun/2026"}, {"n": 2, "name": "João Carvalho", "ovr": 59.3, "club": "Estoril", "foot": "D", "age": 28, "contract": "Jun/2027"}, {"n": 3, "name": "Jovane Cabral", "ovr": 52.5, "club": "Estrela Amadora", "foot": "D", "age": 27, "contract": "Jun/2026"}, {"n": 4, "name": "J. Holsgrove", "ovr": 52.4, "club": "Estoril", "foot": "E", "age": 26, "contract": "Jun/2028"}, {"n": 5, "name": "Diego Rodrigues", "ovr": 50.2, "club": "Sporting Braga", "foot": "D", "age": 20, "contract": "Jun/2030"}, {"n": 6, "name": "Luís Esteves", "ovr": 49.8, "club": "Gil Vicente", "foot": "D", "age": 27, "contract": "Jun/2028"}, {"n": 7, "name": "Rodrigo Mora", "ovr": 49.3, "club": "Porto", "foot": "D", "age": 18, "contract": "Jun/2030"}, {"n": 8, "name": "Rodri Alonso", "ovr": 48.8, "club": "Moreirense", "foot": "D", "age": 23, "contract": "Jun/2028"}, {"n": 9, "name": "N. Lominadze", "ovr": 48.5, "club": "Estoril", "foot": "D", "age": 23, "contract": "Jun/2029"}, {"n": 10, "name": "Benny", "ovr": 45.0, "club": "Moreirense", "foot": "E", "age": 28, "contract": "Jun/2027"}], "Uruguai": [{"n": 1, "name": "G. Montes", "ovr": 58.8, "club": "Torque", "foot": "E", "age": 30, "contract": "Dez/2027"}, {"n": 2, "name": "S. Rodríguez", "ovr": 58.1, "club": "Torque", "foot": "D", "age": 33, "contract": "Dez/2026"}, {"n": 3, "name": "M. Pereyra", "ovr": 57.0, "club": "Nacional", "foot": "D", "age": 35, "contract": "?"}, {"n": 4, "name": "H. Quintana", "ovr": 54.6, "club": "Liverpool", "foot": "D", "age": 24, "contract": "?"}, {"n": 5, "name": "F. Muñoa", "ovr": 50.5, "club": "Boston River", "foot": "D", "age": 21, "contract": "?"}], "Colômbia": [{"n": 1, "name": "L. Sánchez", "ovr": 67.8, "club": "Once Caldas", "foot": "D", "age": 25, "contract": "Jun/2026"}, {"n": 2, "name": "L. Berdugo", "ovr": 59.6, "club": "Cúcuta Dep.", "foot": "E", "age": 24, "contract": "?"}, {"n": 3, "name": "R. Carrascal", "ovr": 55.9, "club": "América de...", "foot": "D", "age": 33, "contract": "Dez/2027"}, {"n": 4, "name": "Jesus Rivas", "ovr": 49.6, "club": "Junior", "foot": "D", "age": 28, "contract": "Jun/2028"}, {"n": 5, "name": "J. Castillo", "ovr": 47.4, "club": "Alianza", "foot": "D", "age": 28, "contract": "?"}], "Brasileiros Ext.": [{"n": 1, "name": "Serginho", "ovr": 68.3, "club": "Beijing Guoan", "foot": "E", "age": 30, "contract": "Dez/2028"}, {"n": 2, "name": "Arthur Rezende", "ovr": 63.8, "club": "Muharraq", "foot": "D", "age": 31, "contract": "?"}, {"n": 3, "name": "Ângelo", "ovr": 62.5, "club": "Al Nassr", "foot": "E", "age": 21, "contract": "Jun/2029"}, {"n": 4, "name": "Raphael Guzzo", "ovr": 59.5, "club": "Maritimo", "foot": "D", "age": 31, "contract": "Jun/2027"}, {"n": 5, "name": "Bruno Guimarães", "ovr": 58.3, "club": "Newcastle United", "foot": "D", "age": 28, "contract": "Jun/2028"}], "Chile": [{"n": 1, "name": "Víctor Méndez", "ovr": 56.2, "club": "Colo Colo", "foot": "D", "age": 26, "contract": "Dez/2027"}, {"n": 2, "name": "J. Meneses", "ovr": 55.3, "club": "Deportes Limache", "foot": "D", "age": 32, "contract": "Dez/2026"}, {"n": 3, "name": "Tomás Alarcón", "ovr": 52.2, "club": "Colo Colo", "foot": "D", "age": 27, "contract": "Dez/2026"}], "Equador": [{"n": 1, "name": "J. Cazares", "ovr": 70.9, "club": "Independiente...", "foot": "D", "age": 33, "contract": "?"}, {"n": 2, "name": "C. Tobar", "ovr": 61.8, "club": "Deportivo Cuenca", "foot": "D", "age": 25, "contract": "Dez/2028"}, {"n": 3, "name": "P. Mercado", "ovr": 61.3, "club": "Independiente...", "foot": "D", "age": 22, "contract": "Dez/2027"}], "Paraguai": [{"n": 1, "name": "A. Manzur", "ovr": 67.5, "club": "Guaraní", "foot": "D", "age": 25, "contract": "Dez/2026"}, {"n": 2, "name": "A. Franco", "ovr": 49.3, "club": "Olimpia", "foot": "D", "age": 24, "contract": "?"}, {"n": 3, "name": "M. López", "ovr": 48.9, "club": "Guaraní", "foot": "D", "age": 22, "contract": "Dez/2026"}]}}, "MEIA": {"label": "MEIA ATACANTE", "data": {"Brasil A": [{"n": 1, "name": "Giorgian de Arrascaeta", "ovr": 57.1, "club": "Flamengo", "foot": "D", "age": 31, "contract": "Dez/2028"}, {"n": 2, "name": "Patrick de Paula", "ovr": 48.9, "club": "Remo", "foot": "E", "age": 26, "contract": "Dez/2026"}, {"n": 3, "name": "R. Garro", "ovr": 48.6, "club": "Corinthians", "foot": "E", "age": 28, "contract": "Dez/2028"}, {"n": 4, "name": "L. Acosta", "ovr": 47.3, "club": "Fluminense", "foot": "D", "age": 31, "contract": "Dez/2028"}, {"n": 5, "name": "Victor Hugo", "ovr": 44.0, "club": "Atlético Mineiro", "foot": "E", "age": 21, "contract": "Dez/2030"}, {"n": 6, "name": "Alan Patrick", "ovr": 41.1, "club": "Internacional", "foot": "D", "age": 34, "contract": "Dez/2027"}, {"n": 7, "name": "Josué", "ovr": 39.7, "club": "Coritiba", "foot": "E", "age": 35, "contract": "Dez/2026"}, {"n": 8, "name": "Gustavo Neves", "ovr": 38.5, "club": "Red Bull Bragantino", "foot": "D", "age": 21, "contract": "Dez/2029"}, {"n": 9, "name": "Eduardo", "ovr": 37.3, "club": "Mirassol", "foot": "D", "age": 36, "contract": "Dez/2026"}, {"n": 10, "name": "Gerson", "ovr": 36.1, "club": "Cruzeiro", "foot": "D", "age": 28, "contract": "Dez/2030"}], "Argentina A": [{"n": 1, "name": "Á. Di María", "ovr": 74.1, "club": "Rosario Central", "foot": "E", "age": 38, "contract": "Jun/2026"}, {"n": 2, "name": "J. Quintero", "ovr": 64.9, "club": "River Plate", "foot": "E", "age": 33, "contract": "Dez/2027"}, {"n": 3, "name": "M. Lanzini", "ovr": 46.1, "club": "Vélez Sarsfield", "foot": "D", "age": 33, "contract": "Dez/2026"}, {"n": 4, "name": "F. Perez", "ovr": 45.9, "club": "Estudiantes", "foot": "?", "age": 20, "contract": "Dez/2027"}, {"n": 5, "name": "F. Zapiola", "ovr": 41.5, "club": "Platense", "foot": "E", "age": 25, "contract": "Dez/2027"}, {"n": 6, "name": "L. Gil", "ovr": 38.7, "club": "Huracán", "foot": "E", "age": 34, "contract": "Dez/2026"}, {"n": 7, "name": "A. Lescano", "ovr": 35.3, "club": "Argentinos Juniors", "foot": "E", "age": 24, "contract": "Dez/2027"}, {"n": 8, "name": "C. Medina", "ovr": 33.3, "club": "Estudiantes", "foot": "D", "age": 23, "contract": "Dez/2029"}, {"n": 9, "name": "A. Sosa", "ovr": 30.2, "club": "Aldosivi", "foot": "E", "age": 22, "contract": "Dez/2027"}, {"n": 10, "name": "N. Talpone", "ovr": 29.8, "club": "Estudiantes", "foot": "D", "age": 29, "contract": "Dez/2026"}], "Portugal A": [{"n": 1, "name": "H. Sudakov", "ovr": 74.0, "club": "Benfica", "foot": "D", "age": 23, "contract": "Dez/2028"}, {"n": 2, "name": "Francisco Trincão", "ovr": 68.3, "club": "Sporting CP", "foot": "E", "age": 26, "contract": "Jun/2030"}, {"n": 3, "name": "Samu", "ovr": 61.5, "club": "Vitória Guimarães", "foot": "E", "age": 29, "contract": "Jun/2027"}, {"n": 4, "name": "R. Barbosa", "ovr": 55.4, "club": "AVS", "foot": "D", "age": 29, "contract": "Jun/2026"}, {"n": 5, "name": "Gustavo Sá", "ovr": 50.9, "club": "Famalicão", "foot": "D", "age": 21, "contract": "Jun/2029"}, {"n": 6, "name": "Lee Hyun-Ju", "ovr": 43.7, "club": "Arouca", "foot": "D", "age": 23, "contract": "Jun/2026"}, {"n": 7, "name": "P. Lima", "ovr": 41.5, "club": "AVS", "foot": "E", "age": 22, "contract": "Jun/2028"}, {"n": 8, "name": "Pablo Gozálbez", "ovr": 35.9, "club": "Arouca", "foot": "D", "age": 24, "contract": "Jun/2027"}, {"n": 9, "name": "Leandro Barreiro", "ovr": 35.1, "club": "Benfica", "foot": "D", "age": 26, "contract": "Jun/2029"}], "Uruguai": [{"n": 1, "name": "L. Fernández", "ovr": 83.0, "club": "Peñarol", "foot": "E", "age": 27, "contract": "Dez/2027"}, {"n": 2, "name": "W. Montoya", "ovr": 64.6, "club": "Defensor Sporting", "foot": "D", "age": 32, "contract": "Dez/2026"}, {"n": 3, "name": "J. Urretaviscaya", "ovr": 64.0, "club": "Juventud", "foot": "D", "age": 35, "contract": "Dez/2026"}, {"n": 4, "name": "A. Albarracín", "ovr": 53.9, "club": "Boston River", "foot": "E", "age": 20, "contract": "Dez/2027"}, {"n": 5, "name": "S. Ramírez", "ovr": 50.6, "club": "Racing", "foot": "D", "age": 27, "contract": "?"}], "Colômbia": [{"n": 1, "name": "F. Sambueza", "ovr": 66.9, "club": "Atl. Bucaramanga", "foot": "D", "age": 37, "contract": "Dez/2026"}, {"n": 2, "name": "J. Ramírez", "ovr": 57.2, "club": "Llaneros", "foot": "E", "age": 23, "contract": "Jun/2028"}, {"n": 3, "name": "F. Boné", "ovr": 52.4, "club": "Inter Bogotá", "foot": "E", "age": 30, "contract": "Dez/2027"}, {"n": 4, "name": "S. Navarro", "ovr": 49.8, "club": "Fortaleza", "foot": "D", "age": 25, "contract": "?"}, {"n": 5, "name": "J. Mena", "ovr": 47.6, "club": "Boyacá Chicó", "foot": "E", "age": 23, "contract": "Jun/2026"}], "Brasileiros Ext.": [{"n": 1, "name": "Igor Coronado", "ovr": 73.4, "club": "Al Sharjah", "foot": "D", "age": 33, "contract": "Jun/2027"}, {"n": 2, "name": "Rodrigo Henrique", "ovr": 66.0, "club": "Meizhou Hakka", "foot": "D", "age": 32, "contract": "?"}, {"n": 3, "name": "Bruninho", "ovr": 65.1, "club": "Karpaty", "foot": "D", "age": 25, "contract": "Jun/2028"}, {"n": 4, "name": "Evander", "ovr": 63.2, "club": "Cincinnati", "foot": "D", "age": 27, "contract": "Dez/2027"}, {"n": 5, "name": "Léo Scienza", "ovr": 63.1, "club": "Southampton", "foot": "D", "age": 27, "contract": "Jun/2029"}], "Chile": [{"n": 1, "name": "M. Palavecino", "ovr": 64.6, "club": "Universidad...", "foot": "E", "age": 27, "contract": "Dez/2028"}, {"n": 2, "name": "Ezequiel Cañete", "ovr": 50.5, "club": "Huachipato", "foot": "E", "age": 26, "contract": "Dez/2026"}, {"n": 3, "name": "J. Altamirano", "ovr": 50.0, "club": "Universidad...", "foot": "D", "age": 26, "contract": "Dez/2028"}], "Equador": [{"n": 1, "name": "M. Díaz", "ovr": 68.6, "club": "Universidad Católica", "foot": "D", "age": 34, "contract": "?"}, {"n": 2, "name": "C. Alemán", "ovr": 59.4, "club": "Manta", "foot": "E", "age": 30, "contract": "Dez/2026"}, {"n": 3, "name": "P. González", "ovr": 59.2, "club": "Macará", "foot": "E", "age": 29, "contract": "?"}], "Paraguai": [{"n": 1, "name": "G. Bogado", "ovr": 76.4, "club": "Sportivo Luqueño", "foot": "D", "age": 24, "contract": "Dez/2026"}, {"n": 2, "name": "S. Díaz", "ovr": 49.2, "club": "Sportivo Luqueño", "foot": "D", "age": 27, "contract": "?"}, {"n": 3, "name": "V. Larralde", "ovr": 48.0, "club": "Sportivo Ameliano", "foot": "D", "age": 25, "contract": "Dez/2026"}]}}, "EXT-D": {"label": "EXTREMO DIREITO", "data": {"Brasil A": [{"n": 1, "name": "S. Mendoza", "ovr": 53.3, "club": "Athletico Paranaense", "foot": "E", "age": 33, "contract": "Dez/2027"}, {"n": 2, "name": "Vitor Bueno", "ovr": 51.9, "club": "Remo", "foot": "D", "age": 31, "contract": "Dez/2027"}, {"n": 3, "name": "Tetê", "ovr": 49.0, "club": "Grêmio", "foot": "D", "age": 26, "contract": "Dez/2029"}, {"n": 4, "name": "Nuno Moreira", "ovr": 48.6, "club": "Vasco da Gama", "foot": "D", "age": 26, "contract": "Dez/2027"}, {"n": 5, "name": "Lucas Ronier", "ovr": 47.9, "club": "Coritiba", "foot": "E", "age": 21, "contract": "Dez/2027"}, {"n": 6, "name": "Lucas Barbosa", "ovr": 45.1, "club": "Red Bull Bragantino", "foot": "E", "age": 25, "contract": "Jul/2026"}, {"n": 7, "name": "A. Canobbio", "ovr": 43.7, "club": "Fluminense", "foot": "D", "age": 27, "contract": "Dez/2028"}, {"n": 8, "name": "Allan Elias", "ovr": 43.2, "club": "Palmeiras", "foot": "?", "age": 21, "contract": "Dez/2029"}, {"n": 9, "name": "Ademir", "ovr": 43.2, "club": "Bahia", "foot": "E", "age": 31, "contract": "Dez/2026"}, {"n": 10, "name": "Negueba", "ovr": 42.3, "club": "Mirassol", "foot": "D", "age": 26, "contract": "Dez/2027"}], "Argentina A": [{"n": 1, "name": "J. Palacios", "ovr": 74.0, "club": "Unión Santa Fe", "foot": "D", "age": 27, "contract": "Dez/2026"}, {"n": 2, "name": "S. Solari", "ovr": 57.7, "club": "Racing Club", "foot": "D", "age": 28, "contract": "Dez/2027"}, {"n": 3, "name": "R. Botta", "ovr": 50.7, "club": "Defensa y Justicia", "foot": "E", "age": 36, "contract": "Dez/2026"}, {"n": 4, "name": "I. Fernández", "ovr": 49.7, "club": "Gimnasia La Plata", "foot": "D", "age": 36, "contract": "Dez/2026"}, {"n": 5, "name": "L. Gómez", "ovr": 47.0, "club": "Banfield", "foot": "E", "age": 22, "contract": "?"}, {"n": 6, "name": "J. Contrera", "ovr": 45.8, "club": "Sarmiento", "foot": "D", "age": 22, "contract": "Dez/2027"}, {"n": 7, "name": "T. Andrada", "ovr": 45.7, "club": "Vélez Sarsfield", "foot": "D", "age": 19, "contract": "Dez/2029"}, {"n": 8, "name": "R. Tesuri", "ovr": 45.6, "club": "Atlético Tucumán", "foot": "D", "age": 29, "contract": "Dez/2028"}, {"n": 9, "name": "F. Torres", "ovr": 44.7, "club": "Gimnasia La Plata", "foot": "D", "age": 26, "contract": "Dez/2026"}, {"n": 10, "name": "M. Garnerone", "ovr": 44.5, "club": "Estudiantes", "foot": "D", "age": 27, "contract": "Dez/2026"}], "Portugal A": [{"n": 1, "name": "Geny Catamo", "ovr": 73.9, "club": "Sporting CP", "foot": "E", "age": 25, "contract": "Jun/2028"}, {"n": 2, "name": "Rodrigo Zalazar", "ovr": 71.1, "club": "Sporting Braga", "foot": "D", "age": 26, "contract": "Jun/2028"}, {"n": 3, "name": "Geovany Quenda", "ovr": 64.1, "club": "Sporting CP", "foot": "E", "age": 18, "contract": "Jun/2027"}, {"n": 4, "name": "F. Aursnes", "ovr": 62.0, "club": "Benfica", "foot": "D", "age": 30, "contract": "Jun/2029"}, {"n": 5, "name": "Gil Dias", "ovr": 58.2, "club": "Famalicão", "foot": "E", "age": 29, "contract": "Jun/2027"}, {"n": 6, "name": "M. Ayomide", "ovr": 57.3, "club": "Estrela Amadora", "foot": "E", "age": 26, "contract": "Jun/2028"}, {"n": 7, "name": "Pepê", "ovr": 55.7, "club": "Porto", "foot": "D", "age": 29, "contract": "Jun/2028"}, {"n": 8, "name": "William Gomes", "ovr": 55.4, "club": "Porto", "foot": "E", "age": 19, "contract": "Jun/2029"}, {"n": 9, "name": "G. Prestianni", "ovr": 55.2, "club": "Benfica", "foot": "D", "age": 20, "contract": "Jun/2029"}, {"n": 10, "name": "Lincoln", "ovr": 50.4, "club": "Alverca", "foot": "E", "age": 27, "contract": "Jun/2027"}], "Uruguai": [{"n": 1, "name": "J. Cabrera", "ovr": 66.3, "club": "Peñarol", "foot": "D", "age": 33, "contract": "Dez/2026"}, {"n": 2, "name": "P. García", "ovr": 64.2, "club": "Plaza Colonia", "foot": "D", "age": 26, "contract": "Dez/2026"}, {"n": 3, "name": "L. Sanseviero", "ovr": 57.9, "club": "Danubio", "foot": "D", "age": 25, "contract": "?"}, {"n": 4, "name": "L. Villalba", "ovr": 56.7, "club": "Nacional", "foot": "D", "age": 24, "contract": "Jul/2028"}, {"n": 5, "name": "G. Viera", "ovr": 54.8, "club": "Boston River", "foot": "D", "age": 25, "contract": "?"}], "Colômbia": [{"n": 1, "name": "J. Martínez", "ovr": 82.0, "club": "Deportivo Cali", "foot": "E", "age": 23, "contract": "Jun/2026"}, {"n": 2, "name": "F. Charales", "ovr": 53.9, "club": "Águilas Doradas", "foot": "D", "age": 21, "contract": "?"}, {"n": 3, "name": "M. Barrios", "ovr": 51.6, "club": "Once Caldas", "foot": "D", "age": 34, "contract": "Dez/2026"}, {"n": 4, "name": "D. Moncada", "ovr": 49.6, "club": "Inter Bogotá", "foot": "D", "age": 18, "contract": "?"}, {"n": 5, "name": "D. Rodríguez", "ovr": 45.9, "club": "Jaguares de...", "foot": "D", "age": 29, "contract": "?"}], "Brasileiros Ext.": [{"n": 1, "name": "Helinho", "ovr": 86.3, "club": "Toluca", "foot": "E", "age": 25, "contract": "Dez/2028"}, {"n": 2, "name": "Rômulo", "ovr": 80.0, "club": "Chengdu Rongcheng", "foot": "E", "age": 30, "contract": "Jan/2027"}, {"n": 3, "name": "Wellington Machado", "ovr": 79.9, "club": "Al Riffa", "foot": "D", "age": 26, "contract": "Jun/2030"}, {"n": 4, "name": "Lucas Fernandes", "ovr": 71.4, "club": "Cerezo Osaka", "foot": "D", "age": 31, "contract": "?"}, {"n": 5, "name": "Caio Vidal", "ovr": 70.7, "club": "Ludogorets", "foot": "D", "age": 25, "contract": "Jun/2029"}], "Chile": [{"n": 1, "name": "Kevin Méndez", "ovr": 77.2, "club": "Unión La Calera", "foot": "D", "age": 30, "contract": "?"}, {"n": 2, "name": "M. Plaza", "ovr": 61.3, "club": "Ñublense", "foot": "D", "age": 25, "contract": "Dez/2027"}, {"n": 3, "name": "F. González", "ovr": 59.0, "club": "O'Higgins", "foot": "E", "age": 24, "contract": "Dez/2028"}], "Equador": [{"n": 1, "name": "L. Alzugaray", "ovr": 73.7, "club": "LDU Quito", "foot": "E", "age": 35, "contract": "Dez/2027"}, {"n": 2, "name": "B. Oyola", "ovr": 67.9, "club": "Barcelona SC", "foot": "E", "age": 29, "contract": "?"}, {"n": 3, "name": "B. Ramírez", "ovr": 64.3, "club": "LDU Quito", "foot": "E", "age": 25, "contract": "Jun/2029"}], "Paraguai": [{"n": 1, "name": "J. Iturbe", "ovr": 65.8, "club": "Cerro Porteño", "foot": "E", "age": 32, "contract": "Dez/2027"}, {"n": 2, "name": "W. Báez", "ovr": 61.6, "club": "Deportivo Recoleta", "foot": "D", "age": 31, "contract": "Dez/2026"}, {"n": 3, "name": "J. Giménez", "ovr": 53.8, "club": "Rubio Ñú", "foot": "D", "age": 22, "contract": "?"}]}}, "EXT-E": {"label": "EXTREMO ESQUERDO", "data": {"Brasil A": [{"n": 1, "name": "Éverton", "ovr": 59.4, "club": "Flamengo", "foot": "D", "age": 29, "contract": "Dez/2026"}, {"n": 2, "name": "A. Gómez", "ovr": 59.1, "club": "Vasco da Gama", "foot": "D", "age": 23, "contract": "Jan/2031"}, {"n": 3, "name": "Breno Lopes", "ovr": 45.7, "club": "Coritiba", "foot": "D", "age": 30, "contract": "Dez/2029"}, {"n": 4, "name": "A. Montoro [BOT]", "ovr": 43.9, "club": "Botafogo", "foot": "D", "age": 18, "contract": "Dez/2029"}, {"n": 5, "name": "Á. Barreal", "ovr": 43.6, "club": "Santos", "foot": "E", "age": 25, "contract": "Dez/2028"}, {"n": 6, "name": "Henry Mosquera", "ovr": 39.7, "club": "Red Bull Bragantino", "foot": "D", "age": 24, "contract": "Dez/2027"}, {"n": 7, "name": "T. Cuello", "ovr": 38.8, "club": "Atlético Mineiro", "foot": "D", "age": 25, "contract": "Dez/2028"}, {"n": 8, "name": "Alef Manga", "ovr": 37.9, "club": "Remo", "foot": "D", "age": 31, "contract": "Dez/2026"}, {"n": 9, "name": "Alesson", "ovr": 32.1, "club": "Mirassol", "foot": "D", "age": 27, "contract": "Jun/2026"}, {"n": 10, "name": "Maurício", "ovr": 31.0, "club": "Palmeiras", "foot": "E", "age": 24, "contract": "Dez/2028"}], "Argentina A": [{"n": 1, "name": "N. Laméndola", "ovr": 55.6, "club": "Atlético Tucumán", "foot": "D", "age": 27, "contract": "?"}, {"n": 2, "name": "W. Nunez", "ovr": 55.3, "club": "Newell's Old Boys", "foot": "D", "age": 23, "contract": "Dez/2027"}, {"n": 3, "name": "J. Gauto", "ovr": 52.5, "club": "Platense", "foot": "D", "age": 21, "contract": "Jun/2028"}, {"n": 4, "name": "E. Rolón", "ovr": 49.7, "club": "Aldosivi", "foot": "D", "age": 30, "contract": "Dez/2026"}, {"n": 5, "name": "A. Luna", "ovr": 47.7, "club": "Instituto", "foot": "D", "age": 21, "contract": "Dez/2029"}, {"n": 6, "name": "R. Carrera", "ovr": 46.9, "club": "Lanús", "foot": "D", "age": 32, "contract": "Dez/2026"}, {"n": 7, "name": "F. Lencioni", "ovr": 46.8, "club": "Gimnasia Mendoza", "foot": "E", "age": 25, "contract": "Dez/2028"}, {"n": 8, "name": "G. Alanís", "ovr": 45.7, "club": "Estudiantes", "foot": "E", "age": 31, "contract": "Dez/2027"}, {"n": 9, "name": "M. Abaldo", "ovr": 41.6, "club": "Independiente", "foot": "D", "age": 21, "contract": "Dez/2027"}, {"n": 10, "name": "Ó. Cortés", "ovr": 39.9, "club": "Huracán", "foot": "D", "age": 22, "contract": "Jun/2029"}], "Portugal A": [{"n": 1, "name": "Pedro Gonçalves", "ovr": 71.1, "club": "Sporting CP", "foot": "D", "age": 27, "contract": "Jun/2030"}, {"n": 2, "name": "Ricardo Horta", "ovr": 66.7, "club": "Sporting Braga", "foot": "D", "age": 31, "contract": "Jun/2028"}, {"n": 3, "name": "A. Schjelderup", "ovr": 60.9, "club": "Benfica", "foot": "D", "age": 21, "contract": "Jun/2028"}, {"n": 4, "name": "Sorriso", "ovr": 52.9, "club": "Famalicão", "foot": "D", "age": 25, "contract": "Jun/2029"}, {"n": 5, "name": "Chiquinho", "ovr": 46.8, "club": "Alverca", "foot": "D", "age": 26, "contract": "Jun/2028"}, {"n": 6, "name": "Noah Saviolo", "ovr": 46.7, "club": "Vitória Guimarães", "foot": "D", "age": 21, "contract": "Jun/2028"}, {"n": 7, "name": "N. Djouahra", "ovr": 46.3, "club": "Arouca", "foot": "D", "age": 26, "contract": "Jun/2027"}, {"n": 8, "name": "Vinicius Lopes", "ovr": 46.2, "club": "Santa Clara", "foot": "D", "age": 26, "contract": "Jun/2028"}, {"n": 9, "name": "I. Stoica", "ovr": 44.9, "club": "Estrela Amadora", "foot": "D", "age": 23, "contract": "Jun/2028"}, {"n": 10, "name": "Paulinho Bóia", "ovr": 44.9, "club": "Nacional", "foot": "D", "age": 27, "contract": "Jun/2026"}], "Uruguai": [{"n": 1, "name": "D. García", "ovr": 64.7, "club": "Peñarol", "foot": "D", "age": 28, "contract": "?"}, {"n": 2, "name": "N. Lodeiro", "ovr": 60.0, "club": "Nacional", "foot": "E", "age": 36, "contract": "Jun/2026"}, {"n": 3, "name": "N. Vallejo", "ovr": 59.5, "club": "Liverpool", "foot": "D", "age": 21, "contract": "Dez/2026"}, {"n": 4, "name": "J. Recoba", "ovr": 58.9, "club": "Nacional", "foot": "D", "age": 22, "contract": "Jun/2028"}, {"n": 5, "name": "W. Nunez", "ovr": 57.9, "club": "Torque", "foot": "D", "age": 22, "contract": "Dez/2026"}], "Colômbia": [{"n": 1, "name": "A. Arroyo", "ovr": 72.9, "club": "Fortaleza", "foot": "D", "age": 24, "contract": "Jun/2027"}, {"n": 2, "name": "B. Urueña", "ovr": 61.0, "club": "Águilas Doradas", "foot": "D", "age": 33, "contract": "Dez/2026"}, {"n": 3, "name": "C. Barrios", "ovr": 53.6, "club": "Junior", "foot": "D", "age": 27, "contract": "Dez/2028"}, {"n": 4, "name": "Jhon Vásquez", "ovr": 50.0, "club": "Llaneros", "foot": "D", "age": 31, "contract": "Dez/2026"}, {"n": 5, "name": "A. Hurtado", "ovr": 48.9, "club": "Deportivo Cali", "foot": "D", "age": 38, "contract": "Jun/2026"}], "Brasileiros Ext.": [{"n": 1, "name": "Gabriel Strefezza", "ovr": 80.5, "club": "Olympiacos", "foot": "D", "age": 28, "contract": "Jun/2029"}, {"n": 2, "name": "Raphinha", "ovr": 78.6, "club": "Barcelona", "foot": "E", "age": 29, "contract": "Jun/2028"}, {"n": 3, "name": "Matheus Sávio", "ovr": 74.7, "club": "Urawa Reds", "foot": "D", "age": 28, "contract": "Jun/2027"}, {"n": 4, "name": "Guilherme Bala", "ovr": 70.6, "club": "Shabab Al Ahly", "foot": "D", "age": 24, "contract": "?"}, {"n": 5, "name": "Juan Alano", "ovr": 68.5, "club": "Gamba Osaka", "foot": "D", "age": 29, "contract": "Dez/2026"}], "Chile": [{"n": 1, "name": "Claudio Aquino", "ovr": 81.7, "club": "Colo Colo", "foot": "D", "age": 34, "contract": "Dez/2026"}, {"n": 2, "name": "J. Giani", "ovr": 50.0, "club": "Universidad...", "foot": "D", "age": 26, "contract": "Dez/2026"}, {"n": 3, "name": "Jeison Fuentealba", "ovr": 45.1, "club": "Univ. Concepción", "foot": "D", "age": 23, "contract": "Dez/2026"}], "Equador": [{"n": 1, "name": "D. Pazmiño", "ovr": 71.1, "club": "El Nacional", "foot": "D", "age": 25, "contract": "?"}, {"n": 2, "name": "E. Pata", "ovr": 65.1, "club": "Independiente...", "foot": "D", "age": 21, "contract": "?"}, {"n": 3, "name": "Federico Paz", "ovr": 61.4, "club": "Macará", "foot": "?", "age": 31, "contract": "Dez/2026"}], "Paraguai": [{"n": 1, "name": "J. Noguera", "ovr": 68.7, "club": "Deportivo Recoleta", "foot": "E", "age": 23, "contract": "Dez/2026"}, {"n": 2, "name": "D. Rodríguez", "ovr": 65.9, "club": "Guaraní", "foot": "D", "age": 28, "contract": "?"}, {"n": 3, "name": "H. Quintana", "ovr": 60.3, "club": "Olimpia", "foot": "D", "age": 24, "contract": "Dez/2028"}]}}, "ATA": {"label": "ATACANTE", "data": {"Brasil A": [{"n": 1, "name": "Luciano", "ovr": 58.2, "club": "São Paulo", "foot": "E", "age": 32, "contract": "Dez/2028"}, {"n": 2, "name": "Philippe Coutinho", "ovr": 56.5, "club": "Vasco da Gama", "foot": "D", "age": 33, "contract": "Jun/2026"}, {"n": 3, "name": "J. Carbonero", "ovr": 47.8, "club": "Internacional", "foot": "D", "age": 26, "contract": "Dez/2029"}, {"n": 4, "name": "Matheus Pereira", "ovr": 47.5, "club": "Cruzeiro", "foot": "E", "age": 29, "contract": "Dez/2028"}, {"n": 5, "name": "Flaco López", "ovr": 44.8, "club": "Palmeiras", "foot": "E", "age": 25, "contract": "Dez/2029"}, {"n": 6, "name": "Arthur Cabral [BOT]", "ovr": 40.5, "club": "Botafogo", "foot": "D", "age": 27, "contract": "Dez/2028"}, {"n": 7, "name": "K. Viveros", "ovr": 39.8, "club": "Athletico Paranaense", "foot": "D", "age": 25, "contract": "Jun/2028"}, {"n": 8, "name": "Kaio Jorge", "ovr": 37.9, "club": "Cruzeiro", "foot": "D", "age": 24, "contract": "Dez/2030"}, {"n": 9, "name": "J. Calleri", "ovr": 37.1, "club": "São Paulo", "foot": "D", "age": 32, "contract": "Dez/2026"}, {"n": 10, "name": "Willian José", "ovr": 36.9, "club": "Bahia", "foot": "D", "age": 34, "contract": "Dez/2026"}], "Argentina A": [{"n": 1, "name": "L. Zelarayán", "ovr": 58.2, "club": "Belgrano", "foot": "D", "age": 33, "contract": "Dez/2027"}, {"n": 2, "name": "S. Villa", "ovr": 56.1, "club": "Independiente", "foot": "D", "age": 29, "contract": "Jun/2026"}, {"n": 3, "name": "D. Romero", "ovr": 48.7, "club": "Tigre", "foot": "D", "age": 22, "contract": "Dez/2030"}, {"n": 4, "name": "S. Driussi", "ovr": 45.4, "club": "River Plate", "foot": "D", "age": 30, "contract": "Dez/2028"}, {"n": 5, "name": "L. Díaz", "ovr": 43.1, "club": "Atlético Tucumán", "foot": "D", "age": 33, "contract": "Dez/2026"}, {"n": 6, "name": "C. Tarragona", "ovr": 42.8, "club": "Unión Santa Fe", "foot": "D", "age": 34, "contract": "Dez/2026"}, {"n": 7, "name": "M. Méndez", "ovr": 42.2, "club": "Banfield", "foot": "D", "age": 27, "contract": "Dez/2027"}, {"n": 8, "name": "F. Monzón", "ovr": 41.6, "club": "Vélez Sarsfield", "foot": "D", "age": 25, "contract": "Dez/2027"}, {"n": 9, "name": "J. Marabel", "ovr": 40.4, "club": "Sarmiento", "foot": "D", "age": 27, "contract": "Dez/2027"}, {"n": 10, "name": "M. Estigarribia", "ovr": 37.0, "club": "Unión Santa Fe", "foot": "D", "age": 30, "contract": "Dez/2027"}], "Portugal A": [{"n": 1, "name": "R. Guitane", "ovr": 65.7, "club": "Estoril", "foot": "D", "age": 26, "contract": "Jun/2027"}, {"n": 2, "name": "L. Suárez", "ovr": 58.0, "club": "Sporting CP", "foot": "D", "age": 28, "contract": "Jun/2030"}, {"n": 3, "name": "Alan", "ovr": 50.2, "club": "Moreirense", "foot": "D", "age": 25, "contract": "Jun/2026"}, {"n": 4, "name": "Pau Victor", "ovr": 48.8, "club": "Sporting Braga", "foot": "D", "age": 24, "contract": "Jun/2030"}, {"n": 5, "name": "V. Pavlidis", "ovr": 46.6, "club": "Benfica", "foot": "D", "age": 27, "contract": "Jun/2029"}, {"n": 6, "name": "Pablo Felipe", "ovr": 45.8, "club": "Gil Vicente", "foot": "D", "age": 22, "contract": "Jun/2030"}, {"n": 7, "name": "Clayton", "ovr": 45.4, "club": "Rio Ave", "foot": "D", "age": 27, "contract": "Jun/2029"}, {"n": 8, "name": "Y. Begraoui", "ovr": 42.2, "club": "Estoril", "foot": "D", "age": 24, "contract": "Jun/2028"}, {"n": 9, "name": "Samu Omorodion", "ovr": 41.9, "club": "Porto", "foot": "D", "age": 21, "contract": "Jun/2029"}, {"n": 10, "name": "O. Camara", "ovr": 39.8, "club": "Vitória Guimarães", "foot": "D", "age": 18, "contract": "Jun/2029"}], "Uruguai": [{"n": 1, "name": "M. Abaldo", "ovr": 69.0, "club": "Defensor Sporting", "foot": "D", "age": 21, "contract": "Dez/2027"}, {"n": 2, "name": "N. López", "ovr": 64.5, "club": "Nacional", "foot": "E", "age": 32, "contract": "Dez/2026"}, {"n": 3, "name": "D. Terans", "ovr": 55.1, "club": "Peñarol", "foot": "E", "age": 31, "contract": "Dez/2026"}, {"n": 4, "name": "Rodrigo Pollero", "ovr": 52.9, "club": "River Plate", "foot": "D", "age": 29, "contract": "?"}, {"n": 5, "name": "L. Otormín", "ovr": 52.0, "club": "Juventud", "foot": "D", "age": 29, "contract": "Dez/2026"}], "Colômbia": [{"n": 1, "name": "L. Muriel", "ovr": 66.0, "club": "Junior", "foot": "D", "age": 34, "contract": "Dez/2027"}, {"n": 2, "name": "J. Zapata", "ovr": 65.9, "club": "Once Caldas", "foot": "E", "age": 26, "contract": "Jun/2027"}, {"n": 3, "name": "Y. Guzmán", "ovr": 63.9, "club": "América de...", "foot": "D", "age": 27, "contract": "Dez/2028"}, {"n": 4, "name": "A. Estupiñán", "ovr": 60.9, "club": "Deportivo P.", "foot": "D", "age": 31, "contract": "Dez/2026"}, {"n": 5, "name": "D. Moreno", "ovr": 53.7, "club": "Once Caldas", "foot": "D", "age": 40, "contract": "Dez/2026"}], "Brasileiros Ext.": [{"n": 1, "name": "Cryzan", "ovr": 73.6, "club": "Shandong Taishan", "foot": "D", "age": 29, "contract": "Dez/2027"}, {"n": 2, "name": "Juninho", "ovr": 73.2, "club": "Muharraq", "foot": "A", "age": 27, "contract": "Jun/2028"}, {"n": 3, "name": "Matheus Cunha", "ovr": 71.4, "club": "Manchester City", "foot": "D", "age": 26, "contract": "Jun/2030"}, {"n": 4, "name": "Vinicius Júnior", "ovr": 70.7, "club": "Real Madrid", "foot": "D", "age": 25, "contract": "Jun/2027"}, {"n": 5, "name": "Bruno Nazário", "ovr": 67.5, "club": "Henan", "foot": "E", "age": 30, "contract": "Dez/2026"}], "Chile": [{"n": 1, "name": "D. Castro", "ovr": 59.7, "club": "Deportes Limache", "foot": "D", "age": 31, "contract": "Dez/2026"}, {"n": 2, "name": "L. Valencia", "ovr": 56.1, "club": "Concepción", "foot": "D", "age": 34, "contract": "Dez/2026"}, {"n": 3, "name": "F. Zampedri", "ovr": 43.1, "club": "Universidad...", "foot": "D", "age": 38, "contract": "Dez/2027"}], "Equador": [{"n": 1, "name": "G. Cortéz", "ovr": 72.4, "club": "Barcelona SC", "foot": "D", "age": 30, "contract": "Dez/2026"}, {"n": 2, "name": "M. Carcelén", "ovr": 65.9, "club": "Aucas", "foot": "D", "age": 28, "contract": "?"}, {"n": 3, "name": "D. Luna", "ovr": 62.7, "club": "Vinotinto de Ecuador", "foot": "E", "age": 34, "contract": "Dez/2026"}], "Paraguai": [{"n": 1, "name": "L. Melgarejo", "ovr": 63.7, "club": "Club Libertad", "foot": "E", "age": 35, "contract": "Jun/2027"}, {"n": 2, "name": "W. Mendieta", "ovr": 56.0, "club": "Rubio Ñú", "foot": "D", "age": 37, "contract": "?"}, {"n": 3, "name": "E. Vera", "ovr": 52.5, "club": "Sportivo Ameliano", "foot": "?", "age": 25, "contract": "?"}]}}},S={"main": [{"section": "FORWARD", "name": "Martín Satriano", "found": false}, {"section": "FORWARD", "name": "Paulinho", "found": false}, {"section": "FORWARD", "name": "J. Córdoba", "found": false}, {"section": "FORWARD", "name": "Petar Musa", "found": false}, {"section": "ATK MID", "name": "Juan Brunetta", "found": false}, {"section": "ATK MID", "name": "Bitello", "found": false}, {"section": "ATK MID", "name": "Claudinho", "pid": "VOL|Brasileiros Ext.|Claudinho|29", "pk": "VOL", "lg": "Brasileiros Ext.", "ovr": 66.9, "club": "Al Sadd", "found": true}, {"section": "ATK MID", "name": "Julio Enciso", "found": false}, {"section": "ATK MID", "name": "E. Barco", "found": false}, {"section": "LEFT WINGER", "name": "B. Rodríguez", "found": false}, {"section": "LEFT WINGER", "name": "S. Villa", "pid": "ATA|Argentina A|S. Villa|29", "pk": "ATA", "lg": "Argentina A", "ovr": 56.1, "club": "Independiente", "found": true}, {"section": "LEFT WINGER", "name": "D. Bouanga", "found": false}, {"section": "RIGHT WINGER", "name": "Yáser Asprilla", "found": false}, {"section": "RIGHT WINGER", "name": "Giovani", "found": false}, {"section": "RIGHT WINGER", "name": "Helinho", "pid": "EXT-D|Brasileiros Ext.|Helinho|25", "pk": "EXT-D", "lg": "Brasileiros Ext.", "ovr": 86.3, "club": "Toluca", "found": true}, {"section": "RIGHT WINGER", "name": "D. Martínez", "found": false}, {"section": "RIGHT WINGER", "name": "Gabriel Pec", "found": false}, {"section": "RIGHT WINGER", "name": "Darío Osorio", "found": false}, {"section": "RIGHT MID", "name": "W. Barrios", "found": false}, {"section": "RIGHT MID", "name": "Romulo", "pid": "EXT-D|Brasileiros Ext.|Rômulo|30", "pk": "EXT-D", "lg": "Brasileiros Ext.", "ovr": 80.0, "club": "Chengdu Rongcheng", "found": true}, {"section": "RIGHT MID", "name": "Gregore", "found": false}, {"section": "RIGHT MID", "name": "C. Cásseres", "found": false}, {"section": "RIGHT MID", "name": "F. Ibarra", "found": false}, {"section": "RIGHT MID", "name": "M. Galarza", "found": false}, {"section": "RIGHT MID", "name": "S. Sosa", "found": false}, {"section": "RIGHT MID", "name": "Kevin Castaño", "found": false}, {"section": "RIGHT MID", "name": "Fabinho", "found": false}, {"section": "RIGHT MID", "name": "Pedro Bravo", "found": false}, {"section": "LEFT MID", "name": "Fred", "found": false}, {"section": "LEFT MID", "name": "Douglas", "found": false}, {"section": "LEFT MID", "name": "P. Mercado", "pid": "MED|Equador|P. Mercado|22", "pk": "MED", "lg": "Equador", "ovr": 61.3, "club": "Independiente...", "found": true}, {"section": "LEFT MID", "name": "M. Ruiz", "found": false}, {"section": "LEFT MID", "name": "Nicolás Capaldo", "found": false}, {"section": "LEFT BACK", "name": "Á. Angulo", "pid": "ZAG-E|Colômbia|A. Angulo|29", "pk": "ZAG-E", "lg": "Colômbia", "ovr": 60.3, "club": "Tolima", "found": true}, {"section": "LEFT BACK", "name": "F. Ortega", "found": false}, {"section": "LEFT BACK", "name": "L. Esquivel", "pid": "LE|Brasil A|L. Esquivel|24", "pk": "LE", "lg": "Brasil A", "ovr": 46.0, "club": "Athletico Paranaense", "found": true}, {"section": "LEFT BACK", "name": "Johan Mojica", "found": false}, {"section": "LEFT BACK", "name": "Lautaro Blanco", "pid": "LE|Argentina A|L. Blanco|27", "pk": "LE", "lg": "Argentina A", "ovr": 66.2, "club": "Boca Juniors", "found": true}, {"section": "LEFT BACK", "name": "Welington", "found": false}, {"section": "LEFT BACK", "name": "Lucas Pires", "found": false}, {"section": "LEFT BACK", "name": "R. Vega", "found": false}, {"section": "LEFT BACK", "name": "Rubens", "found": false}, {"section": "LEFT BACK", "name": "Paulo Otávio", "found": false}, {"section": "LEFT BACK", "name": "A. Bernabei", "found": false}, {"section": "LEFT CB", "name": "Tomás Palacios", "pid": "ZAG-E|Argentina A|T. Palacios|22", "pk": "ZAG-E", "lg": "Argentina A", "ovr": 58.3, "club": "Estudiantes", "found": true}, {"section": "LEFT CB", "name": "Lautaro Rivero", "pid": "ZAG-E|Argentina A|L. Rivero|22", "pk": "ZAG-E", "lg": "Argentina A", "ovr": 59.2, "club": "River Plate", "found": true}, {"section": "LEFT CB", "name": "G. Álvarez", "found": false}, {"section": "LEFT CB", "name": "Alan Matturro", "found": false}, {"section": "LEFT CB", "name": "Igor Julio", "found": false}, {"section": "LEFT CB", "name": "Diogo Leite", "found": false}, {"section": "LEFT CB", "name": "Juan Jesus", "found": false}, {"section": "RIGHT CB", "name": "N. Herrera", "found": false}, {"section": "RIGHT CB", "name": "F. Pereira", "found": false}, {"section": "RIGHT CB", "name": "Willer Ditta", "found": false}, {"section": "RIGHT CB", "name": "Kevin Lomónaco", "pid": "ZAG-D|Argentina A|K. Lomónaco|24", "pk": "ZAG-D", "lg": "Argentina A", "ovr": 49.5, "club": "Independiente", "found": true}, {"section": "RIGHT CB", "name": "Gabriel Pereira", "found": false}, {"section": "RIGHT CB", "name": "Vítor Tormena", "pid": "ZAG-D|Brasileiros Ext.|Vitor Tormena|30", "pk": "ZAG-D", "lg": "Brasileiros Ext.", "ovr": 65.8, "club": "Krasnodar", "found": true}, {"section": "RIGHT CB", "name": "Lautaro Di Lollo", "pid": "ZAG-D|Argentina A|L. Di Lollo|21", "pk": "ZAG-D", "lg": "Argentina A", "ovr": 56.7, "club": "Boca Juniors", "found": true}, {"section": "RIGHT CB", "name": "Igor Gomes", "found": false}, {"section": "RIGHT CB", "name": "Nathan Silva", "found": false}, {"section": "RIGHT CB", "name": "Arthur Chaves", "found": false}, {"section": "RIGHT BACK", "name": "K. Amaro", "found": false}, {"section": "RIGHT BACK", "name": "Édier Ocampo", "found": false}, {"section": "RIGHT BACK", "name": "Gonzalo Montiel", "pid": "LD|Argentina A|G. Montiel|29", "pk": "LD", "lg": "Argentina A", "ovr": 52.0, "club": "River Plate", "found": true}, {"section": "RIGHT BACK", "name": "G. Vagiannidis", "pid": "LD|Portugal A|G. Vagiannidis|24", "pk": "LD", "lg": "Portugal A", "ovr": 51.8, "club": "Sporting CP", "found": true}, {"section": "GK", "name": "Franco Israel", "found": false}], "backup": [{"section": "FORWARD", "name": "Maxi Gómez", "found": false}, {"section": "FORWARD", "name": "M. Arezo", "found": false}, {"section": "FORWARD", "name": "L. Gondou", "found": false}, {"section": "FORWARD", "name": "Mateusão", "found": false}, {"section": "FORWARD", "name": "I. Pitta", "found": false}, {"section": "FORWARD", "name": "J. Romero", "found": false}, {"section": "FORWARD", "name": "A. Cuello", "found": false}, {"section": "FORWARD", "name": "T. Molina", "found": false}, {"section": "FORWARD", "name": "D. Lacerda", "found": false}, {"section": "FORWARD", "name": "Renato Marques", "found": false}, {"section": "FORWARD", "name": "Marcelo Ryan", "found": false}, {"section": "FORWARD", "name": "André Silva", "found": false}, {"section": "FORWARD", "name": "Danilo Pereira", "found": false}, {"section": "FORWARD", "name": "Chimy Ávila", "found": false}, {"section": "FORWARD", "name": "F. Viñas", "found": false}, {"section": "FORWARD", "name": "Jayder Asprilla", "found": false}, {"section": "FORWARD", "name": "R. Martínez", "found": false}, {"section": "ATK MID", "name": "A. Lescano", "pid": "MEIA|Argentina A|A. Lescano|24", "pk": "MEIA", "lg": "Argentina A", "ovr": 35.3, "club": "Argentinos Juniors", "found": true}, {"section": "ATK MID", "name": "D. Rossi", "found": false}, {"section": "ATK MID", "name": "J. Torres", "found": false}, {"section": "ATK MID", "name": "A. Palavecino", "found": false}, {"section": "ATK MID", "name": "J. Rengifo", "found": false}, {"section": "ATK MID", "name": "M. Ojeda", "found": false}, {"section": "LEFT WINGER", "name": "João Victor", "pid": "ZAG-D|Brasileiros Ext.|João Victor|21", "pk": "ZAG-D", "lg": "Brasileiros Ext.", "ovr": 65.4, "club": "Dila", "found": true}, {"section": "LEFT WINGER", "name": "E. Cetré", "found": false}, {"section": "LEFT WINGER", "name": "Matías Abaldo", "pid": "ATA|Uruguai|M. Abaldo|21", "pk": "ATA", "lg": "Uruguai", "ovr": 69.0, "club": "Defensor Sporting", "found": true}, {"section": "LEFT WINGER", "name": "Ó. Cortés", "pid": "EXT-E|Argentina A|Ó. Cortés|22", "pk": "EXT-E", "lg": "Argentina A", "ovr": 39.9, "club": "Huracán", "found": true}, {"section": "LEFT WINGER", "name": "Manuel Panaro", "found": false}, {"section": "LEFT WINGER", "name": "G. Mendoza", "found": false}, {"section": "LEFT WINGER", "name": "H. Mosquera", "pid": "EXT-E|Brasil A|Henry Mosquera|24", "pk": "EXT-E", "lg": "Brasil A", "ovr": 39.7, "club": "Red Bull Bragantino", "found": true}, {"section": "LEFT WINGER", "name": "E. Gómez", "found": false}, {"section": "LEFT WINGER", "name": "Jorge Díaz", "found": false}, {"section": "LEFT WINGER", "name": "Ozziel Herrera", "found": false}, {"section": "LEFT WINGER", "name": "E. Obregón", "found": false}, {"section": "LEFT WINGER", "name": "John Montaño", "found": false}, {"section": "LEFT WINGER", "name": "B. Domínguez", "found": false}, {"section": "LEFT WINGER", "name": "Diogo Oliveira", "found": false}, {"section": "RIGHT WINGER", "name": "D. Moncada", "pid": "EXT-D|Colômbia|D. Moncada|18", "pk": "EXT-D", "lg": "Colômbia", "ovr": 49.6, "club": "Inter Bogotá", "found": true}, {"section": "RIGHT WINGER", "name": "Gustavo", "found": false}, {"section": "RIGHT WINGER", "name": "Jhon Rentería", "found": false}, {"section": "RIGHT WINGER", "name": "Alexei Domínguez", "found": false}, {"section": "RIGHT WINGER", "name": "Diego González", "found": false}, {"section": "RIGHT WINGER", "name": "J. Canchimbo", "found": false}, {"section": "RIGHT WINGER", "name": "J. Arroyo", "found": false}, {"section": "RIGHT WINGER", "name": "G. Nunes", "found": false}, {"section": "RIGHT WINGER", "name": "E. González", "found": false}, {"section": "RIGHT MID", "name": "Pedro Bicalho", "found": false}, {"section": "RIGHT MID", "name": "Charlys", "found": false}, {"section": "RIGHT MID", "name": "G. Barrios", "found": false}, {"section": "RIGHT MID", "name": "I. Perruzzi", "found": false}, {"section": "RIGHT MID", "name": "H. Loboa", "found": false}, {"section": "RIGHT MID", "name": "J. Romão", "found": false}, {"section": "RIGHT MID", "name": "J. Alcívar", "found": false}, {"section": "RIGHT MID", "name": "Iker Fimbres", "found": false}, {"section": "RIGHT MID", "name": "F. Cáseres", "found": false}, {"section": "RIGHT MID", "name": "Vitor Carvalho", "pid": "ZAG-D|Portugal A|Vitor Carvalho|28", "pk": "ZAG-D", "lg": "Portugal A", "ovr": 62.2, "club": "Sporting Braga", "found": true}, {"section": "LEFT MID", "name": "L. Boggio", "found": false}, {"section": "LEFT MID", "name": "M. Amaro", "found": false}, {"section": "LEFT MID", "name": "Pierre", "found": false}, {"section": "LEFT MID", "name": "J. Torres", "found": false}, {"section": "LEFT MID", "name": "J. Escobar", "found": false}, {"section": "LEFT MID", "name": "G. Villamíl", "found": false}, {"section": "LEFT MID", "name": "Breno", "found": false}, {"section": "LEFT MID", "name": "Mandaca", "found": false}, {"section": "LEFT BACK", "name": "Paulinho", "found": false}, {"section": "LEFT BACK", "name": "Cara Roque", "found": false}, {"section": "LEFT BACK", "name": "L. Diala", "found": false}, {"section": "LEFT BACK", "name": "M. Del Blanco", "pid": "LE|Argentina A|M. Del Blanco|22", "pk": "LE", "lg": "Argentina A", "ovr": 65.2, "club": "Unión Santa Fe", "found": true}, {"section": "LEFT BACK", "name": "D. Machado", "found": false}, {"section": "LEFT BACK", "name": "Omar Campos", "found": false}, {"section": "LEFT BACK", "name": "C. Rossal", "found": false}, {"section": "LEFT BACK", "name": "Blasina", "found": false}, {"section": "LEFT BACK", "name": "S. Marcich", "pid": "LE|Argentina A|S. Marcich|27", "pk": "LE", "lg": "Argentina A", "ovr": 40.5, "club": "Lanús", "found": true}, {"section": "LEFT BACK", "name": "G. Rojas", "pid": "LE|Argentina A|G. Rojas|28", "pk": "LE", "lg": "Argentina A", "ovr": 50.4, "club": "Racing Club", "found": true}, {"section": "LEFT BACK", "name": "C. Nailes", "found": false}, {"section": "LEFT CB", "name": "Anthony", "found": false}, {"section": "LEFT CB", "name": "Italo", "found": false}, {"section": "LEFT CB", "name": "Marco Pelegrino", "found": false}, {"section": "LEFT CB", "name": "Lucas Fasson", "found": false}, {"section": "LEFT CB", "name": "Victor Gabriel", "pid": "ZAG-E|Brasil A|Victor Gabriel|21", "pk": "ZAG-E", "lg": "Brasil A", "ovr": 50.6, "club": "Internacional", "found": true}, {"section": "LEFT CB", "name": "Renan", "pid": "ZAG-E|Brasileiros Ext.|Renan|23", "pk": "ZAG-E", "lg": "Brasileiros Ext.", "ovr": 69.4, "club": "Shabab Al Ahly", "found": true}, {"section": "LEFT CB", "name": "Adore Macena", "found": false}, {"section": "LEFT CB", "name": "Kayky Almeida", "found": false}, {"section": "RIGHT CB", "name": "M. Rodríguez", "found": false}, {"section": "RIGHT CB", "name": "L. Ferreira", "found": false}, {"section": "RIGHT CB", "name": "Niassi", "found": false}, {"section": "RIGHT CB", "name": "S. García", "found": false}, {"section": "RIGHT CB", "name": "Kevin Montilla", "found": false}, {"section": "RIGHT CB", "name": "Barton", "found": false}, {"section": "RIGHT CB", "name": "J. Peña", "found": false}, {"section": "RIGHT CB", "name": "B. Méndez", "found": false}, {"section": "RIGHT CB", "name": "J. Aymeza", "found": false}, {"section": "RIGHT CB", "name": "J. Mafatini", "found": false}, {"section": "RIGHT CB", "name": "Marciano Prieto", "found": false}, {"section": "RIGHT CB", "name": "Niazi", "found": false}, {"section": "RIGHT CB", "name": "Leo Duarte", "found": false}, {"section": "RIGHT CB", "name": "T. Ramírez", "found": false}, {"section": "RIGHT CB", "name": "K. Jappelt", "found": false}, {"section": "RIGHT CB", "name": "M. Di Cesare", "pid": "ZAG-D|Argentina A|M. Di Cesare|24", "pk": "ZAG-D", "lg": "Argentina A", "ovr": 57.8, "club": "Racing Club", "found": true}, {"section": "RIGHT CB", "name": "N. Colombo", "found": false}, {"section": "RIGHT CB", "name": "Thaïssane", "found": false}, {"section": "RIGHT BACK", "name": "N. González", "found": false}, {"section": "RIGHT BACK", "name": "G. Martínez", "found": false}, {"section": "RIGHT BACK", "name": "Juan Barinaga", "pid": "LD|Argentina A|J. Barinaga|25", "pk": "LD", "lg": "Argentina A", "ovr": 38.7, "club": "Boca Juniors", "found": true}, {"section": "RIGHT BACK", "name": "S. Vargas", "found": false}, {"section": "RIGHT BACK", "name": "Willian", "found": false}, {"section": "RIGHT BACK", "name": "E. Corones", "found": false}, {"section": "RIGHT BACK", "name": "A. Schimback", "pid": "LD|Argentina A|A. Steimbach|23", "pk": "LD", "lg": "Argentina A", "ovr": 38.6, "club": "Gimnasia La Plata", "found": true}, {"section": "RIGHT BACK", "name": "A. Romão", "found": false}, {"section": "RIGHT BACK", "name": "M. Castillo", "found": false}, {"section": "RIGHT BACK", "name": "Aurélio Bura", "found": false}, {"section": "GK", "name": "Mycael", "found": false}, {"section": "GK", "name": "O. Gill", "pid": "GK|Argentina A|O. Gill|25", "pk": "GK", "lg": "Argentina A", "ovr": 83.1, "club": "San Lorenzo", "found": true}, {"section": "GK", "name": "Leandro Brey", "found": false}, {"section": "GK", "name": "Bernardo Fontes", "found": false}, {"section": "GK", "name": "Diego Callai", "found": false}, {"section": "GK", "name": "Victor Aznar", "pid": "GK|Brasileiros Ext.|Victor Aznar|23", "pk": "GK", "lg": "Brasileiros Ext.", "ovr": 67.9, "club": "Cádiz", "found": true}, {"section": "GK", "name": "J. Contreras", "found": false}, {"section": "GK", "name": "Matheu Carneiro", "found": false}], "youth": [{"section": "FORWARD", "name": "V. Dávila", "found": false}, {"section": "FORWARD", "name": "R. Machado", "found": false}, {"section": "FORWARD", "name": "Luighi", "found": false}, {"section": "FORWARD", "name": "Davi Alves", "found": false}, {"section": "FORWARD", "name": "Juan Angulo", "found": false}, {"section": "FORWARD", "name": "João Bezerra", "found": false}, {"section": "ATK MID", "name": "Álvaro Montoro", "pid": "EXT-E|Brasil A|A. Montoro [BOT]|18", "pk": "EXT-E", "lg": "Brasil A", "ovr": 43.9, "club": "Botafogo", "found": true}, {"section": "ATK MID", "name": "D. Guagua", "found": false}, {"section": "ATK MID", "name": "Erick Belé", "found": false}, {"section": "ATK MID", "name": "Gabriel Mec", "found": false}, {"section": "ATK MID", "name": "Gui Amorim", "found": false}, {"section": "ATK MID", "name": "G. Baroni", "found": false}, {"section": "ATK MID", "name": "L. Fragozo", "found": false}, {"section": "LEFT WINGER", "name": "Mateus", "found": false}, {"section": "LEFT WINGER", "name": "Lucca Marques", "found": false}, {"section": "LEFT WINGER", "name": "Ryan Roberto", "found": false}, {"section": "LEFT WINGER", "name": "Eduardo Conceição", "found": false}, {"section": "RIGHT WINGER", "name": "K. Arroyo", "found": false}, {"section": "RIGHT WINGER", "name": "Riquelme Felipe", "found": false}, {"section": "RIGHT WINGER", "name": "Ian Subiabre", "found": false}, {"section": "RIGHT WINGER", "name": "Bruninho", "found": false}, {"section": "RIGHT WINGER", "name": "Ruan Pablo", "found": false}, {"section": "RIGHT WINGER", "name": "Kayke Santos", "found": false}, {"section": "RIGHT WINGER", "name": "João Gabriel", "found": false}, {"section": "RIGHT WINGER", "name": "Kauê Furquim", "found": false}, {"section": "RIGHT WINGER", "name": "Johan Martínez", "found": false}, {"section": "RIGHT MID", "name": "I. Perruzzi", "found": false}, {"section": "RIGHT MID", "name": "H. Loboa", "found": false}, {"section": "RIGHT MID", "name": "Huguinho", "found": false}, {"section": "RIGHT MID", "name": "Zé Lucas", "found": false}, {"section": "RIGHT MID", "name": "Luis Pacheco", "found": false}, {"section": "RIGHT MID", "name": "Ederson Castillo", "found": false}, {"section": "RIGHT MID", "name": "M. Agámez", "found": false}, {"section": "RIGHT MID", "name": "Eduardo Pape", "found": false}, {"section": "LEFT MID", "name": "Breno Bidon", "found": false}, {"section": "LEFT MID", "name": "M. Amaro", "found": false}, {"section": "LEFT MID", "name": "Jordan Barrera", "found": false}, {"section": "LEFT MID", "name": "André Luiz", "found": false}, {"section": "LEFT MID", "name": "M. Cissé", "found": false}, {"section": "LEFT MID", "name": "G. Barbas", "found": false}, {"section": "LEFT MID", "name": "T. Andrada", "pid": "EXT-D|Argentina A|T. Andrada|19", "pk": "EXT-D", "lg": "Argentina A", "ovr": 45.7, "club": "Vélez Sarsfield", "found": true}, {"section": "LEFT MID", "name": "Tiaguinho", "found": false}, {"section": "LEFT MID", "name": "F. Morais", "found": false}, {"section": "LEFT MID", "name": "M. Lozano", "found": false}, {"section": "LEFT MID", "name": "Luis Maturana", "found": false}, {"section": "LEFT MID", "name": "J. Muñoz", "found": false}, {"section": "LEFT MID", "name": "M. Amondarain", "found": false}, {"section": "LEFT BACK", "name": "J. Hernández", "found": false}, {"section": "LEFT BACK", "name": "Nicolas", "found": false}, {"section": "LEFT BACK", "name": "Vinicius Lira", "found": false}, {"section": "LEFT BACK", "name": "F. Bais", "found": false}, {"section": "LEFT BACK", "name": "S. Escobar", "found": false}, {"section": "LEFT BACK", "name": "S. Zampieri", "found": false}, {"section": "LEFT CB", "name": "Luis Benedetti", "found": false}, {"section": "LEFT CB", "name": "João Paulo", "found": false}, {"section": "LEFT CB", "name": "Arthur", "found": false}, {"section": "LEFT CB", "name": "Luccas Ramon", "found": false}, {"section": "LEFT CB", "name": "Breno Sales", "found": false}, {"section": "RIGHT CB", "name": "Bruno Alves", "found": false}, {"section": "RIGHT CB", "name": "Juan Giménez", "pid": "EXT-D|Paraguai|J. Giménez|22", "pk": "EXT-D", "lg": "Paraguai", "ovr": 53.8, "club": "Rubio Ñú", "found": true}, {"section": "RIGHT CB", "name": "T. Silvero", "found": false}, {"section": "RIGHT CB", "name": "M. Caballero", "found": false}, {"section": "RIGHT CB", "name": "João Souza", "found": false}, {"section": "RIGHT CB", "name": "Brian Barboza", "found": false}, {"section": "RIGHT CB", "name": "Luis Guedes", "found": false}, {"section": "RIGHT CB", "name": "Iago Machado", "found": false}, {"section": "RIGHT BACK", "name": "Ulises Giménez", "found": false}, {"section": "RIGHT BACK", "name": "Kauã Moraes", "found": false}, {"section": "RIGHT BACK", "name": "Júlio Fidelis", "found": false}, {"section": "RIGHT BACK", "name": "Ryan", "found": false}, {"section": "RIGHT BACK", "name": "Vitor Ramon", "found": false}, {"section": "RIGHT BACK", "name": "M. Jiménez", "found": false}]};
+const POS=[["GK","GOLEIRO"],["ZAG-D","ZAG DIR"],["ZAG-E","ZAG ESQ"],["LD","LAT DIR"],["LE","LAT ESQ"],
+           ["VOL","VOLANTE"],["MED","M.DEF"],["MEIA","M.ATAC"],["EXT-D","EXT DIR"],["EXT-E","EXT ESQ"],["ATA","ATACANTE"]];
+const BANDS=[
+  {tag:"TOP 10",leagues:["Brasil A","Argentina A","Portugal A"],rows:10},
+  {tag:"TOP 5", leagues:["Uruguai","Colômbia","Brasileiros Ext."],rows:5},
+  {tag:"TOP 3", leagues:["Chile","Equador","Paraguai"],rows:3},
+];
+const GR="26px 1fr 44px 84px 26px 56px 50px";
+
+let curPos="GK",curTab="r",curF="all",curLS="main";
+const KEY="bot_stars_mar26";
+let ST={};
+function ldSt(){try{ST=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){ST={}}}
+function svSt(){localStorage.setItem(KEY,JSON.stringify(ST))}
+function gSt(id){return ST[id]||{main:false,backup:false,youth:false}}
+function pid(pk,lg,nm,age){return `${pk}|${lg}|${nm}|${age}`}
+
+function oc(v){
+  const lt=document.body.classList.contains('light');
+  if(!v)return lt?'#888':'#555';
+  if(v>=80)return lt?'#0A6630':'#00E676';
+  if(v>=70)return lt?'#2D6B00':'#76FF03';
+  if(v>=60)return lt?'#8A5C00':'#FFD740';
+  if(v>=50)return lt?'#B84400':'#FFAB40';
+  if(v>=40)return lt?'#BF2A0A':'#FF7043';
+  return lt?'#B71010':'#EF5350';
+}
+
+// SIDEBAR
+function rSB(){
+  document.getElementById("sb").innerHTML=POS.map(([k,l])=>
+    `<button class="pb${k===curPos?" on":""}" onclick="selPos('${k}')">${k}<small>${l}</small></button>`
+  ).join("");
+}
+
+// RANKINGS
+function rRanks(){
+  document.getElementById("tranks").innerHTML=POS.map(([pk,pl])=>`
+    <div id="pos_${pk}" class="pp${pk===curPos?" on":""}">
+      <div class="pt"><h2>${pk}</h2><h3>| ${R[pk]?.label}</h3></div>
+      ${BANDS.map(b=>rBand(pk,b)).join("")}
+    </div>`).join("");
+  applyF();
+}
+
+function rBand(pk,band){
+  return `<div class="band">
+    <div class="bh"><span class="bt">● ${band.tag}</span>
+    <span class="bl">${band.leagues.join(" · ")}</span></div>
+    <div class="bts">${band.leagues.map(lg=>rLT(pk,lg,band.rows)).join("")}</div>
+  </div>`;
+}
+
+function rLT(pk,lg,n){
+  const ps=(R[pk]?.data?.[lg]||[]).slice(0,n);
+  return `<div class="lt">
+    <div class="ln">${lg.toUpperCase()}</div>
+    <div class="ch" style="grid-template-columns:${GR}">
+      <div class="chc">№</div><div class="chc" style="text-align:left;padding-left:2px">Nome</div>
+      <div class="chc">Ovr</div><div class="chc" style="text-align:left">Clube</div>
+      <div class="chc">Id</div><div class="chc">Con</div><div class="chc">★</div>
+    </div>
+    ${Array.from({length:n}).map((_,i)=>rPR(pk,lg,ps[i],i)).join("")}
+  </div>`;
+}
+
+function rPR(pk,lg,p,i){
+  if(!p)return`<div class="pr" style="grid-template-columns:${GR}">
+    <div class="c cn">${i+1}</div><div class="c" style="color:#222">—</div>
+    <div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div>
+  </div>`;
+  const id=pid(pk,lg,p.name,p.age),s=gSt(id);
+  const lm=curF==="all"||s[curF];
+  return `<div class="pr${!lm?" dim":""}" style="grid-template-columns:${GR}" data-pid="${id}" data-m="${s.main}" data-b="${s.backup}" data-y="${s.youth}">
+    <div class="c cn">${p.n}</div>
+    <div class="c cname">${p.name}</div>
+    <div class="c covr" style="color:${oc(p.ovr)}">${p.ovr??'—'}</div>
+    <div class="c cclub" title="${p.club}">${p.club}</div>
+    <div class="c cage">${p.age}</div>
+    <div class="c ccon">${p.contract}</div>
+    <div class="c cs">
+      <button class="s${s.main?" on":""}" data-l="main" data-pid="${id}" onclick="tgS(this)" title="Main">★</button>
+      <button class="s${s.backup?" on":""}" data-l="backup" data-pid="${id}" onclick="tgS(this)" title="Backup">★</button>
+      <button class="s${s.youth?" on":""}" data-l="youth" data-pid="${id}" onclick="tgS(this)" title="Youth">★</button>
+    </div>
+  </div>`;
+}
+
+function tgS(btn){
+  const id=btn.dataset.pid,l=btn.dataset.l;
+  if(!ST[id])ST[id]={main:false,backup:false,youth:false};
+  ST[id][l]=!ST[id][l];
+  btn.classList.toggle("on",ST[id][l]);
+  svSt();
+  const row=btn.closest(".pr");
+  if(curF!=="all"){row.classList.toggle("dim",!ST[id][curF]);}
+  // sync pills in lists tab
+  document.querySelectorAll(`.ls2[data-pid="${id}"][data-l="${l}"]`).forEach(b=>{b.classList.toggle("on",ST[id][l])});
+  refreshStarred();
+}
+
+function selPos(k){
+  curPos=k;
+  document.querySelectorAll(".pp").forEach(p=>p.classList.toggle("on",p.id===`pos_${k}`));
+  document.querySelectorAll(".pb").forEach(b=>b.classList.toggle("on",b.textContent.startsWith(k)));
+  applyF();
+}
+
+function setF(f){
+  curF=f;
+  document.querySelectorAll(".fb").forEach(b=>b.classList.toggle("on",b.dataset.f===f));
+  applyF();
+}
+
+function applyF(){
+  document.querySelectorAll(".pr[data-pid]").forEach(row=>{
+    const id=row.dataset.pid,s=gSt(id);
+    row.classList.toggle("dim",curF!=="all"&&!s[curF]);
+  });
+}
+
+function swTab(t){
+  curTab=t;
+  document.querySelectorAll(".tb").forEach(b=>b.classList.toggle("on",(b.textContent==="Rankings"?"r":"l")===t));
+  document.getElementById("tranks").style.display=t==="r"?"block":"none";
+  document.getElementById("tlists").style.display=t==="l"?"block":"none";
+  if(t==="l")renderLists();
+}
+
+// ─── LISTS TAB ───────────────────────────────────────────────────────────
+const LIST_LABELS={"main":"⭐ MAIN LIST","backup":"🔵 BACKUP LIST","youth":"🟢 YOUTH LIST","starred":"★ TODOS MARCADOS"};
+
+function renderLists(){
+  const el=document.getElementById("tlists");
+  // Count stats
+  const cnt={main:0,backup:0,youth:0};
+  const tot={main:S.main.length,backup:S.backup.length,youth:S.youth.length};
+  S.main.forEach(p=>{if(p.found)cnt.main++});
+  S.backup.forEach(p=>{if(p.found)cnt.backup++});
+  S.youth.forEach(p=>{if(p.found)cnt.youth++});
+  const stCount=Object.values(ST).filter(v=>v.main||v.backup||v.youth).length;
+
+  el.innerHTML=`
+    <div class="lh">
+      <h2>LISTAS DE DESTAQUE</h2>
+      <div class="lstabs">
+        <button class="lstb${curLS==="main"?" on":""}" data-ls="main" onclick="swLS('main')">⭐ Main</button>
+        <button class="lstb${curLS==="backup"?" on":""}" data-ls="backup" onclick="swLS('backup')">🔵 Backup</button>
+        <button class="lstb${curLS==="youth"?" on":""}" data-ls="youth" onclick="swLS('youth')">🟢 Youth</button>
+        <button class="lstb${curLS==="starred"?" on":""}" data-ls="starred" onclick="swLS('starred')">★ Todos (${stCount})</button>
+      </div>
+      <button onclick="openAddModal()" style="margin-left:auto;background:var(--gold);color:#000;border:none;padding:7px 16px;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px">+ Cadastrar</button>
+    </div>
+    <div class="lsumm">
+      <div class="lscard"><div class="lct">MAIN LIST</div><div class="lcn">${cnt.main}<span style="font-size:14px;color:var(--t2)">/${tot.main}</span></div><div class="lcn2">encontrados no ranking</div></div>
+      <div class="lscard"><div class="lct">BACKUP LIST</div><div class="lcn">${cnt.backup}<span style="font-size:14px;color:var(--t2)">/${tot.backup}</span></div><div class="lcn2">encontrados no ranking</div></div>
+      <div class="lscard"><div class="lct">YOUTH LIST</div><div class="lcn">${cnt.youth}<span style="font-size:14px;color:var(--t2)">/${tot.youth}</span></div><div class="lcn2">encontrados no ranking</div></div>
+      <div class="lscard"><div class="lct">MARCADOS</div><div class="lcn">${stCount}</div><div class="lcn2">total com estrelas</div></div>
+    </div>
+    <div id="lbody"></div>`;
+  renderLBody();
+}
+
+function swLS(ls){
+  curLS=ls;
+  document.querySelectorAll(".lstb").forEach(b=>b.classList.toggle("on",b.dataset.ls===ls));
+  renderLBody();
+}
+
+
+function rCustomPill(p){
+  return `<div class="lpill found" style="cursor:pointer" onclick="openAddModal('${p.id}')" title="Clique para editar">
+    <span class="lname">${p.name}</span>
+    ${p.ovr?`<span class="lovrb" style="color:${oc(p.ovr)}">${p.ovr}</span>`:''}
+    <span class="lligb">${p.league}</span>
+    <span class="lposb">${p.pos}</span>
+    <span class="cbadge">✏</span>
+  </div>`;
+}
+
+function renderLBody(){
+  const el=document.getElementById("lbody");
+  if(curLS==="starred"){renderStarred(el);return;}
+  const players=S[curLS]||[];
+  // Group by section
+  const secs={};
+  players.forEach(p=>{
+    if(!secs[p.section])secs[p.section]=[];
+    secs[p.section].push(p);
+  });
+  let html=Object.entries(secs).map(([sec,ps])=>{
+    const found=ps.filter(p=>p.found).length;
+    return `<div class="lsec">
+      <div class="lsech"><span>${sec}</span><small>${found}/${ps.length} no ranking</small></div>
+      <div class="lgrid">${ps.map(p=>rPill(p,curLS)).join("")}</div>
+    </div>`;
+  }).join("");
+  if(custom.length){
+    html+=`<div class="lsec">
+      <div class="lsech" style="border-left-color:var(--gold)"><span>✏ CADASTRADOS MANUALMENTE</span><small>${custom.length} jogador(es)</small></div>
+      <div class="lgrid">${custom.map(p=>rCustomPill(p)).join("")}</div>
+    </div>`;
+  }
+  el.innerHTML=html;
+}
+
+function rPill(p,lt){
+  const s=p.pid?gSt(p.pid):{main:false,backup:false,youth:false};
+  const pid_attr=p.pid?`data-pid="${p.pid}"`:"";
+  const stBtns=p.pid?`
+    <span class="lstarr">
+      <button class="ls2${s.main?" on":""}" data-l="main" ${pid_attr} onclick="tgSL(this)" title="Main">★</button>
+      <button class="ls2${s.backup?" on":""}" data-l="backup" ${pid_attr} onclick="tgSL(this)" title="Backup">★</button>
+      <button class="ls2${s.youth?" on":""}" data-l="youth" ${pid_attr} onclick="tgSL(this)" title="Youth">★</button>
+    </span>`:"";
+  if(p.found){
+    return `<div class="lpill found">
+      <span class="lname">${p.name}</span>
+      <span class="lovrb" style="color:${oc(p.ovr)}">${p.ovr??'—'}</span>
+      <span class="lligb">${p.lg?.replace("Brasileiros Ext.","Bras.Ext")||""}</span>
+      <span class="lposb">${p.pk||""}</span>
+      ${stBtns}
+    </div>`;
+  }
+  return `<div class="lpill notfound">
+    <span class="lname">${p.name}</span>
+    <span style="font-size:10px;color:#333">✗ fora do top ranking</span>
+    ${p.pid?stBtns:`<span class="lstarr">
+      <button class="ls2" data-l="main" data-cname="${p.name}" data-lt="${lt}" onclick="tgSManual(this,'main')" title="Main">★</button>
+      <button class="ls2" data-l="backup" data-cname="${p.name}" data-lt="${lt}" onclick="tgSManual(this,'backup')" title="Backup">★</button>
+      <button class="ls2" data-l="youth" data-cname="${p.name}" data-lt="${lt}" onclick="tgSManual(this,'youth')" title="Youth">★</button>
+    </span>`}
+  </div>`;
+}
+
+function tgSL(btn){
+  const id=btn.dataset.pid,l=btn.dataset.l;
+  if(!id)return;
+  if(!ST[id])ST[id]={main:false,backup:false,youth:false};
+  ST[id][l]=!ST[id][l];
+  btn.classList.toggle("on",ST[id][l]);
+  svSt();
+  document.querySelectorAll(`.s[data-pid="${id}"][data-l="${l}"]`).forEach(b=>{b.classList.toggle("on",ST[id][l])});
+  applyF();
+  refreshStarred();
+}
+
+function tgSManual(btn,l){
+  // Manual star for not-found players — stored with special key
+  const cname=btn.dataset.cname,lt=btn.dataset.lt;
+  const fakeId=`MANUAL|${lt}|${cname}|0`;
+  if(!ST[fakeId])ST[fakeId]={main:false,backup:false,youth:false,_name:cname};
+  ST[fakeId][l]=!ST[fakeId][l];
+  btn.classList.toggle("on",ST[fakeId][l]);
+  svSt();
+  refreshStarred();
+}
+
+function refreshStarred(){
+  if(curLS==="starred"){
+    const el=document.getElementById("lbody");
+    if(el)renderStarred(el);
+  }
+  // update count badge
+  const stCount=Object.values(ST).filter(v=>v.main||v.backup||v.youth).length;
+  document.querySelectorAll(".lstb[data-ls='starred']").forEach(b=>{b.textContent=`★ Todos (${stCount})`});
+}
+
+function renderStarred(el){
+  const rows=[];
+  // From rankings
+  for(const[pk,pd] of Object.entries(R)){
+    for(const[lg,ps] of Object.entries(pd.data||{})){
+      for(const p of ps){
+        const id=pid(pk,lg,p.name,p.age),s=gSt(id);
+        if(s.main||s.backup||s.youth){
+          rows.push({name:p.name,pk,lg,ovr:p.ovr,club:p.club,age:p.age,contract:p.contract,s,manual:false});
+        }
+      }
+    }
+  }
+  // Custom registered players
+  for(const p of loadCustom()){
+    if(p.main||p.backup||p.youth){
+      rows.push({name:p.name,pk:p.pos,lg:p.league,ovr:p.ovr,club:p.club,age:p.age,contract:p.contract,
+        s:{main:p.main,backup:p.backup,youth:p.youth},manual:true,customId:p.id});
+    }
+  }
+  // Manual star toggles (not found)
+  for(const[id,v] of Object.entries(ST)){
+    if(id.startsWith("MANUAL|")&&(v.main||v.backup||v.youth)){
+      rows.push({name:v._name||id.split("|")[2],pk:"—",lg:"—",ovr:null,club:"—",age:"—",contract:"—",s:v,manual:true});
+    }
+  }
+  const posOrder=POS.map(([k])=>k);
+  rows.sort((a,b)=>posOrder.indexOf(a.pk)-posOrder.indexOf(b.pk)||(b.ovr||0)-(a.ovr||0));
+  const cnt=document.getElementById("scnt");
+  if(cnt)cnt.textContent=`${rows.length} jogador(es) marcado(s)`;
+  if(!rows.length){el.innerHTML=`<div class="empty"><strong>Nenhum jogador marcado ainda</strong>Use as estrelas nos Rankings ou nas Listas para adicionar jogadores aqui.</div>`;return;}
+  el.innerHTML=`<div id="scnt">${rows.length} jogador(es) marcado(s)</div>
+  <table id="stbl">
+    <thead><tr><th>Nome</th><th>Pos</th><th>Liga</th><th>Ovr</th><th>Clube</th><th>Id</th><th>Contrato</th><th>Listas</th><th>★</th></tr></thead>
+    <tbody>${rows.map(r=>`
+      <tr>
+        <td style="font-weight:700;color:var(--t1)">${r.name}</td>
+        <td style="color:var(--t2)">${r.pk}</td>
+        <td style="color:var(--t2)">${r.lg?.replace("Brasileiros Ext.","Bras.Ext")||r.lg}</td>
+        <td style="font-weight:700;text-align:center;color:${oc(r.ovr)}">${r.ovr??'—'}</td>
+        <td style="color:var(--t2)">${r.club}</td>
+        <td style="text-align:center;color:var(--t2)">${r.age}</td>
+        <td style="text-align:center;color:var(--t2)">${r.contract}</td>
+        <td>${r.s.main?'<span class="bm bm-main">MAIN</span>':''
+            }${r.s.backup?'<span class="bm bm-backup">BACKUP</span>':''
+            }${r.s.youth?'<span class="bm bm-youth">YOUTH</span>':''}</td>
+        <td>${r.customId?`<button onclick="openAddModal('${r.customId}')" style="background:none;border:none;color:var(--t2);cursor:pointer;font-size:11px">✏</button>`:r.manual?"(toggle)":""}</td>
+      </tr>`).join("")}
+    </tbody>
+  </table>`;
+}
+
+// INIT
+ldSt();
+
+function toggleTheme(){
+  document.body.classList.toggle('light');
+  const on=document.body.classList.contains('light');
+  document.getElementById('themeBtn').textContent=on?'🌙':'☀';
+  localStorage.setItem('bot_theme',on?'light':'dark');
+  // Re-renderiza para aplicar cores de ovr corretas
+  rRanks();
+  if(curTab==='l') renderLists();
+}
+function printPDF(){
+  // 1. Garante que a aba rankings está visível
+  document.getElementById('tranks').style.display='block';
+  document.getElementById('tlists').style.display='none';
+  // 2. Mostra todas as posições
+  document.querySelectorAll('.pp').forEach(p=>p.style.display='block');
+  // 3. Remove dim de jogadores filtrados
+  document.querySelectorAll('.pr[data-pid]').forEach(r=>r.style.opacity='1');
+  // 4. Aguarda o browser repintar antes de abrir o diálogo
+  requestAnimationFrame(()=>{
+    setTimeout(()=>{ window.print(); }, 250);
+  });
+}
+// Restaura o estado após fechar o diálogo de impressão
+window.addEventListener('afterprint',()=>{
+  document.querySelectorAll('.pp').forEach(p=>{
+    p.style.display='';
+    p.classList.toggle('on',p.id===`pos_${curPos}`);
+  });
+  document.querySelectorAll('.pr[data-pid]').forEach(r=>r.style.opacity='');
+  if(curTab==='l'){
+    document.getElementById('tranks').style.display='none';
+    document.getElementById('tlists').style.display='block';
+  }
+});
+
+// Merge initial stars (preloaded from confirmed matches) WITHOUT overwriting user data
+const INIT={"ZAG-E|Colômbia|A. Angulo|29": {"main": true, "backup": false, "youth": false}, "VOL|Brasileiros Ext.|Claudinho|29": {"main": true, "backup": false, "youth": false}, "EXT-D|Brasileiros Ext.|Helinho|25": {"main": true, "backup": false, "youth": false}, "EXT-D|Brasileiros Ext.|Rômulo|30": {"main": true, "backup": false, "youth": false}, "LE|Brasil A|L. Esquivel|24": {"main": true, "backup": false, "youth": false}, "LE|Argentina A|L. Blanco|27": {"main": true, "backup": false, "youth": false}, "ZAG-E|Argentina A|T. Palacios|22": {"main": true, "backup": false, "youth": false}, "ZAG-E|Argentina A|L. Rivero|22": {"main": true, "backup": false, "youth": false}, "ZAG-D|Argentina A|K. Lomónaco|24": {"main": true, "backup": false, "youth": false}, "ZAG-D|Brasileiros Ext.|Vitor Tormena|30": {"main": true, "backup": false, "youth": false}, "ZAG-D|Argentina A|L. Di Lollo|21": {"main": true, "backup": false, "youth": false}, "LD|Argentina A|G. Montiel|29": {"main": true, "backup": false, "youth": false}, "LD|Portugal A|G. Vagiannidis|24": {"main": true, "backup": false, "youth": false}, "MED|Equador|P. Mercado|22": {"main": true, "backup": false, "youth": false}, "ATA|Argentina A|S. Villa|29": {"main": true, "backup": false, "youth": false}, "GK|Argentina A|O. Gill|25": {"main": false, "backup": true, "youth": false}, "GK|Brasileiros Ext.|Victor Aznar|23": {"main": false, "backup": true, "youth": false}, "ZAG-D|Argentina A|M. Di Cesare|24": {"main": false, "backup": true, "youth": false}, "LD|Argentina A|J. Barinaga|25": {"main": false, "backup": true, "youth": false}, "LD|Argentina A|A. Steimbach|23": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|M. Del Blanco|22": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|G. Rojas|28": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|S. Marcich|27": {"main": false, "backup": true, "youth": false}, "ZAG-E|Brasil A|Victor Gabriel|21": {"main": false, "backup": true, "youth": false}, "ZAG-E|Brasileiros Ext.|Renan|23": {"main": false, "backup": true, "youth": false}, "ZAG-D|Portugal A|Vitor Carvalho|28": {"main": false, "backup": true, "youth": false}, "MEIA|Argentina A|A. Lescano|24": {"main": false, "backup": true, "youth": false}, "EXT-D|Colômbia|D. Moncada|18": {"main": false, "backup": true, "youth": false}, "ZAG-D|Brasileiros Ext.|João Victor|21": {"main": false, "backup": true, "youth": false}, "EXT-E|Argentina A|M. Abaldo|21": {"main": false, "backup": true, "youth": false}, "ATA|Uruguai|M. Abaldo|21": {"main": false, "backup": true, "youth": false}, "EXT-E|Argentina A|Ó. Cortés|22": {"main": false, "backup": true, "youth": false}, "EXT-E|Brasil A|Henry Mosquera|24": {"main": false, "backup": true, "youth": false}, "EXT-E|Brasil A|A. Montoro [BOT]|18": {"main": false, "backup": false, "youth": true}, "EXT-D|Argentina A|T. Andrada|19": {"main": false, "backup": false, "youth": true}, "EXT-D|Paraguai|J. Giménez|22": {"main": false, "backup": false, "youth": true}};
+for(const[id,v] of Object.entries(INIT)){
+  if(!ST[id]){ST[id]=v;}
+  else{if(v.main)ST[id].main=true;if(v.backup)ST[id].backup=true;if(v.youth)ST[id].youth=true;}
+}
+svSt();
+rSB();rRanks();
+document.getElementById("tlists").style.display="none";
+
+const CKEY='bot_custom_mar26';
+let editId=null;
+
+function loadCustom(){try{return JSON.parse(localStorage.getItem(CKEY)||'[]')}catch(e){return[]}}
+function saveCustomList(arr){localStorage.setItem(CKEY,JSON.stringify(arr))}
+
+function openAddModal(id){
+  editId=id||null;
+  const c=loadCustom();
+  const p=id?c.find(x=>x.id===id):null;
+  document.getElementById('mtitle').textContent=p?'EDITAR JOGADOR':'CADASTRAR JOGADOR';
+  document.getElementById('mname').value=p?p.name:'';
+  document.getElementById('mpos').value=p?p.pos:'GK';
+  document.getElementById('mleague').value=p?p.league:'';
+  document.getElementById('movr').value=p&&p.ovr?p.ovr:'';
+  document.getElementById('mclub').value=p?p.club:'';
+  document.getElementById('mage').value=p?p.age:'';
+  document.getElementById('mcontract').value=p?p.contract:'';
+  ['main','backup','youth'].forEach(l=>{
+    const on=p?!!p[l]:false;
+    document.getElementById('mch-'+l).checked=on;
+    document.getElementById('mck-'+l).classList.toggle('active-'+l,on);
+  });
+  document.getElementById('mdelBtn').style.display=p?'':'none';
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('mname').focus();
+}
+
+function closeModal(){document.getElementById('overlay').classList.remove('open');editId=null;}
+
+function toggleMck(l){
+  const cb=document.getElementById('mch-'+l);
+  cb.checked=!cb.checked;
+  document.getElementById('mck-'+l).classList.toggle('active-'+l,cb.checked);
+}
+
+function saveCustom(){
+  const name=document.getElementById('mname').value.trim();
+  if(!name){document.getElementById('mname').style.borderColor='#c0392b';return;}
+  document.getElementById('mname').style.borderColor='';
+  const c=loadCustom();
+  const entry={
+    id: editId||('c_'+Date.now()),
+    name,
+    pos:  document.getElementById('mpos').value,
+    league:document.getElementById('mleague').value.trim()||'—',
+    ovr:  parseFloat(document.getElementById('movr').value)||null,
+    club: document.getElementById('mclub').value.trim()||'—',
+    age:  parseInt(document.getElementById('mage').value)||'—',
+    contract:document.getElementById('mcontract').value.trim()||'—',
+    main:   document.getElementById('mch-main').checked,
+    backup: document.getElementById('mch-backup').checked,
+    youth:  document.getElementById('mch-youth').checked,
+  };
+  if(editId){const i=c.findIndex(x=>x.id===editId);if(i>=0)c[i]=entry;else c.push(entry);}
+  else c.push(entry);
+  saveCustomList(c);
+  closeModal();
+  renderLists();
+}
+
+function deleteCustom(){
+  if(!editId)return;
+  const c=loadCustom().filter(x=>x.id!==editId);
+  saveCustomList(c);
+  closeModal();
+  renderLists();
+}
+
+// Keyboard: Esc fecha modal
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// Restore theme
+(function(){
+  const t=localStorage.getItem('bot_theme');
+  if(t==='light'){
+    document.body.classList.add('light');
+    document.getElementById('themeBtn').textContent='🌙';
+    rRanks(); // re-renderiza com cores dark corretas
+  }
+})();
+</script>
+
+<div id="overlay" onclick="if(event.target===this)closeModal()">
+  <div id="modal">
+    <div id="mhdr">
+      <h3 id="mtitle">CADASTRAR JOGADOR</h3>
+      <button id="mclose" onclick="closeModal()">✕</button>
+    </div>
+    <div id="mform">
+      <div class="mfield full">
+        <label>Nome do Jogador</label>
+        <input id="mname" type="text" placeholder="Ex: Lucas Pires" autocomplete="off">
+      </div>
+      <div class="mfield">
+        <label>Posição</label>
+        <select id="mpos">
+          <option value="GK">GK — Goleiro</option>
+          <option value="ZAG-D">ZAG-D — Zagueiro Dir.</option>
+          <option value="ZAG-E">ZAG-E — Zagueiro Esq.</option>
+          <option value="LD">LD — Lateral Dir.</option>
+          <option value="LE">LE — Lateral Esq.</option>
+          <option value="VOL">VOL — Volante</option>
+          <option value="MED">MED — Meia Def.</option>
+          <option value="MEIA">MEIA — Meia Atac.</option>
+          <option value="EXT-D">EXT-D — Extremo Dir.</option>
+          <option value="EXT-E">EXT-E — Extremo Esq.</option>
+          <option value="ATA">ATA — Atacante</option>
+        </select>
+      </div>
+      <div class="mfield">
+        <label>Liga / País</label>
+        <input id="mleague" type="text" placeholder="Ex: Brasil A, MLS..." list="leagues-dl">
+        <datalist id="leagues-dl">
+          <option value="Brasil A"><option value="Argentina A"><option value="Portugal A">
+          <option value="Uruguai"><option value="Colômbia"><option value="Brasileiros Ext.">
+          <option value="Chile"><option value="Equador"><option value="Paraguai">
+        </datalist>
+      </div>
+      <div class="mfield">
+        <label>Overall</label>
+        <input id="movr" type="number" placeholder="Ex: 72.5" min="0" max="99" step="0.1">
+      </div>
+      <div class="mfield">
+        <label>Clube</label>
+        <input id="mclub" type="text" placeholder="Ex: Flamengo">
+      </div>
+      <div class="mfield">
+        <label>Idade</label>
+        <input id="mage" type="number" placeholder="Ex: 23" min="15" max="45">
+      </div>
+      <div class="mfield full">
+        <label>Contrato</label>
+        <input id="mcontract" type="text" placeholder="Ex: Dez/2027">
+      </div>
+    </div>
+    <div style="padding:0 18px 8px;font-size:10px;color:var(--t2);font-weight:700;letter-spacing:.5px">ADICIONAR ÀS LISTAS</div>
+    <div id="mcheck">
+      <label class="mck" id="mck-main" onclick="toggleMck('main')">
+        <input type="checkbox" id="mch-main"> ⭐ MAIN
+      </label>
+      <label class="mck" id="mck-backup" onclick="toggleMck('backup')">
+        <input type="checkbox" id="mch-backup"> 🔵 BACKUP
+      </label>
+      <label class="mck" id="mck-youth" onclick="toggleMck('youth')">
+        <input type="checkbox" id="mch-youth"> 🟢 YOUTH
+      </label>
+    </div>
+    <div id="mfooter">
+      <button class="mbt" id="mdelBtn" onclick="deleteCustom()" style="display:none">🗑 Remover</button>
+      <button class="mbt" onclick="closeModal()">Cancelar</button>
+      <button class="mbt save" onclick="saveCustom()">✓ Salvar</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
