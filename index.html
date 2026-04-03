@@ -21,7 +21,7 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Helvetic
 /* HEADER */
 #hdr{position:fixed;top:0;left:0;right:0;height:var(--hh);background:var(--gold-bg);border-bottom:2px solid var(--gold2);display:flex;align-items:center;padding:0 12px;gap:10px;z-index:100}
 #logo{font-size:24px;font-weight:900;color:var(--gold);letter-spacing:2px;white-space:nowrap}
-#logo span{font-size:13px;color:var(--t2);display:block;letter-spacing:3px;font-weight:400}
+#logo span{font-size:9px;color:var(--t2);display:block;letter-spacing:3px;font-weight:400}
 #mbadge{background:var(--gold);color:#000;font-weight:700;font-size:14px;padding:4px 10px;border-radius:2px;letter-spacing:1px}
 #tabs{display:flex;gap:4px;margin-left:auto}
 .tb{background:transparent;border:1px solid var(--gold2);color:var(--t2);padding:5px 12px;cursor:pointer;border-radius:var(--r);font-size:15px;font-weight:600;transition:.15s}
@@ -38,9 +38,9 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Helvetic
 /* SIDEBAR */
 #sb{position:fixed;top:var(--hh);left:0;bottom:0;width:var(--ws);background:var(--panel);border-right:1px solid var(--gold3);overflow-y:auto;z-index:50;padding:8px 4px}
 #sb::-webkit-scrollbar{width:3px}#sb::-webkit-scrollbar-thumb{background:var(--gold3)}
-.pb{width:100%;background:transparent;border:none;color:var(--t2);padding:6px 0;cursor:pointer;font-size:14px;font-weight:700;letter-spacing:.5px;text-align:center;border-radius:var(--r);margin-bottom:2px;transition:.15s;border-left:2px solid transparent}
+.pb{width:100%;background:transparent;border:none;color:var(--t2);padding:6px 0;cursor:pointer;font-size:13px;font-weight:700;letter-spacing:.5px;text-align:center;border-radius:var(--r);margin-bottom:2px;transition:.15s;border-left:2px solid transparent}
 .pb:hover{background:var(--gold3);color:var(--gold)}.pb.on{background:var(--gold-bg);color:var(--gold);border-left-color:var(--gold)}
-.pb small{display:block;font-size:13px;opacity:.7;margin-top:1px;font-weight:400}
+.pb small{display:block;font-size:9px;opacity:.7;margin-top:1px;font-weight:400}
 
 /* MAIN */
 #main{position:fixed;top:var(--hh);left:var(--ws);right:0;bottom:0;overflow-y:auto;padding:10px 10px 0 10px}
@@ -49,34 +49,34 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Helvetic
 /* RANKINGS */
 .pp{display:none}.pp.on{display:block}
 .pt{display:flex;align-items:baseline;gap:8px;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--gold3)}
-.pt h2{font-size:21px;color:var(--gold);font-weight:900}.pt h3{font-size:14px;color:var(--t2);font-weight:400}
+.pt h2{font-size:20px;color:var(--gold);font-weight:900}.pt h3{font-size:14px;color:var(--t2);font-weight:400}
 .band{margin-bottom:7px}
 .bh{background:var(--band);padding:4px 8px;display:flex;align-items:center;gap:8px;border-left:3px solid var(--gold)}
 .bt{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1px}
-.bl{font-size:13px;color:var(--gold2);font-weight:600;margin-left:auto}
+.bl{font-size:10px;color:var(--gold2);font-weight:600;margin-left:auto}
 .bts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
 .lt{overflow:hidden}
-.ln{background:var(--lg-bg);padding:5px 8px;font-size:12px;font-weight:700;color:var(--gold);text-align:center;letter-spacing:.6px;border-top:1px solid var(--gold2)}
+.ln{background:var(--lg-bg);padding:6px 8px;font-size:12px;font-weight:700;color:var(--gold);text-align:center;letter-spacing:.6px;border-top:1px solid var(--gold2)}
 .ch{display:grid;background:var(--ch-bg);padding:2px 0}
-.chc{font-size:10px;font-weight:700;color:var(--gold2);text-align:center}
-.pr{display:grid;align-items:center;padding:3px 0;transition:.08s;cursor:default}
+.chc{font-size:10px;font-weight:700;color:var(--gold2);text-align:center;padding:0 5px}
+.pr{display:grid;align-items:center;padding:1px 0;transition:.08s;cursor:default}
 .pr:nth-child(odd){background:var(--ra)}.pr:nth-child(even){background:var(--rb)}
 .pr:hover{background:#1E1800}.pr.dim{opacity:.2}
-.c{font-size:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 2px}
+.c{font-size:11px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 5px}
 .cn{text-align:center;color:var(--t2)}.cname{font-weight:700;color:var(--t1)}
-.covr{text-align:center;font-weight:700;font-size:12px}
-.cclub{color:var(--t2)}.cage{text-align:center;color:var(--t2)}.ccon{text-align:center;color:var(--t2);font-size:13px}
+.covr{text-align:center;font-weight:700;font-size:11px}
+.cclub{color:var(--t2)}.cage{text-align:center;color:var(--t2)}.ccon{text-align:center;color:var(--t2);font-size:10px}
 .cs{display:flex;justify-content:center;gap:1px}
-.s{background:none;border:none;cursor:pointer;font-size:13px;color:var(--t3);padding:0;line-height:1;transition:.1s;opacity:.5}
+.s{background:none;border:none;cursor:pointer;font-size:12px;color:var(--t3);padding:0;line-height:1;transition:.1s;opacity:.5}
 .s:hover{opacity:1;transform:scale(1.3)}.s.on{opacity:1}
 .s[data-l="main"].on{color:var(--sm)}.s[data-l="backup"].on{color:var(--sb)}.s[data-l="youth"].on{color:var(--sy)}
 
 /* LISTAS TAB */
 #tlists{display:none}
 .lh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.lh h2{font-size:21px;color:var(--gold);font-weight:900;letter-spacing:1px}
+.lh h2{font-size:20px;color:var(--gold);font-weight:900;letter-spacing:1px}
 .lstabs{display:flex;gap:4px}
-.lstb{background:transparent;border:1px solid var(--t3);color:var(--t2);padding:4px 12px;cursor:pointer;border-radius:var(--r);font-size:14px;font-weight:600;transition:.15s}
+.lstb{background:transparent;border:1px solid var(--t3);color:var(--t2);padding:4px 12px;cursor:pointer;border-radius:var(--r);font-size:13px;font-weight:600;transition:.15s}
 .lstb:hover{opacity:.8}
 .lstb.on[data-ls="main"]{background:var(--sm);color:#000;border-color:var(--sm)}
 .lstb.on[data-ls="backup"]{background:var(--sb);color:#fff;border-color:var(--sb)}
@@ -88,253 +88,152 @@ html,body{height:100%;background:var(--bg);color:var(--t1);font-family:'Helvetic
 .lsec{margin-bottom:12px}
 .lsech{display:flex;align-items:center;gap:8px;background:var(--ch-bg);padding:5px 10px;border-left:3px solid var(--gold2);margin-bottom:3px}
 .lsech span{font-size:13px;font-weight:700;color:var(--gold2);letter-spacing:.8px}
-.lsech small{font-size:12px;color:var(--t2)}
-.lgrid{display:flex;flex-wrap:wrap;gap:4px;padding:2px 0}
-.lpill{display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:2px;font-size:13px;font-weight:600;transition:.1s;cursor:default}
+.lsech small{font-size:11px;color:var(--t2)}
+.lgrid{display:flex;flex-wrap:wrap;gap:5px;padding:4px 0}
+.lpill{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:3px;font-size:12px;font-weight:600;transition:.1s;cursor:default}
 .lpill.found{background:var(--gold3);border:1px solid var(--gold2)}
 .lpill.found:hover{background:#2A1C00}
 .lpill.notfound{background:#111;border:1px solid #222;color:var(--t3)}
 .lpill .lname{color:var(--t1)}
 .lpill.notfound .lname{color:var(--t3)}
-.lovrb{font-size:13px;font-weight:700;padding:1px 4px;border-radius:2px;background:#000;margin-left:2px}
-.lligb{font-size:12px;color:var(--gold2)}
-.lposb{font-size:12px;color:var(--t2)}
+.lovrb{font-size:12px;font-weight:700;padding:1px 4px;border-radius:2px;background:#000;margin-left:2px}
+.lligb{font-size:11px;color:var(--gold2)}
+.lposb{font-size:11px;color:var(--t2)}
 .lstarr{display:flex;gap:2px;margin-left:auto}
-.ls2{background:none;border:none;cursor:pointer;font-size:14px;color:var(--t3);padding:0;transition:.1s}
+.ls2{background:none;border:none;cursor:pointer;font-size:13px;color:var(--t3);padding:0;transition:.1s}
 .ls2:hover{opacity:1}.ls2.on{opacity:1}
 .ls2[data-l="main"].on{color:var(--sm)}.ls2[data-l="backup"].on{color:var(--sb)}.ls2[data-l="youth"].on{color:var(--sy)}
 
 /* starred players table */
 #stbl{width:100%;border-collapse:collapse}
 #stbl th{background:var(--ch-bg);color:var(--gold2);font-size:13px;font-weight:700;padding:5px 7px;text-align:left;border-bottom:1px solid var(--gold3);white-space:nowrap}
-#stbl td{padding:6px 9px;font-size:14px;border-bottom:1px solid var(--sep);white-space:nowrap;vertical-align:middle}
+#stbl td{padding:7px 10px;font-size:13px;border-bottom:1px solid var(--sep);white-space:nowrap;vertical-align:middle}
 #stbl tr:nth-child(even) td{background:var(--rb)}#stbl tr:nth-child(odd) td{background:var(--ra)}
 #stbl tr:hover td{background:#1E1800}
 .bm{display:inline-block;padding:2px 6px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:.5px;margin-right:2px}
 .bm-main{background:var(--sm);color:#000}.bm-backup{background:var(--sb);color:#fff}.bm-youth{background:var(--sy);color:#000}
-.empty{text-align:center;padding:40px;color:var(--t2);font-size:15px}
+.empty{text-align:center;padding:40px;color:var(--t2);font-size:16px}
 .empty strong{color:var(--gold);display:block;margin-bottom:6px}
-#scnt{font-size:14px;color:var(--t2);margin-bottom:6px}
+#scnt{font-size:13px;color:var(--t2);margin-bottom:6px}
 .lsumm{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .lscard{background:var(--panel);border:1px solid var(--gold3);padding:8px 14px;border-radius:3px;min-width:120px}
 .lscard .lct{font-size:13px;font-weight:700;color:var(--gold2);letter-spacing:.5px;margin-bottom:4px}
 .lscard .lcn{font-size:20px;font-weight:900;color:var(--gold);line-height:1}
-.lscard .lcn2{font-size:15px;color:var(--t2);margin-top:2px}
+.lscard .lcn2{font-size:14px;color:var(--t2);margin-top:2px}
 
+/* ══ TEMA LIGHT ══ */
+body.light{
+  --bg:#F4F4F4;--panel:#ECECEC;
+  --gold:#9A7200;--gold2:#7A5A00;--gold3:#C4A020;--gold-bg:#EDEDED;
+  --band:#E2E2E2;--lg-bg:#EBEBEB;--ch-bg:#DCDCDC;
+  --ra:#F8F8F8;--rb:#EFEFEF;
+  --t1:#111111;--t2:#555555;--t3:#AAAAAA;
+  --sm:#B8860B;--sb:#1255A0;--sy:#1A6B1A;--sep:#CCCCCC;
+}
+body.light #hdr{background:#FFFFFF;border-bottom:2px solid #D0D0D0;box-shadow:0 2px 12px rgba(0,0,0,.10)}
+body.light #logo{color:#111;letter-spacing:1.5px}
+body.light #logo span{color:#888}
+body.light #mbadge{background:#9A7200;color:#FFF;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+body.light .fb{background:#FFF;border:1px solid #CCC;color:#555;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.08);font-weight:600}
+body.light .fb:hover{background:#F0F0F0;border-color:#AAA;color:#111}
+body.light .fb.on[data-f="all"]{background:#1A1A1A;color:#FFF;border-color:#1A1A1A}
+body.light .fb.on[data-f="main"]{background:#9A7200;color:#FFF;border-color:#9A7200}
+body.light .fb.on[data-f="backup"]{background:#1255A0;color:#FFF;border-color:#1255A0}
+body.light .fb.on[data-f="youth"]{background:#1A6B1A;color:#FFF;border-color:#1A6B1A}
+body.light .tb{background:#FFF;border:1px solid #CCC;color:#555;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+body.light .tb:hover{background:#F0F0F0;border-color:#AAA;color:#111}
+body.light .tb.on{background:#1A1A1A;color:#FFF;border-color:#1A1A1A;box-shadow:0 2px 8px rgba(0,0,0,.22)}
+body.light #leg{color:#777}
+body.light #sb{background:#FFF;border-right:1px solid #CCC;box-shadow:2px 0 10px rgba(0,0,0,.07)}
+body.light .pb{color:#444;background:#F4F4F4;border:1px solid #DDD;border-left:3px solid transparent;border-radius:4px;margin-bottom:3px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+body.light .pb:hover{background:#EBEBEB;color:#111;border-color:#BBB;border-left-color:#C4A020;box-shadow:0 2px 5px rgba(0,0,0,.10)}
+body.light .pb.on{background:#1A1A1A;color:#FFF;border-color:#1A1A1A;border-left:3px solid #9A7200;box-shadow:0 2px 8px rgba(0,0,0,.22);font-weight:900}
+body.light .pb.on small{color:#C4A020;opacity:.85}
+body.light .pb small{opacity:.65}
+body.light .bh{background:#E0E0E0;border-left:3px solid #9A7200}
+body.light .bt{color:#7A5A00}
+body.light .bl{color:#9A7200}
+body.light .ln{background:#D8D8D8;color:#6A4E00;border-top:1px solid #9A7200}
+body.light .ch{background:#DCDCDC}
+body.light .chc{color:#6A6A6A}
+body.light .pr:nth-child(odd){background:#F8F8F8}
+body.light .pr:nth-child(even){background:#EFEFEF}
+body.light .pr:hover{background:#E8E4D0}
+body.light .cname{color:#111}
+body.light .cclub,.ccon,.cage,.cn{color:#555}
+body.light .s{color:#CCC}
+body.light .pr.dim{opacity:.22}
+body.light #modal{background:#F8F8F8;border-color:#CCC;box-shadow:0 8px 40px rgba(0,0,0,.18)}
+body.light #mhdr{background:#ECECEC;border-bottom-color:#CCC}
+body.light #mhdr h3{color:#7A5A00}
+body.light .mfield input,body.light .mfield select{background:#FFF;border-color:#CCC;color:#111;box-shadow:inset 0 1px 3px rgba(0,0,0,.06)}
+body.light .mfield input:focus,body.light .mfield select:focus{border-color:#9A7200}
+body.light .mfield select option{background:#FFF;color:#111}
+body.light #mfooter{border-top-color:#DDD}
+body.light .mbt{border-color:#CCC;color:#444}
+body.light .mbt.save{background:#9A7200;color:#FFF;border-color:#9A7200}
+body.light .cbadge{background:#DDD;color:#666}
+body.light .lsech{background:#E2E2E2;border-left-color:#9A7200}
+body.light .lpill.found{background:#EEE;border-color:#CCC}
+body.light .lpill.found:hover{background:#E4E0D0}
+body.light .lpill.notfound{background:#E8E8E8;border-color:#BBB;color:#444}
+body.light .lscard{background:#FFF;border-color:#CCC;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+body.light .lscard .lct{color:#7A5A00}
+body.light .lscard .lcn{color:#9A7200}
+body.light #stbl th{background:#DCDCDC;color:#555;border-bottom-color:#CCC}
+body.light #stbl td{border-bottom-color:#E0E0E0}
+body.light #stbl tr:nth-child(even) td{background:#EFEFEF}
+body.light #stbl tr:nth-child(odd) td{background:#F8F8F8}
+body.light #stbl tr:hover td{background:#E8E4D0}
 
-
-
-/* PRINT */
 @media print{
   html,body{overflow:visible!important;height:auto!important;background:#fff!important}
   #hdr,#sb,#tlists,#fbar,#leg,#tabs,.cs,.lstarr,#overlay{display:none!important}
-  #main{position:static!important;overflow:visible!important;
-    padding:0!important;left:0!important;top:0!important;
-    height:auto!important;width:100%!important}
+  #main{position:static!important;overflow:visible!important;padding:0!important;left:0!important;top:0!important;height:auto!important;width:100%!important}
   #tranks{display:block!important}
   .pp{display:block!important;page-break-after:always}
   .pp:last-child{page-break-after:auto}
   .bts{display:grid!important;grid-template-columns:1fr 1fr 1fr!important}
   .pr.dim{opacity:1!important}
   .band{break-inside:avoid;margin-bottom:6px}
-  .pt{margin-bottom:6px}
   @page{size:A4 landscape;margin:10mm}
 }
 
-/* MODAL CADASTRO */
 #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center}
 #overlay.open{display:flex}
-#modal{background:#111;border:1px solid var(--gold2);border-radius:6px;width:480px;max-width:95vw;
-  box-shadow:0 8px 40px rgba(0,0,0,.8);overflow:hidden}
+#modal{background:#111;border:1px solid var(--gold2);border-radius:6px;width:480px;max-width:95vw;box-shadow:0 8px 40px rgba(0,0,0,.8);overflow:hidden}
 #mhdr{background:var(--gold-bg);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gold2)}
-#mhdr h3{color:var(--gold);font-size:14px;font-weight:900;letter-spacing:.5px}
-#mclose{background:none;border:none;color:var(--t2);font-size:20px;cursor:pointer;padding:0 2px;line-height:1}
+#mhdr h3{color:var(--gold);font-size:16px;font-weight:900;letter-spacing:.5px}
+#mclose{background:none;border:none;color:var(--t2);font-size:22px;cursor:pointer;padding:0 2px;line-height:1}
 #mclose:hover{color:var(--t1)}
 #mform{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .mfield{display:flex;flex-direction:column;gap:4px}
 .mfield.full{grid-column:1/-1}
-.mfield label{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.5px;text-transform:uppercase}
-.mfield input,.mfield select{background:#1A1A1A;border:1px solid var(--t3);color:var(--t1);
-  padding:7px 10px;border-radius:3px;font-size:13px;font-family:inherit;outline:none;transition:.15s}
+.mfield label{font-size:11px;font-weight:700;color:var(--gold2);letter-spacing:.5px;text-transform:uppercase}
+.mfield input,.mfield select{background:#1A1A1A;border:1px solid var(--t3);color:var(--t1);padding:8px 10px;border-radius:3px;font-size:14px;font-family:inherit;outline:none;transition:.15s}
 .mfield input:focus,.mfield select:focus{border-color:var(--gold)}
 .mfield select option{background:#1A1A1A;color:var(--t1)}
 #mcheck{display:flex;gap:12px;padding:0 18px 4px}
-.mck{display:flex;align-items:center;gap:6px;cursor:pointer;padding:7px 12px;border-radius:3px;
-  border:1px solid var(--t3);font-size:12px;font-weight:700;transition:.15s;user-select:none}
+.mck{display:flex;align-items:center;gap:6px;cursor:pointer;padding:8px 14px;border-radius:3px;border:1px solid var(--t3);font-size:13px;font-weight:700;transition:.15s;user-select:none}
 .mck:hover{border-color:var(--gold2)}
 .mck input{display:none}
 .mck.active-main{background:rgba(255,215,0,.15);border-color:var(--sm);color:var(--sm)}
 .mck.active-backup{background:rgba(74,144,217,.15);border-color:var(--sb);color:var(--sb)}
 .mck.active-youth{background:rgba(76,175,80,.15);border-color:var(--sy);color:var(--sy)}
 #mfooter{padding:14px 18px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--gold3)}
-.mbt{padding:8px 20px;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--t3);
-  color:var(--t2);background:transparent;transition:.15s;font-family:inherit}
+.mbt{padding:8px 20px;border-radius:3px;font-size:13px;font-weight:700;cursor:pointer;border:1px solid var(--t3);color:var(--t2);background:transparent;transition:.15s;font-family:inherit}
 .mbt:hover{background:var(--gold3);color:var(--t1)}
 .mbt.save{background:var(--gold);color:#000;border-color:var(--gold)}
 .mbt.save:hover{opacity:.85}
 .mbt.del{border-color:#c0392b;color:#c0392b}
 .mbt.del:hover{background:#c0392b;color:#fff}
-/* custom player badge */
-.cbadge{font-size:9px;background:#333;color:var(--t2);padding:1px 5px;border-radius:2px;margin-left:4px}
+.cbadge{font-size:10px;background:#333;color:var(--t2);padding:1px 5px;border-radius:2px;margin-left:4px}
 
 
-/* Filter buttons */
-/* Tab buttons */
-/* Theme/PDF buttons */
-/* Legend */
-
-/* ══════════════════════════════════════════════════════
-   TEMA LIGHT — elegante, espelho do dark
-   Mantém o ouro como acento; fundo cinza neutro limpo
-   ══════════════════════════════════════════════════════ */
-body.light {
-  /* Fundos */
-  --bg:#F4F4F4; --panel:#ECECEC;
-  /* Ouro — ligeiramente mais escuro para funcionar em fundo claro */
-  --gold:#9A7200; --gold2:#7A5A00; --gold3:#C4A020; --gold-bg:#EDEDED;
-  /* Tabelas */
-  --band:#E2E2E2; --lg-bg:#EBEBEB; --ch-bg:#DCDCDC;
-  /* Linhas */
-  --ra:#F8F8F8; --rb:#EFEFEF;
-  /* Texto */
-  --t1:#111111; --t2:#555555; --t3:#AAAAAA;
-  /* Estrelas */
-  --sm:#B8860B; --sb:#1255A0; --sy:#1A6B1A;
-  /* Separador */
-  --sep:#CCCCCC;
-}
-
-/* ── HEADER ── */
-body.light #hdr {
-  background:#FFFFFF;
-  border-bottom:2px solid #D0D0D0;
-  box-shadow:0 2px 12px rgba(0,0,0,.10);
-}
-body.light #logo { color:#111111; letter-spacing:1.5px }
-body.light #logo span { color:#888888 }
-
-/* Badge do mês: ouro sobre claro */
-body.light #mbadge {
-  background:#9A7200; color:#FFFFFF;
-  border-radius:4px; letter-spacing:.5px;
-  box-shadow:0 2px 6px rgba(0,0,0,.18);
-}
-
-/* Botões de filtro */
-body.light .fb {
-  background:#FFFFFF; border:1px solid #CCCCCC; color:#555555;
-  border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.08); font-weight:600;
-}
-body.light .fb:hover { background:#F0F0F0; border-color:#AAAAAA; color:#111 }
-body.light .fb.on[data-f="all"]    { background:#1A1A1A; color:#FFF; border-color:#1A1A1A }
-body.light .fb.on[data-f="main"]   { background:#9A7200; color:#FFF; border-color:#9A7200 }
-body.light .fb.on[data-f="backup"] { background:#1255A0; color:#FFF; border-color:#1255A0 }
-body.light .fb.on[data-f="youth"]  { background:#1A6B1A; color:#FFF; border-color:#1A6B1A }
-
-/* Tabs Rankings/Listas */
-body.light .tb {
-  background:#FFFFFF; border:1px solid #CCCCCC; color:#555555;
-  border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.08);
-}
-body.light .tb:hover { background:#F0F0F0; border-color:#AAAAAA; color:#111 }
-body.light .tb.on {
-  background:#1A1A1A; color:#FFFFFF; border-color:#1A1A1A;
-  box-shadow:0 2px 8px rgba(0,0,0,.22);
-}
-
-/* Legenda */
-body.light #leg { color:#777777 }
-
-/* ── SIDEBAR ── */
-body.light #sb {
-  background:#FFFFFF;
-  border-right:1px solid #CCCCCC;
-  box-shadow:2px 0 10px rgba(0,0,0,.07);
-}
-body.light .pb {
-  color:#444444; background:#F4F4F4;
-  border:1px solid #DDDDDD; border-left:3px solid transparent;
-  border-radius:4px; margin-bottom:3px;
-  box-shadow:0 1px 3px rgba(0,0,0,.06);
-}
-body.light .pb:hover {
-  background:#EBEBEB; color:#111111;
-  border-color:#BBBBBB; border-left-color:#C4A020;
-  box-shadow:0 2px 5px rgba(0,0,0,.10);
-}
-body.light .pb.on {
-  background:#1A1A1A; color:#FFFFFF;
-  border-color:#1A1A1A; border-left:3px solid #9A7200;
-  box-shadow:0 2px 8px rgba(0,0,0,.22); font-weight:900;
-}
-body.light .pb.on small { color:#C4A020; opacity:.85 }
-body.light .pb small { opacity:.65 }
-
-/* ── TABELA — estrutura ── */
-/* Band header: mantém acento ouro */
-body.light .bh {
-  background:#E0E0E0;
-  border-left:3px solid #9A7200;
-}
-body.light .bt { color:#7A5A00 }
-body.light .bl { color:#9A7200 }
-
-/* Nome da liga: acento no topo igual ao dark */
-body.light .ln {
-  background:#D8D8D8; color:#6A4E00;
-  border-top:1px solid #9A7200;
-}
-
-/* Cabeçalho de colunas */
-body.light .ch { background:#DCDCDC }
-body.light .chc { color:#6A6A6A }
-
-/* Linhas */
-body.light .pr:nth-child(odd)  { background:#F8F8F8 }
-body.light .pr:nth-child(even) { background:#EFEFEF }
-body.light .pr:hover           { background:#E8E4D0 }
-
-/* Nomes e texto nas células */
-body.light .cname   { color:#111111 }
-body.light .cclub   { color:#555555 }
-body.light .cage    { color:#555555 }
-body.light .ccon    { color:#666666 }
-body.light .cn      { color:#888888 }
-
-/* Estrelas dimadas */
-body.light .s       { color:#CCCCCC }
-
-/* Dim */
-body.light .pr.dim  { opacity:.22 }
-
-/* ── MODAL ── */
-body.light #modal   { background:#F8F8F8; border-color:#CCCCCC; box-shadow:0 8px 40px rgba(0,0,0,.18) }
-body.light #mhdr    { background:#ECECEC; border-bottom-color:#CCCCCC }
-body.light #mhdr h3 { color:#7A5A00 }
-body.light .mfield input, body.light .mfield select {
-  background:#FFFFFF; border-color:#CCCCCC; color:#111111;
-  box-shadow:inset 0 1px 3px rgba(0,0,0,.06);
-}
-body.light .mfield input:focus, body.light .mfield select:focus { border-color:#9A7200 }
-body.light .mfield select option { background:#FFFFFF; color:#111111 }
-body.light #mfooter { border-top-color:#DDDDDD }
-body.light .mbt { border-color:#CCCCCC; color:#444444 }
-body.light .mbt.save { background:#9A7200; color:#FFFFFF; border-color:#9A7200 }
-body.light .cbadge  { background:#DDDDDD; color:#666666 }
-
-/* ── LISTAS ── */
-body.light .lsech { background:#E2E2E2; border-left-color:#9A7200 }
-body.light .lpill.found { background:#EEEEEE; border-color:#CCCCCC }
-body.light .lpill.found:hover { background:#E4E0D0 }
-body.light .lpill.notfound { background:#F4F4F4; border-color:#DDDDDD }
-body.light .lscard { background:#FFFFFF; border-color:#CCCCCC; box-shadow:0 1px 4px rgba(0,0,0,.08) }
-body.light .lscard .lct { color:#7A5A00 }
-body.light .lscard .lcn { color:#9A7200 }
-body.light #stbl th { background:#DCDCDC; color:#555555; border-bottom-color:#CCCCCC }
-body.light #stbl td { border-bottom-color:#E0E0E0 }
-body.light #stbl tr:nth-child(even) td { background:#EFEFEF }
-body.light #stbl tr:nth-child(odd)  td { background:#F8F8F8 }
-body.light #stbl tr:hover td { background:#E8E4D0 }
+#stbl th{cursor:pointer;user-select:none;white-space:nowrap}
+#stbl th:hover{background:var(--band);color:var(--gold)}
+#stbl th.sort-asc::after{content:" ▲";font-size:9px;color:var(--gold)}
+#stbl th.sort-desc::after{content:" ▼";font-size:9px;color:var(--gold)}
 </style>
 </head>
 <body>
@@ -353,8 +252,8 @@ body.light #stbl tr:hover td { background:#E8E4D0 }
     <span style="color:var(--sy)">★ YOUTH</span>
   </div>
   <div style="display:flex;gap:6px;align-items:center;margin-left:6px">
-    <button id="themeBtn" class="tb" onclick="toggleTheme()" title="Alternar tema" style="font-size:14px;padding:5px 10px">☀</button>
-    <button class="tb" onclick="printPDF()" title="Imprimir / Salvar PDF" style="font-size:13px;padding:5px 10px">🖨 PDF</button>
+    <button id="themeBtn" class="tb" onclick="toggleTheme()" style="font-size:16px;padding:5px 10px">☀</button>
+    <button class="tb" onclick="printPDF()" style="font-size:14px;padding:5px 10px">🖨 PDF</button>
   </div>
   <div id="tabs">
     <button class="tb on" onclick="swTab('r')">Rankings</button>
@@ -375,7 +274,7 @@ const BANDS=[
   {tag:"TOP 5", leagues:["Uruguai","Colômbia","Brasileiros Ext."],rows:5},
   {tag:"TOP 3", leagues:["Chile","Equador","Paraguai"],rows:3},
 ];
-const GR="26px 1fr 44px 84px 26px 56px 50px";
+const GR="26px 0.75fr 44px 84px 24px 74px 46px";
 
 let curPos="GK",curTab="r",curF="all",curLS="main";
 const KEY="bot_stars_mar26";
@@ -517,14 +416,14 @@ function renderLists(){
         <button class="lstb${curLS==="main"?" on":""}" data-ls="main" onclick="swLS('main')">⭐ Main</button>
         <button class="lstb${curLS==="backup"?" on":""}" data-ls="backup" onclick="swLS('backup')">🔵 Backup</button>
         <button class="lstb${curLS==="youth"?" on":""}" data-ls="youth" onclick="swLS('youth')">🟢 Youth</button>
-        <button class="lstb${curLS==="starred"?" on":""}" data-ls="starred" onclick="swLS('starred')">★ Todos (${stCount})</button>
+        <button class="lstb${curLS==="starred"?" on":""}" data-ls="starred" onclick="swLS('starred')">★ Todos</button>
       </div>
-      <button onclick="openAddModal()" style="margin-left:auto;background:var(--gold);color:#000;border:none;padding:7px 16px;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px">+ Cadastrar</button>
+      <button onclick="openAddModal()" style="margin-left:auto;background:var(--gold);color:#000;border:none;padding:8px 18px;border-radius:3px;font-size:13px;font-weight:700;cursor:pointer">+ Cadastrar</button>
     </div>
     <div class="lsumm">
-      <div class="lscard"><div class="lct">MAIN LIST</div><div class="lcn">${cnt.main}<span style="font-size:14px;color:var(--t2)">/${tot.main}</span></div><div class="lcn2">encontrados no ranking</div></div>
-      <div class="lscard"><div class="lct">BACKUP LIST</div><div class="lcn">${cnt.backup}<span style="font-size:14px;color:var(--t2)">/${tot.backup}</span></div><div class="lcn2">encontrados no ranking</div></div>
-      <div class="lscard"><div class="lct">YOUTH LIST</div><div class="lcn">${cnt.youth}<span style="font-size:14px;color:var(--t2)">/${tot.youth}</span></div><div class="lcn2">encontrados no ranking</div></div>
+      <div class="lscard"><div class="lct">MAIN LIST</div><div class="lcn">${cnt.main}<span style="font-size:15px;color:var(--t2)">/${tot.main}</span></div><div class="lcn2">encontrados no ranking</div></div>
+      <div class="lscard"><div class="lct">BACKUP LIST</div><div class="lcn">${cnt.backup}<span style="font-size:15px;color:var(--t2)">/${tot.backup}</span></div><div class="lcn2">encontrados no ranking</div></div>
+      <div class="lscard"><div class="lct">YOUTH LIST</div><div class="lcn">${cnt.youth}<span style="font-size:15px;color:var(--t2)">/${tot.youth}</span></div><div class="lcn2">encontrados no ranking</div></div>
       <div class="lscard"><div class="lct">MARCADOS</div><div class="lcn">${stCount}</div><div class="lcn2">total com estrelas</div></div>
     </div>
     <div id="lbody"></div>`;
@@ -537,17 +436,6 @@ function swLS(ls){
   renderLBody();
 }
 
-
-function rCustomPill(p){
-  return `<div class="lpill found" style="cursor:pointer" onclick="openAddModal('${p.id}')" title="Clique para editar">
-    <span class="lname">${p.name}</span>
-    ${p.ovr?`<span class="lovrb" style="color:${oc(p.ovr)}">${p.ovr}</span>`:''}
-    <span class="lligb">${p.league}</span>
-    <span class="lposb">${p.pos}</span>
-    <span class="cbadge">✏</span>
-  </div>`;
-}
-
 function renderLBody(){
   const el=document.getElementById("lbody");
   if(curLS==="starred"){renderStarred(el);return;}
@@ -558,20 +446,13 @@ function renderLBody(){
     if(!secs[p.section])secs[p.section]=[];
     secs[p.section].push(p);
   });
-  let html=Object.entries(secs).map(([sec,ps])=>{
+  el.innerHTML=Object.entries(secs).map(([sec,ps])=>{
     const found=ps.filter(p=>p.found).length;
     return `<div class="lsec">
       <div class="lsech"><span>${sec}</span><small>${found}/${ps.length} no ranking</small></div>
       <div class="lgrid">${ps.map(p=>rPill(p,curLS)).join("")}</div>
     </div>`;
   }).join("");
-  if(custom.length){
-    html+=`<div class="lsec">
-      <div class="lsech" style="border-left-color:var(--gold)"><span>✏ CADASTRADOS MANUALMENTE</span><small>${custom.length} jogador(es)</small></div>
-      <div class="lgrid">${custom.map(p=>rCustomPill(p)).join("")}</div>
-    </div>`;
-  }
-  el.innerHTML=html;
 }
 
 function rPill(p,lt){
@@ -594,7 +475,7 @@ function rPill(p,lt){
   }
   return `<div class="lpill notfound">
     <span class="lname">${p.name}</span>
-    <span style="font-size:10px;color:#333">✗ fora do top ranking</span>
+    <span style="font-size:11px;color:#333">✗ fora do top ranking</span>
     ${p.pid?stBtns:`<span class="lstarr">
       <button class="ls2" data-l="main" data-cname="${p.name}" data-lt="${lt}" onclick="tgSManual(this,'main')" title="Main">★</button>
       <button class="ls2" data-l="backup" data-cname="${p.name}" data-lt="${lt}" onclick="tgSManual(this,'backup')" title="Backup">★</button>
@@ -633,119 +514,121 @@ function refreshStarred(){
   }
   // update count badge
   const stCount=Object.values(ST).filter(v=>v.main||v.backup||v.youth).length;
-  document.querySelectorAll(".lstb[data-ls='starred']").forEach(b=>{b.textContent=`★ Todos (${stCount})`});
+  // badge removido
 }
 
 function renderStarred(el){
-  const rows=[];
-  // From rankings
-  for(const[pk,pd] of Object.entries(R)){
-    for(const[lg,ps] of Object.entries(pd.data||{})){
-      for(const p of ps){
-        const id=pid(pk,lg,p.name,p.age),s=gSt(id);
-        if(s.main||s.backup||s.youth){
-          rows.push({name:p.name,pk,lg,ovr:p.ovr,club:p.club,age:p.age,contract:p.contract,s,manual:false});
-        }
-      }
-    }
-  }
-  // Custom registered players
-  for(const p of loadCustom()){
-    if(p.main||p.backup||p.youth){
-      rows.push({name:p.name,pk:p.pos,lg:p.league,ovr:p.ovr,club:p.club,age:p.age,contract:p.contract,
-        s:{main:p.main,backup:p.backup,youth:p.youth},manual:true,customId:p.id});
-    }
-  }
-  // Manual star toggles (not found)
-  for(const[id,v] of Object.entries(ST)){
-    if(id.startsWith("MANUAL|")&&(v.main||v.backup||v.youth)){
-      rows.push({name:v._name||id.split("|")[2],pk:"—",lg:"—",ovr:null,club:"—",age:"—",contract:"—",s:v,manual:true});
-    }
-  }
+  const SEC_POS={
+    'GK':'GK','FORWARD':'ATA','ATK MID':'MEIA',
+    'LEFT WINGER':'EXT-E','RIGHT WINGER':'EXT-D',
+    'LEFT MID':'VOL','RIGHT MID':'MED',
+    'LEFT BACK':'LE','RIGHT BACK':'LD',
+    'LEFT CB':'ZAG-E','RIGHT CB':'ZAG-D',
+  };
   const posOrder=POS.map(([k])=>k);
-  rows.sort((a,b)=>posOrder.indexOf(a.pk)-posOrder.indexOf(b.pk)||(b.ovr||0)-(a.ovr||0));
-  const cnt=document.getElementById("scnt");
-  if(cnt)cnt.textContent=`${rows.length} jogador(es) marcado(s)`;
-  if(!rows.length){el.innerHTML=`<div class="empty"><strong>Nenhum jogador marcado ainda</strong>Use as estrelas nos Rankings ou nas Listas para adicionar jogadores aqui.</div>`;return;}
-  el.innerHTML=`<div id="scnt">${rows.length} jogador(es) marcado(s)</div>
-  <table id="stbl">
-    <thead><tr><th>Nome</th><th>Pos</th><th>Liga</th><th>Ovr</th><th>Clube</th><th>Id</th><th>Contrato</th><th>Listas</th><th>★</th></tr></thead>
-    <tbody>${rows.map(r=>`
-      <tr>
-        <td style="font-weight:700;color:var(--t1)">${r.name}</td>
-        <td style="color:var(--t2)">${r.pk}</td>
-        <td style="color:var(--t2)">${r.lg?.replace("Brasileiros Ext.","Bras.Ext")||r.lg}</td>
-        <td style="font-weight:700;text-align:center;color:${oc(r.ovr)}">${r.ovr??'—'}</td>
-        <td style="color:var(--t2)">${r.club}</td>
-        <td style="text-align:center;color:var(--t2)">${r.age}</td>
-        <td style="text-align:center;color:var(--t2)">${r.contract}</td>
-        <td>${r.s.main?'<span class="bm bm-main">MAIN</span>':''
-            }${r.s.backup?'<span class="bm bm-backup">BACKUP</span>':''
-            }${r.s.youth?'<span class="bm bm-youth">YOUTH</span>':''}</td>
-        <td>${r.customId?`<button onclick="openAddModal('${r.customId}')" style="background:none;border:none;color:var(--t2);cursor:pointer;font-size:11px">✏</button>`:r.manual?"(toggle)":""}</td>
-      </tr>`).join("")}
-    </tbody>
-  </table>`;
-}
+  const map=new Map();
 
-// INIT
-ldSt();
-
-function toggleTheme(){
-  document.body.classList.toggle('light');
-  const on=document.body.classList.contains('light');
-  document.getElementById('themeBtn').textContent=on?'🌙':'☀';
-  localStorage.setItem('bot_theme',on?'light':'dark');
-  // Re-renderiza para aplicar cores de ovr corretas
-  rRanks();
-  if(curTab==='l') renderLists();
-}
-function printPDF(){
-  // 1. Garante que a aba rankings está visível
-  document.getElementById('tranks').style.display='block';
-  document.getElementById('tlists').style.display='none';
-  // 2. Mostra todas as posições
-  document.querySelectorAll('.pp').forEach(p=>p.style.display='block');
-  // 3. Remove dim de jogadores filtrados
-  document.querySelectorAll('.pr[data-pid]').forEach(r=>r.style.opacity='1');
-  // 4. Aguarda o browser repintar antes de abrir o diálogo
-  requestAnimationFrame(()=>{
-    setTimeout(()=>{ window.print(); }, 250);
+  ['main','backup','youth'].forEach(lt=>{
+    (S[lt]||[]).forEach(p=>{
+      const pos=p.found?(p.pk||'—'):(SEC_POS[p.section]||p.section||'—');
+      const key=p.name+'||'+pos;
+      if(!map.has(key)) map.set(key,{
+        name:p.name, pk:pos, lg:p.found?(p.lg||'—'):'—',
+        ovr:p.found?(p.ovr||null):null, club:p.found?(p.club||'—'):'—',
+        age:'—', contract:'—', found:p.found||false,
+        pid:p.pid||null, section:p.section||'',
+        lists:{main:false,backup:false,youth:false},
+      });
+      const e=map.get(key);
+      e.lists[lt]=true;
+      if(p.found&&p.pid){
+        e.found=true;e.pid=p.pid;e.pk=pos;
+        e.lg=p.lg;e.ovr=p.ovr;e.club=p.club;
+      }
+    });
   });
-}
-// Restaura o estado após fechar o diálogo de impressão
-window.addEventListener('afterprint',()=>{
-  document.querySelectorAll('.pp').forEach(p=>{
-    p.style.display='';
-    p.classList.toggle('on',p.id===`pos_${curPos}`);
+
+  // Preencher age/contract dos ranqueados
+  map.forEach(e=>{
+    if(e.pid){
+      const[pk,lg,nm]=e.pid.split('|');
+      const pl=(R[pk]?.data?.[lg]||[]).find(x=>x.name===nm);
+      if(pl){e.age=pl.age;e.contract=pl.contract;e.club=pl.club;}
+    }
   });
-  document.querySelectorAll('.pr[data-pid]').forEach(r=>r.style.opacity='');
-  if(curTab==='l'){
-    document.getElementById('tranks').style.display='none';
-    document.getElementById('tlists').style.display='block';
-  }
-});
 
-// Merge initial stars (preloaded from confirmed matches) WITHOUT overwriting user data
-const INIT={"ZAG-E|Colômbia|A. Angulo|29": {"main": true, "backup": false, "youth": false}, "VOL|Brasileiros Ext.|Claudinho|29": {"main": true, "backup": false, "youth": false}, "EXT-D|Brasileiros Ext.|Helinho|25": {"main": true, "backup": false, "youth": false}, "EXT-D|Brasileiros Ext.|Rômulo|30": {"main": true, "backup": false, "youth": false}, "LE|Brasil A|L. Esquivel|24": {"main": true, "backup": false, "youth": false}, "LE|Argentina A|L. Blanco|27": {"main": true, "backup": false, "youth": false}, "ZAG-E|Argentina A|T. Palacios|22": {"main": true, "backup": false, "youth": false}, "ZAG-E|Argentina A|L. Rivero|22": {"main": true, "backup": false, "youth": false}, "ZAG-D|Argentina A|K. Lomónaco|24": {"main": true, "backup": false, "youth": false}, "ZAG-D|Brasileiros Ext.|Vitor Tormena|30": {"main": true, "backup": false, "youth": false}, "ZAG-D|Argentina A|L. Di Lollo|21": {"main": true, "backup": false, "youth": false}, "LD|Argentina A|G. Montiel|29": {"main": true, "backup": false, "youth": false}, "LD|Portugal A|G. Vagiannidis|24": {"main": true, "backup": false, "youth": false}, "MED|Equador|P. Mercado|22": {"main": true, "backup": false, "youth": false}, "ATA|Argentina A|S. Villa|29": {"main": true, "backup": false, "youth": false}, "GK|Argentina A|O. Gill|25": {"main": false, "backup": true, "youth": false}, "GK|Brasileiros Ext.|Victor Aznar|23": {"main": false, "backup": true, "youth": false}, "ZAG-D|Argentina A|M. Di Cesare|24": {"main": false, "backup": true, "youth": false}, "LD|Argentina A|J. Barinaga|25": {"main": false, "backup": true, "youth": false}, "LD|Argentina A|A. Steimbach|23": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|M. Del Blanco|22": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|G. Rojas|28": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|S. Marcich|27": {"main": false, "backup": true, "youth": false}, "ZAG-E|Brasil A|Victor Gabriel|21": {"main": false, "backup": true, "youth": false}, "ZAG-E|Brasileiros Ext.|Renan|23": {"main": false, "backup": true, "youth": false}, "ZAG-D|Portugal A|Vitor Carvalho|28": {"main": false, "backup": true, "youth": false}, "MEIA|Argentina A|A. Lescano|24": {"main": false, "backup": true, "youth": false}, "EXT-D|Colômbia|D. Moncada|18": {"main": false, "backup": true, "youth": false}, "ZAG-D|Brasileiros Ext.|João Victor|21": {"main": false, "backup": true, "youth": false}, "EXT-E|Argentina A|M. Abaldo|21": {"main": false, "backup": true, "youth": false}, "ATA|Uruguai|M. Abaldo|21": {"main": false, "backup": true, "youth": false}, "EXT-E|Argentina A|Ó. Cortés|22": {"main": false, "backup": true, "youth": false}, "EXT-E|Brasil A|Henry Mosquera|24": {"main": false, "backup": true, "youth": false}, "EXT-E|Brasil A|A. Montoro [BOT]|18": {"main": false, "backup": false, "youth": true}, "EXT-D|Argentina A|T. Andrada|19": {"main": false, "backup": false, "youth": true}, "EXT-D|Paraguai|J. Giménez|22": {"main": false, "backup": false, "youth": true}};
-for(const[id,v] of Object.entries(INIT)){
-  if(!ST[id]){ST[id]=v;}
-  else{if(v.main)ST[id].main=true;if(v.backup)ST[id].backup=true;if(v.youth)ST[id].youth=true;}
+  // Custom players
+  loadCustom().forEach(p=>{
+    const key=p.name+'||'+p.pos;
+    if(!map.has(key)) map.set(key,{
+      name:p.name,pk:p.pos,lg:p.league,ovr:p.ovr,club:p.club,
+      age:p.age,contract:p.contract,found:false,pid:null,
+      lists:{main:p.main,backup:p.backup,youth:p.youth},customId:p.id,
+    });
+  });
+
+  const rows=[...map.values()].sort((a,b)=>{
+    const pa=posOrder.indexOf(a.pk),pb=posOrder.indexOf(b.pk);
+    const diff=pa===-1&&pb===-1?0:pa===-1?1:pb===-1?-1:pa-pb;
+    return diff!==0?diff:(b.ovr||0)-(a.ovr||0);
+  });
+
+  const total=rows.length, ranked=rows.filter(r=>r.found).length;
+  el.innerHTML=`
+    <div style="font-size:12px;color:var(--t2);margin-bottom:10px">
+      <b style="color:var(--t1)">${total}</b> jogadores nas listas ·
+      <span style="color:var(--gold)">● ${ranked} no ranking</span> ·
+      <span style="color:var(--t3)">○ ${total-ranked} não ranqueados</span>
+    </div>
+    <table id="stbl">
+      <thead><tr>
+        <th onclick="sortStbl('found')" title="Ranqueado">●</th>
+        <th onclick="sortStbl('name')" title="Ordenar por nome">Nome</th>
+        <th>Listas</th>
+        <th onclick="sortStbl('pk')" title="Ordenar por posição">Pos</th>
+        <th onclick="sortStbl('lg')" title="Ordenar por liga">Liga</th>
+        <th onclick="sortStbl('ovr')" title="Ordenar por Overall">Ovr</th>
+        <th onclick="sortStbl('club')" title="Ordenar por clube">Clube</th>
+        <th onclick="sortStbl('age')" title="Ordenar por idade">Id</th>
+        <th onclick="sortStbl('contract')" title="Ordenar por contrato">Contrato</th>
+        <th>★</th>
+      </tr></thead>
+      <tbody>${rows.map(r=>{
+        const s=r.pid?gSt(r.pid):{main:false,backup:false,youth:false};
+        const starBtns=r.pid?`<span style="display:flex;gap:3px">
+          <button class="s${s.main?' on':''}" data-l="main" data-pid="${r.pid}" onclick="tgS(this)">★</button>
+          <button class="s${s.backup?' on':''}" data-l="backup" data-pid="${r.pid}" onclick="tgS(this)">★</button>
+          <button class="s${s.youth?' on':''}" data-l="youth" data-pid="${r.pid}" onclick="tgS(this)">★</button>
+        </span>`:'—';
+        return `<tr style="opacity:${r.found?1:.8}">
+          <td style="text-align:center;font-size:11px">${r.found?'<span style="color:var(--gold)">●</span>':'<span style="color:var(--t3)">○</span>'}</td>
+          <td style="font-weight:700;color:${r.found?'var(--t1)':'var(--t2)'}">
+            ${r.name}${r.customId?'<span class="cbadge">✏</span>':''}
+          </td>
+          <td>
+            ${r.lists.main?'<span class="bm bm-main">M</span>':''}
+            ${r.lists.backup?'<span class="bm bm-backup">B</span>':''}
+            ${r.lists.youth?'<span class="bm bm-youth">Y</span>':''}
+          </td>
+          <td style="color:var(--t2)">${r.pk}</td>
+          <td style="color:var(--t2)">${(r.lg||'').replace('Brasileiros Ext.','Bras.Ext')}</td>
+          <td style="font-weight:700;text-align:center;color:${oc(r.ovr)}">${r.ovr??'—'}</td>
+          <td style="color:var(--t2)">${r.club}</td>
+          <td style="text-align:center;color:var(--t2)">${r.age}</td>
+          <td style="text-align:center;color:var(--t2)">${r.contract}</td>
+          <td>${starBtns}</td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>`;
 }
-svSt();
-rSB();rRanks();
-document.getElementById("tlists").style.display="none";
-
-const CKEY='bot_custom_mar26';
-let editId=null;
 
 function loadCustom(){try{return JSON.parse(localStorage.getItem(CKEY)||'[]')}catch(e){return[]}}
 function saveCustomList(arr){localStorage.setItem(CKEY,JSON.stringify(arr))}
 
 function openAddModal(id){
   editId=id||null;
-  const c=loadCustom();
-  const p=id?c.find(x=>x.id===id):null;
+  const c=loadCustom(), p=id?c.find(x=>x.id===id):null;
   document.getElementById('mtitle').textContent=p?'EDITAR JOGADOR':'CADASTRAR JOGADOR';
   document.getElementById('mname').value=p?p.name:'';
   document.getElementById('mpos').value=p?p.pos:'GK';
@@ -763,32 +646,28 @@ function openAddModal(id){
   document.getElementById('overlay').classList.add('open');
   document.getElementById('mname').focus();
 }
-
 function closeModal(){document.getElementById('overlay').classList.remove('open');editId=null;}
-
 function toggleMck(l){
   const cb=document.getElementById('mch-'+l);
   cb.checked=!cb.checked;
   document.getElementById('mck-'+l).classList.toggle('active-'+l,cb.checked);
 }
-
 function saveCustom(){
   const name=document.getElementById('mname').value.trim();
   if(!name){document.getElementById('mname').style.borderColor='#c0392b';return;}
   document.getElementById('mname').style.borderColor='';
   const c=loadCustom();
   const entry={
-    id: editId||('c_'+Date.now()),
-    name,
-    pos:  document.getElementById('mpos').value,
+    id:editId||('c_'+Date.now()), name,
+    pos:document.getElementById('mpos').value,
     league:document.getElementById('mleague').value.trim()||'—',
-    ovr:  parseFloat(document.getElementById('movr').value)||null,
-    club: document.getElementById('mclub').value.trim()||'—',
-    age:  parseInt(document.getElementById('mage').value)||'—',
+    ovr:parseFloat(document.getElementById('movr').value)||null,
+    club:document.getElementById('mclub').value.trim()||'—',
+    age:parseInt(document.getElementById('mage').value)||'—',
     contract:document.getElementById('mcontract').value.trim()||'—',
-    main:   document.getElementById('mch-main').checked,
-    backup: document.getElementById('mch-backup').checked,
-    youth:  document.getElementById('mch-youth').checked,
+    main:document.getElementById('mch-main').checked,
+    backup:document.getElementById('mch-backup').checked,
+    youth:document.getElementById('mch-youth').checked,
   };
   if(editId){const i=c.findIndex(x=>x.id===editId);if(i>=0)c[i]=entry;else c.push(entry);}
   else c.push(entry);
@@ -796,93 +675,171 @@ function saveCustom(){
   closeModal();
   renderLists();
 }
-
 function deleteCustom(){
   if(!editId)return;
-  const c=loadCustom().filter(x=>x.id!==editId);
-  saveCustomList(c);
-  closeModal();
-  renderLists();
+  saveCustomList(loadCustom().filter(x=>x.id!==editId));
+  closeModal(); renderLists();
 }
-
-// Keyboard: Esc fecha modal
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// Restore theme
+// ── rCustomPill ────────────────────────────────────────────────────────
+function rCustomPill(p){
+  return `<div class="lpill found" style="cursor:pointer" onclick="openAddModal('${p.id}')" title="Clique para editar">
+    <span class="lname">${p.name}</span>
+    ${p.ovr?`<span class="lovrb" style="color:${oc(p.ovr)}">${p.ovr}</span>`:''}
+    <span class="lligb">${p.league}</span>
+    <span class="lposb">${p.pos}</span>
+    <span class="cbadge">✏</span>
+  </div>`;
+}
+
+// ── renderStarred: TODOS os jogadores das listas ────────────────────────
+function renderStarred(el){
+  // Coletar TODOS os jogadores das 3 listas com dedup por nome
+  const byName={};
+  ['main','backup','youth'].forEach(lt=>{
+    (S[lt]||[]).forEach(p=>{
+      const key=p.name.trim().toLowerCase();
+      if(!byName[key]) byName[key]={...p, lists:[], starState:{main:false,backup:false,youth:false}};
+      if(!byName[key].lists.includes(lt)) byName[key].lists.push(lt);
+      // Merge ranking data se disponível
+      if(p.found && !byName[key].found){
+        byName[key].found=true; byName[key].pid=p.pid;
+        byName[key].pk=p.pk; byName[key].lg=p.lg;
+        byName[key].ovr=p.ovr; byName[key].club=p.club;
+        byName[key].age=p.age; byName[key].contract=p.contract;
+      }
+    });
+  });
+  // Adicionar jogadores cadastrados manualmente
+  for(const p of loadCustom()){
+    const key=p.name.trim().toLowerCase();
+    if(!byName[key]) byName[key]={name:p.name,lists:[],found:false,
+      pk:p.pos,lg:p.league,ovr:p.ovr,club:p.club,age:p.age,contract:p.contract,customId:p.id};
+    if(p.main && !byName[key].lists.includes('main')) byName[key].lists.push('main');
+    if(p.backup && !byName[key].lists.includes('backup')) byName[key].lists.push('backup');
+    if(p.youth && !byName[key].lists.includes('youth')) byName[key].lists.push('youth');
+    byName[key].customId=p.id;
+  }
+  const rows=Object.values(byName);
+  const posOrder=POS.map(([k])=>k);
+  rows.sort((a,b)=>{
+    // Encontrados no ranking primeiro
+    if(a.found&&!b.found) return -1; if(!a.found&&b.found) return 1;
+    // Por posição, depois por ovr
+    const pi=posOrder.indexOf(a.pk??'—'), pj=posOrder.indexOf(b.pk??'—');
+    if(pi!==pj) return (pi<0?99:pi)-(pj<0?99:pj);
+    return (b.ovr||0)-(a.ovr||0);
+  });
+  const total=rows.length, found=rows.filter(r=>r.found).length;
+  el.innerHTML=`
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;flex-wrap:wrap">
+    <span style="font-size:11px;color:var(--t2)">${total} jogadores · <span style="color:var(--gold);font-weight:700">${found} no ranking</span> · ${total-found} fora do ranking</span>
+    <span style="font-size:10px;color:var(--t2)">● linha destacada = encontrado no ranking</span>
+  </div>
+  <table id="stbl">
+    <thead><tr>
+      <th>Nome</th><th>Listas</th><th>Pos</th><th>Liga</th>
+      <th>Ovr</th><th>Clube</th><th>Id</th><th>Contrato</th><th>★</th>
+    </tr></thead>
+    <tbody>${rows.map(r=>{
+      const s=r.pid?gSt(r.pid):{main:false,backup:false,youth:false};
+      const hasStars=s.main||s.backup||s.youth;
+      const rowStyle=r.found
+        ? 'background:rgba(180,140,20,.10);border-left:3px solid var(--gold)'
+        : '';
+      return `<tr style="${rowStyle}">
+        <td style="font-weight:700;color:${r.found?'var(--t1)':'var(--t2)'}">${r.name}${r.customId?'<span class="cbadge" style="margin-left:4px">✏</span>':''}</td>
+        <td>${r.lists.map(l=>
+          l==='main'?'<span class="bm bm-main">M</span>':
+          l==='backup'?'<span class="bm bm-backup">B</span>':
+          '<span class="bm bm-youth">Y</span>'
+        ).join(' ')}</td>
+        <td style="color:var(--t2)">${r.pk??'—'}</td>
+        <td style="color:var(--t2)">${(r.lg??'—').replace('Brasileiros Ext.','Bras.Ext')}</td>
+        <td style="font-weight:700;text-align:center;color:${oc(r.ovr)}">${r.ovr??'—'}</td>
+        <td style="color:var(--t2)">${r.club??'—'}</td>
+        <td style="text-align:center;color:var(--t2)">${r.age??'—'}</td>
+        <td style="text-align:center;color:var(--t2)">${r.contract??'—'}</td>
+        <td style="white-space:nowrap">
+          ${r.pid?`
+            <button class="s${s.main?' on':''}" data-l="main" data-pid="${r.pid}" onclick="tgS(this)" title="Main">★</button>
+            <button class="s${s.backup?' on':''}" data-l="backup" data-pid="${r.pid}" onclick="tgS(this)" title="Backup">★</button>
+            <button class="s${s.youth?' on':''}" data-l="youth" data-pid="${r.pid}" onclick="tgS(this)" title="Youth">★</button>
+          `:''}
+          ${r.customId?`<button onclick="openAddModal('${r.customId}')" style="background:none;border:none;color:var(--t2);cursor:pointer;font-size:11px;margin-left:2px">✏</button>`:''}
+        </td>
+      </tr>`;
+    }).join('')}
+    </tbody>
+  </table>`;
+}
+
+function tgSManual(btn,l){
+  const cname=btn.dataset.cname,lt=btn.dataset.lt;
+  const fakeId='MANUAL|'+lt+'|'+cname+'|0';
+  if(!ST[fakeId])ST[fakeId]={main:false,backup:false,youth:false,_name:cname};
+  ST[fakeId][l]=!ST[fakeId][l];
+  btn.classList.toggle('on',ST[fakeId][l]);
+  svSt(); refreshStarred();
+}
+function refreshStarred(){
+  if(curLS==='starred'){const el=document.getElementById('lbody');if(el)renderStarred(el);}
+}
+
+// ── Restore theme ──────────────────────────────────────────────────────
+function toggleTheme(){
+  document.body.classList.toggle('light');
+  const on=document.body.classList.contains('light');
+  document.getElementById('themeBtn').textContent=on?'🌙':'☀';
+  localStorage.setItem('bot_theme',on?'light':'dark');
+  rRanks(); if(curTab==='l') renderLists();
+}
 (function(){
   const t=localStorage.getItem('bot_theme');
-  if(t==='light'){
-    document.body.classList.add('light');
-    document.getElementById('themeBtn').textContent='🌙';
-    rRanks(); // re-renderiza com cores dark corretas
-  }
+  if(t==='light'){document.body.classList.add('light');document.getElementById('themeBtn').textContent='🌙';rRanks();}
 })();
+
+// Merge initial stars (preloaded from confirmed matches) WITHOUT overwriting user data
+const INIT={"ZAG-E|Colômbia|A. Angulo|29": {"main": true, "backup": false, "youth": false}, "VOL|Brasileiros Ext.|Claudinho|29": {"main": true, "backup": false, "youth": false}, "EXT-D|Brasileiros Ext.|Helinho|25": {"main": true, "backup": false, "youth": false}, "EXT-D|Brasileiros Ext.|Rômulo|30": {"main": true, "backup": false, "youth": false}, "LE|Brasil A|L. Esquivel|24": {"main": true, "backup": false, "youth": false}, "LE|Argentina A|L. Blanco|27": {"main": true, "backup": false, "youth": false}, "ZAG-E|Argentina A|T. Palacios|22": {"main": true, "backup": false, "youth": false}, "ZAG-E|Argentina A|L. Rivero|22": {"main": true, "backup": false, "youth": false}, "ZAG-D|Argentina A|K. Lomónaco|24": {"main": true, "backup": false, "youth": false}, "ZAG-D|Brasileiros Ext.|Vitor Tormena|30": {"main": true, "backup": false, "youth": false}, "ZAG-D|Argentina A|L. Di Lollo|21": {"main": true, "backup": false, "youth": false}, "LD|Argentina A|G. Montiel|29": {"main": true, "backup": false, "youth": false}, "LD|Portugal A|G. Vagiannidis|24": {"main": true, "backup": false, "youth": false}, "MED|Equador|P. Mercado|22": {"main": true, "backup": false, "youth": false}, "ATA|Argentina A|S. Villa|29": {"main": true, "backup": false, "youth": false}, "GK|Argentina A|O. Gill|25": {"main": false, "backup": true, "youth": false}, "GK|Brasileiros Ext.|Victor Aznar|23": {"main": false, "backup": true, "youth": false}, "ZAG-D|Argentina A|M. Di Cesare|24": {"main": false, "backup": true, "youth": false}, "LD|Argentina A|J. Barinaga|25": {"main": false, "backup": true, "youth": false}, "LD|Argentina A|A. Steimbach|23": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|M. Del Blanco|22": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|G. Rojas|28": {"main": false, "backup": true, "youth": false}, "LE|Argentina A|S. Marcich|27": {"main": false, "backup": true, "youth": false}, "ZAG-E|Brasil A|Victor Gabriel|21": {"main": false, "backup": true, "youth": false}, "ZAG-E|Brasileiros Ext.|Renan|23": {"main": false, "backup": true, "youth": false}, "ZAG-D|Portugal A|Vitor Carvalho|28": {"main": false, "backup": true, "youth": false}, "MEIA|Argentina A|A. Lescano|24": {"main": false, "backup": true, "youth": false}, "EXT-D|Colômbia|D. Moncada|18": {"main": false, "backup": true, "youth": false}, "ZAG-D|Brasileiros Ext.|João Victor|21": {"main": false, "backup": true, "youth": false}, "EXT-E|Argentina A|M. Abaldo|21": {"main": false, "backup": true, "youth": false}, "ATA|Uruguai|M. Abaldo|21": {"main": false, "backup": true, "youth": false}, "EXT-E|Argentina A|Ó. Cortés|22": {"main": false, "backup": true, "youth": false}, "EXT-E|Brasil A|Henry Mosquera|24": {"main": false, "backup": true, "youth": false}, "EXT-E|Brasil A|A. Montoro [BOT]|18": {"main": false, "backup": false, "youth": true}, "EXT-D|Argentina A|T. Andrada|19": {"main": false, "backup": false, "youth": true}, "EXT-D|Paraguai|J. Giménez|22": {"main": false, "backup": false, "youth": true}};
+for(const[id,v] of Object.entries(INIT)){
+  if(!ST[id]){ST[id]=v;}
+  else{if(v.main)ST[id].main=true;if(v.backup)ST[id].backup=true;if(v.youth)ST[id].youth=true;}
+}
+svSt();
+rSB();rRanks();
+document.getElementById("tlists").style.display="none";
 </script>
 
 <div id="overlay" onclick="if(event.target===this)closeModal()">
   <div id="modal">
-    <div id="mhdr">
-      <h3 id="mtitle">CADASTRAR JOGADOR</h3>
-      <button id="mclose" onclick="closeModal()">✕</button>
-    </div>
+    <div id="mhdr"><h3 id="mtitle">CADASTRAR JOGADOR</h3><button id="mclose" onclick="closeModal()">✕</button></div>
     <div id="mform">
-      <div class="mfield full">
-        <label>Nome do Jogador</label>
-        <input id="mname" type="text" placeholder="Ex: Lucas Pires" autocomplete="off">
-      </div>
-      <div class="mfield">
-        <label>Posição</label>
-        <select id="mpos">
-          <option value="GK">GK — Goleiro</option>
-          <option value="ZAG-D">ZAG-D — Zagueiro Dir.</option>
-          <option value="ZAG-E">ZAG-E — Zagueiro Esq.</option>
-          <option value="LD">LD — Lateral Dir.</option>
-          <option value="LE">LE — Lateral Esq.</option>
-          <option value="VOL">VOL — Volante</option>
-          <option value="MED">MED — Meia Def.</option>
-          <option value="MEIA">MEIA — Meia Atac.</option>
-          <option value="EXT-D">EXT-D — Extremo Dir.</option>
-          <option value="EXT-E">EXT-E — Extremo Esq.</option>
-          <option value="ATA">ATA — Atacante</option>
-        </select>
-      </div>
-      <div class="mfield">
-        <label>Liga / País</label>
+      <div class="mfield full"><label>Nome do Jogador</label><input id="mname" type="text" placeholder="Ex: Lucas Pires" autocomplete="off"></div>
+      <div class="mfield"><label>Posição</label><select id="mpos">
+        <option value="GK">GK — Goleiro</option><option value="ZAG-D">ZAG-D</option>
+        <option value="ZAG-E">ZAG-E</option><option value="LD">LD</option>
+        <option value="LE">LE</option><option value="VOL">VOL</option>
+        <option value="MED">MED</option><option value="MEIA">MEIA</option>
+        <option value="EXT-D">EXT-D</option><option value="EXT-E">EXT-E</option>
+        <option value="ATA">ATA</option></select></div>
+      <div class="mfield"><label>Liga / País</label>
         <input id="mleague" type="text" placeholder="Ex: Brasil A, MLS..." list="leagues-dl">
         <datalist id="leagues-dl">
           <option value="Brasil A"><option value="Argentina A"><option value="Portugal A">
           <option value="Uruguai"><option value="Colômbia"><option value="Brasileiros Ext.">
           <option value="Chile"><option value="Equador"><option value="Paraguai">
-        </datalist>
-      </div>
-      <div class="mfield">
-        <label>Overall</label>
-        <input id="movr" type="number" placeholder="Ex: 72.5" min="0" max="99" step="0.1">
-      </div>
-      <div class="mfield">
-        <label>Clube</label>
-        <input id="mclub" type="text" placeholder="Ex: Flamengo">
-      </div>
-      <div class="mfield">
-        <label>Idade</label>
-        <input id="mage" type="number" placeholder="Ex: 23" min="15" max="45">
-      </div>
-      <div class="mfield full">
-        <label>Contrato</label>
-        <input id="mcontract" type="text" placeholder="Ex: Dez/2027">
-      </div>
+        </datalist></div>
+      <div class="mfield"><label>Overall</label><input id="movr" type="number" placeholder="Ex: 72.5" min="0" max="99" step="0.1"></div>
+      <div class="mfield"><label>Clube</label><input id="mclub" type="text" placeholder="Ex: Flamengo"></div>
+      <div class="mfield"><label>Idade</label><input id="mage" type="number" placeholder="Ex: 23" min="15" max="45"></div>
+      <div class="mfield full"><label>Contrato</label><input id="mcontract" type="text" placeholder="Ex: Dez/2027"></div>
     </div>
-    <div style="padding:0 18px 8px;font-size:10px;color:var(--t2);font-weight:700;letter-spacing:.5px">ADICIONAR ÀS LISTAS</div>
+    <div style="padding:0 18px 8px;font-size:11px;color:var(--t2);font-weight:700;letter-spacing:.5px">ADICIONAR ÀS LISTAS</div>
     <div id="mcheck">
-      <label class="mck" id="mck-main" onclick="toggleMck('main')">
-        <input type="checkbox" id="mch-main"> ⭐ MAIN
-      </label>
-      <label class="mck" id="mck-backup" onclick="toggleMck('backup')">
-        <input type="checkbox" id="mch-backup"> 🔵 BACKUP
-      </label>
-      <label class="mck" id="mck-youth" onclick="toggleMck('youth')">
-        <input type="checkbox" id="mch-youth"> 🟢 YOUTH
-      </label>
+      <label class="mck" id="mck-main" onclick="toggleMck('main')"><input type="checkbox" id="mch-main"> ⭐ MAIN</label>
+      <label class="mck" id="mck-backup" onclick="toggleMck('backup')"><input type="checkbox" id="mch-backup"> 🔵 BACKUP</label>
+      <label class="mck" id="mck-youth" onclick="toggleMck('youth')"><input type="checkbox" id="mch-youth"> 🟢 YOUTH</label>
     </div>
     <div id="mfooter">
       <button class="mbt" id="mdelBtn" onclick="deleteCustom()" style="display:none">🗑 Remover</button>
